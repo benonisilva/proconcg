@@ -1,0 +1,165 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Cadastro de Reclamação</h1>
+</div>
+
+<div class="wrapper-md">
+  <div ng-controller="FormDemoCtrl">
+    <div class="row">
+      <div class="col-sm-12">
+        <form name="formUser" class="form-validation">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span class="h4">Dados do Consumidor</span>
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-6">
+              <p class="text-muted">Dados de Contato</p>
+              <div class="form-group">
+                <label>*Nome Completo</label>
+                <input type="text" class="form-control" ng-model="user.name" ng-pattern="/^[A-Za-z _]*[A-Za-z][A-Za-z _]{10,50}$/" required >
+              </div>
+              <div class="form-group">
+                <label>*Email</label>
+                <input type="email" class="form-control" ng-model="user.email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" required >
+              </div>
+              <div class="form-group">
+                <label>*Telefone</label>
+                <input type="text" name="masked" ui-mask="(99) 9999-9999 Digito Extra. 9" ng-model="user.telefone" class="form-control m-b" required>
+              </div>     
+              <div class="form-group">
+                  <select  ng-change="onChangeTipoDocumento(user.tipoDocumento)" class="form-control m-t" ng-model="user.tipoDocumento" required >
+                      <option value="">Tipo de Documento</option>
+                      <option value="2">CPF</option>
+                      <option value="1">CNPJ</option>
+                  </select>
+                  <label>*CPF/CNPJ</label>
+                  <input type="text" class="form-control" ng-model="user.nDocumento" name="masked" ui-mask="{{rpattern}}" required >
+                  
+                  <label>*RG</label>
+                  <input type="text" class="form-control" ng-model="user.rg" required >
+                  
+              </div>
+              </div> 
+              <div class="col-sm-6">
+              <p class="text-muted">Informações de Localização</p>
+              <div class="form-group">
+                <label>*Endereço</label>
+                <input type="text" class="form-control" ng-model="user.endereco" ng-pattern="/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{5,50}$/" required >
+              </div>
+              
+              <div class="form-group">
+                <label>*Número</label>
+                <input type="text" class="form-control" ng-model="user.numero" ng-pattern="/^[0-9]{1,5}$/" required >
+              </div>
+             
+              <div class="form-group">
+                <label>Complemento</label>
+                <input type="text" class="form-control" ng-model="user.complemento"  ng-pattern="/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{4,50}$/"  >
+              </div>
+
+              <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" class="form-control" ng-model="user.bairro"   ng-pattern="/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{4,10}$/" required >
+              </div>
+                  
+              <div class="form-group">
+                  <label>*Estado</label>
+                  <select class="form-control m-t" ng-model="user.estado" required >
+                      <option value="">Estado</option>
+                      <option value="15">Paraiba</option>
+
+                  </select>
+                  <label>*Cidade</label>
+                  <input type="text" class="form-control" placeholder="Cidade" ng-model="user.cidade" ng-pattern="/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{4,10}$/"  >
+              </div>
+              
+          </div>
+          <footer class="panel-footer text-right bg-light lter">
+              <button type="button" class="btn btn-success" ng-click="goToDecuncia()" ng-disabled="formUser.$invalid">{{formUser.$invalid ? "Preencha Seus Dados" : "Ir Para Denuncia"}}</button>
+          </footer>
+        </form>
+        
+      </div>
+    </div>
+    <div  id="formDenuncia" class="row">
+      <div  class="col-sm-12">
+        <form name="formDenuncia" class="form-validation">
+          <div  class="panel panel-default">
+            <div class="panel-heading">
+              <span class="h4">Reclamação</span>
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-6">
+              <div class="form-group">
+               <select class="form-control m-t" ng-model="denuncia.assunto" ng-options="assunto as assunto.nome for assunto in opcoes.assuntos" required >
+                      <option value="">Assuntos</option>
+                </select>
+                <select class="form-control m-t" ng-model="denuncia.descritivo" ng-options="descritivo as descritivo.nome for descritivo in opcoes.descritivos" required >
+                      <option value="">Descritivo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Nota Fiscal / COO</label>
+                <input type="text" class="form-control" ng-model="denuncia.nota" required >
+              </div>
+              <div class="form-group">
+                <select class="form-control m-t" ng-model="denuncia.desejo" ng-options="desejo as desejo.nome for desejo in opcoes.desejos" required >
+                      <option value="">O Que Deseja?</option>
+                </select>
+              </div>     
+              <div class="form-group">
+                  <label>N. do Pedido</label> 
+                  <input type="text" class="form-control" ng-model="denuncia.pedido" required >
+              </div>
+              
+           </div> 
+              <div class="col-sm-6">
+              
+              <div class="form-group">
+                <label>*N. OS / Protocolo</label>
+                <input type="text" class="form-control" ng-model="denuncia.protocolo" ng-pattern="/^[a-zA-Z0-9]{4,10}$/" required >
+              </div>
+              
+              <div class="form-group">
+                <label>*Produto / Serviço</label>
+                <input type="text" class="form-control" ng-model="denuncia.produto" required >
+              </div>
+             
+              <div class="form-group">
+                <label>N. Contato / N. Cliente</label>
+                <input type="text" class="form-control" ng-model="denuncia.contato" required >
+              </div>
+
+              <div class="form-group">
+                  <label>Valor: </label> 
+                  <input type="text" class="form-control" ng-model="denuncia.valor" required >
+              </div>
+              <div class="form-group">
+                  <label>Empresa / Reclamado</label> 
+                  <input type="text" class="form-control" placeholder="required field" ng-model="denuncia.empresa" required >
+              </div>
+
+             </div>
+
+             <div class="col-sm-12">
+               <div class="form-group">
+                  <label>Denúncia (1024 caracteres)</label>
+                  <textarea class="form-control" rows="6" placeholder="Digitite sua denuncia" ng-model="denuncia.denuncia" required ></textarea>
+                </div>
+
+             </div>
+          <footer class="panel-footer text-right bg-light lter">
+              <button type="button" class="btn btn-success" ng-click="goToDecuncia()" ng-disabled="formDenuncia.$invalid">{{formDenuncia.$invalid ? "Preencha Sua Denúncia" : "Enviar Denuncia"}}</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+    
+    <div>
+    
+     <p>{{user}}</p>
+     <br><br>
+     <p>{{denuncia}}</p>
+    </div>    
+  </div>
+</div>
