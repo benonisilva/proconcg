@@ -1,0 +1,37 @@
+<ion-view view-title="Denúncia ProCon Campina Grande">
+  <ion-content>
+    <h2 style="text-align: center;">Acompanhe Sua Denuncia</h2><br/>
+     <form name="formUser" novalidate on-valid-submit="pesquisaDenuncia(pesquisa)"> 
+     	<div class="row">
+      		<div class="col col-50">
+      			<label class="item item-input item-stacked-label">
+                <span class="input-label">N. Protocolo</span>
+                <input ng-model="pesquisa.protocolo"  placeholder="Número do Protocolo" type="text">
+              </label>
+      		</div>
+      		<div class="col col-50">
+      			<label class="item item-input item-stacked-label">
+                <span class="input-label">N. Documento</span>
+                <input ng-model="pesquisa.numeroDocumento" placeholder="Seu Cpf/Cnpj" type="text">
+      		</div>
+      		
+      	</div>
+      	<div class="col">
+      		 <button type="button" ng-click="pesquisaDenuncia(pesquisa)" class="ion-search button button-block">
+      		 Pesquisar
+            </button>	
+      	</div>
+     </form>
+    
+    <div class="row header">	
+    	<div class="col">Texto</div>
+    	<div class="col">Data</div>
+     	<div class="col">Parecer</div>
+    </div>
+    <div class="row" ng-repeat="historico in historicos">
+    	<div class="col">{{historico.texto}}</div>
+    	<div class="col">{{historico.dataEvento}}</div>
+    	<div class="col">{{historico.parecer}}</div>
+    </div> 
+  </ion-content>  
+</ion-view>
