@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
-  'starter.controllers' ,'starter.services', 'starter.directives',
+  'starter.controllers','starter.controllers.cam' ,'starter.services', 'starter.services.cam','starter.directives',
   'starter.config','ionic-material', 'ionMdInput'])
 
 .run(function($ionicPlatform,$rootScope) {
@@ -121,6 +121,24 @@ constant('constantConfig', {
             }
         }
     })
+
+   .state('app.info', {
+        url: '/informacao',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/informacao.html',
+                controller: 'CamCtrl'
+            },
+            'fabContent': {
+                template: '',
+                controller: function ($timeout) {
+                    /*$timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);*/
+                }
+            }
+        }
+    })
   // setup an abstract state for the tabs directive
 
   // Each tab has its own nav history stack:
@@ -134,7 +152,5 @@ constant('constantConfig', {
   else {
     $urlRouterProvider.otherwise('/app/login');
   }
-  
-
 }])
 ;
