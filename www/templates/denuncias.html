@@ -1,0 +1,34 @@
+<ion-view view-title="Denuncias">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero stable-bg flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <h1>{{$scope.$parent.logged}}</h1>
+            </div>
+        </div>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.reclamacao" class="tab-item">
+                <i class="icon ion-speakerphone"></i> Denunciar
+            </a>
+            <a ui-sref="app.acompanhamento" class="tab-item">
+                <i class="icon ion-ios-search"></i> Acompanhamento
+            </a>
+            <a ui-sref="app.gallery" class="tab-item">
+                <i class="icon ion-information-circled"></i> Informações
+            </a>
+        </div>
+        <h4 class="content padding double-padding-x">Denuncias Recentes</h4>
+        <div class="row" ng-repeat="denuncia in ultimasDenuncias | limitTo:30">
+
+            <div class="col">
+                <div class="item item-button-right">
+                    <span class="col-33">{{denuncia.empresa}}</span> 
+                    <span class="col-33">-- {{denuncia.motivo}}</span>
+                    <spanclass="col-33">-- {{denuncia.parecer}}</span>  
+                </div>
+            </div>             
+
+        </div>
+    </div>
+    </ion-content>
+</ion-view>

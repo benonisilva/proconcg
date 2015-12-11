@@ -8,23 +8,22 @@ angular.module('starter.services', [])
     
     {
       id: 0,
-      texto: 'texto historico',
-      dataEvento: '20/11/2015',
-      parecer: 'parecer'
+      empresa: 'Cagepa',
+      motivo: 'SERVIÇO INCOMPLETO',
+      parecer: 'EM ANDAMENTO'
     },
+    {
+      id: 1,
+      empresa: 'TIM',
+      motivo: 'PLANO MENTIROSO',
+      parecer: 'PROCEDENTE'
+    }, 
     {
       id: 2,
-      texto: 'texto historico',
-      dataEvento: '20/11/2015',
-      parecer: 'parecer'
-    },
-    {
-      id: 3,
-      texto: 'texto historico',
-      dataEvento: '20/11/2015',
-      parecer: 'parecer'
-    }  
-    
+      empresa: 'OI/TELEMAR',
+      motivo: 'SINAL PESSIMO',
+      parecer: 'PROCEDENTE'
+    }, 
   ];
 
   return {
@@ -34,9 +33,13 @@ angular.module('starter.services', [])
     remove: function(historico) {
       historicos.splice(historicos.indexOf(historico), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (historicos[i].id === parseInt(historicoId)) {
+    add: function(reclamacao) {
+      historicos.push(reclamacao);
+    },
+    
+    get: function(reclamacaoId) {
+      for (var i = 0; i < historicos.length; i++) {
+        if (historicos[i].id === parseInt(reclamacaoId)) {
           return historicos[i];
         }
       }
@@ -47,9 +50,6 @@ angular.module('starter.services', [])
     }
   };
 }]).factory('FactoryBuscaEndereco',function($q,$http){
-
-        
-
     return {
       getEndereco : function(cep) {
         //console.log(cep);
@@ -62,15 +62,12 @@ angular.module('starter.services', [])
 
     return { 
       getOpcoes : function(tipo){
-
         var url = 'js/'+tipo+'.json'
         return $http.get(url);
       },
 
       postReclamacao : function(url,data){
-
           return $http.post(url,data);
-
       },
 
       postRequerente : function(url,data){
@@ -78,6 +75,15 @@ angular.module('starter.services', [])
       }
 
     };  
+ }).factory('FactoryLogin',function($q,$http){
+    return {
+      getLogin : function(login) {
+        console.log(login);
+        var url = 'teste';
+        return $http.post(url,login);
+        //return deferred.promise;
+      }
+    };
  }).service('localDBService', ['$window', function($window){
 
       this.saveLocal = function(key,value){
@@ -85,8 +91,6 @@ angular.module('starter.services', [])
       };
 
  }]).provider('localStorageProvider', function(){
-
-    
 
     this.$get = ['$window', function($window){
       return {

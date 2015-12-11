@@ -1,12 +1,95 @@
 angular.module('starter.controllers', [])
 
-//acompanhamento
-.controller('AcompanhamentoCtrl', ['$scope','FactoryHistorico','$ionicLoading',
-  function($scope,FactoryHistorico,$ionicLoading) {
-  
-  console.log("AcompanhamentoCtrl");
- 
-  $scope.showLoading = function(msg) {
+.controller('AppCtrl', function($scope, $ionicModal, 
+  $ionicPopover, $timeout,$ionicLoading) {
+    // Form data for the login modal
+    $scope.loginData = {};
+    $scope.isExpanded = false;
+    $scope.hasHeaderFabLeft = false;
+    $scope.hasHeaderFabRight = false;
+    $scope.logged = false;
+
+    var navIcons = document.getElementsByClassName('ion-navicon');
+    for (var i = 0; i < navIcons.length; i++) {
+        navIcons.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    }
+
+    ////////////////////////////////////////
+    // Layout Methods
+    ////////////////////////////////////////
+
+    $scope.hideNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
+    };
+
+    $scope.showNavBar = function() {
+        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
+    };
+
+    $scope.noHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+    };
+
+    $scope.setExpanded = function(bool) {
+        $scope.isExpanded = bool;
+    };
+
+    $scope.setLogged = function(bool) {
+        $scope.logged = bool;
+    };
+
+    $scope.setHeaderFab = function(location) {
+        var hasHeaderFabLeft = false;
+        var hasHeaderFabRight = false;
+
+        switch (location) {
+            case 'left':
+                hasHeaderFabLeft = true;
+                break;
+            case 'right':
+                hasHeaderFabRight = true;
+                break;
+        }
+
+        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
+        $scope.hasHeaderFabRight = hasHeaderFabRight;
+    };
+
+    $scope.hasHeader = function() {
+        var content = document.getElementsByTagName('ion-content');
+        for (var i = 0; i < content.length; i++) {
+            if (!content[i].classList.contains('has-header')) {
+                content[i].classList.toggle('has-header');
+            }
+        }
+
+    };
+
+    $scope.hideHeader = function() {
+        $scope.hideNavBar();
+        $scope.noHeader();
+    };
+
+    $scope.showHeader = function() {
+        $scope.showNavBar();
+        $scope.hasHeader();
+    };
+
+    $scope.clearFabs = function() {
+        var fabs = document.getElementsByClassName('button-fab');
+        if (fabs.length && fabs.length > 1) {
+            fabs[0].remove();
+        }
+    };
+
+    $scope.showLoading = function(msg, duration) {
     $ionicLoading.show({
       template: msg,
       duration: 1000
@@ -16,13 +99,61 @@ angular.module('starter.controllers', [])
   $scope.hideLoading = function(){
     $ionicLoading.hide();
   };
+})
 
+.controller('LoginCtrl', 
+  ['FactoryLogin','$scope', '$timeout', '$stateParams', 'ionicMaterialInk','localDBService','$state','$ionicHistory',
+  function(FactoryLogin,$scope, $timeout, $stateParams, ionicMaterialInk,localDBService,$state,$ionicHistory) {
+    
+    $scope.$parent.clearFabs();
+    $timeout(function() {
+        $scope.$parent.hideHeader();
+    }, 300);
+    ionicMaterialInk.displayEffect();
+
+    $scope.user = {
+      numDocumento:"039",
+      password:"1"
+    };
+    
+    $scope.login = function(user) {
+        console.log("LOGIN user: " + $scope.user.numDocumento + " - PW: " + $scope.user.password);
+        if($scope.user.numDocumento!=="039" || $scope.user.password!=="1" )
+        {
+            console.log("LOGIN user: error");
+            $timeout(function() {
+              $scope.showLoading("login invalido",3000);
+              //$scope.$parent.hideHeader();
+              }, 20);
+        }else{
+          
+          $ionicHistory.nextViewOptions({
+            disableBack: true
+          });
+
+          $scope.$parent.loginData = {"documento":$scope.user.numDocumento};
+          console.log("logado");
+          localDBService.saveLocal('documento',$scope.user.numDocumento);
+          $scope.$parent.setLogged(true);
+          $timeout(function() {
+              $scope.showLoading("entrando",1000);
+              $state.go('app.denuncias');
+              }, 2000);
+        }
+    }
+    
+    
+}])
+
+//acompanhamento
+.controller('AcompanhamentoCtrl', ['$scope','$timeout','FactoryHistorico','$ionicLoading',
+  function($scope,$timeout,FactoryHistorico,$ionicLoading) {
+  console.log("AcompanhamentoCtrl");
   $scope.pesquisa={'protocolo':'','nDocumento':''};
   $scope.historicos = {};
-
   $scope.pesquisaDenuncia = function(pesquisa){
-    $scope.showLoading("Buscando...");
-    FactoryHistorico.getHistorico(pesquisa).then(function(resp) {
+    $scope.showLoading("Buscando...",3000);
+    FactoryHistorico.all().then(function(resp) {
           console.log('Success', resp.data);
           $scope.historicos = [resp.data];
           $scope.hideLoading();
@@ -30,7 +161,7 @@ angular.module('starter.controllers', [])
         }, function(err) {
         console.error('ERR', err);
         $scope.hideLoading();
-        $scope.showLoading(err.statusText);
+        $scope.showLoading(err.statusText,2000);
     });
   };
 
@@ -38,9 +169,10 @@ angular.module('starter.controllers', [])
 }])
 //end acompanhamento
 //denuncia
-.controller('DenunciaCtrl', ['$scope','$state', 'FactoryBuscaEndereco','FactoryOpcoes',
+.controller('DenunciaCtrl', ['$scope','$state','$timeout' ,'FactoryBuscaEndereco','FactoryOpcoes',
   'constantConfig' , '$ionicLoading', 'localDBService' , 
-  function($scope, $state, FactoryBuscaEndereco,FactoryOpcoes,constantConfig,$ionicLoading,localDBService) {
+  function($scope, $state, $timeout,FactoryBuscaEndereco,FactoryOpcoes,
+    constantConfig,$ionicLoading,localDBService) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -49,18 +181,6 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   
-  $scope.showLoading = function(msg) {
-    $ionicLoading.show({
-      template: msg,
-      duration: 2000
-    });
-  };
-  
-  $scope.hideLoading = function(){
-    $ionicLoading.hide();
-  };
-
-
   $scope.user = {
     cep:"",
     name: "",
@@ -79,7 +199,149 @@ angular.module('starter.controllers', [])
   };
   
 
-  $scope.opcoes = {
+  
+
+  $scope.cadastraUser = function(user){
+    
+    
+    if(true){
+      $scope.showLoading("Gravando dados...",3000);
+      alert("Confirme seu email:"+user.email+"\npara receber sua senha");
+      
+      $timeout(function() {
+        $state.go('app.login');
+      }, 1000);
+
+    }
+    else{
+
+      FactoryOpcoes.postRequerente(constantConfig.url+'Requerente',
+        { 
+          id:'-1',
+          Nome: user.name,
+          Endereco: user.endereco.logradouro + '- N. '+ user.endereco.numero + ', ' + user.endereco.complemento,
+          Bairro: user.endereco.bairro,
+          Cidade : user.endereco.localidade,
+          UfId: 15,
+          TipoDoDocumentoId :user.tipoDocumento ,
+          Cep : user.cep,
+          Documento : user.nDocumento,
+          Telefone : user.telefone,
+          Email : user.email
+
+        }
+
+      ).then(function(resp) {
+          
+          $state.go('tab.reclamacao');
+          localDBService.saveLocal('documento',user.nDocumento);
+          console.log(resp);
+          $scope.hideLoading();
+      
+      }, function(err){
+          $scope.hideLoading();
+          console.error(err);
+      }).finally( function(){
+
+          $scope.hideLoading();
+
+        });
+    }
+    
+
+    
+  };
+
+  
+  $scope.onClickBuscar = function(cep){
+    //console.log(cep);
+    $scope.showLoading('Carregando endereco ...',4000);
+    FactoryBuscaEndereco.getEndereco(cep).then(function(resp) {
+ 
+          $scope.user.endereco = resp.data;
+          $scope.hideLoading();
+        }, function(err) {
+          
+          $scope.hideLoading();
+          console.error('ERR', err);
+          alert(err);
+ 
+        }).finally( function(){
+
+          $scope.hideLoading();
+
+        });
+
+  };
+
+  //$scope.endereco = FactoryBuscaEndereco.getEndereco('11');
+  //$scope.optcoes = FatoryFormOptions.all();
+  
+}])
+.controller('DenunciasCtrl', function($scope, $stateParams, $timeout, 
+  ionicMaterialMotion, ionicMaterialInk,FactoryOpcoes) {
+    // Set Header
+    //$scope.$parent.showHeader();
+    //$scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    //$scope.$parent.setExpanded(false);
+    //$scope.$parent.setHeaderFab(false);
+    $scope.ultimasDenuncia = {};
+    // Set Motion
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
+    $scope.ultimasDenuncias = {};
+    FactoryOpcoes.getOpcoes('denuncias').then(function(resp) {
+          console.log('Success', resp.data.denuncias);
+ 
+          $scope.ultimasDenuncias = resp.data.denuncias;
+          $timeout(function() {}, 0);
+
+        }, function(err) {
+        console.error('ERR', err);
+        // err.status will contain the status code
+    });
+
+
+})
+//end denuncia controler
+.controller('TabsCtrl', function($scope,$rootScope) {
+  
+  $scope.hide = true;
+  window.addEventListener('native.keyboardshow', function (e){
+        //alert('Keyboard height is: ' + e.keyboardHeight);
+        $scope.hide = true;
+        //alert('Keyboard height is: ' + $scope.hide);
+      });
+
+      
+
+      window.addEventListener('native.keyboardhide', function (e){
+        $scope.hide = false;
+        //alert('Goodnight, sweet prince: ' + $scope.hide);
+      });
+  
+})
+
+.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
+      function initialize() {
+        //-7.2191022,-35.8804302
+      };    
+    })
+
+.controller('ReclamacaoCtrl', 
+      function($scope,$stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk,
+        FactoryBuscaEndereco,FactoryOpcoes,
+    constantConfig,$ionicLoading,localDBService) {
+    
+    
+    $scope.opcoes = {
       assuntos : [{'id':'','nome':'Assunto'}],
       desejos : [
       
@@ -117,46 +379,9 @@ angular.module('starter.controllers', [])
         console.error('ERR', err);
         // err.status will contain the status code
   });      
-
-  $scope.cadastraUser = function(user){
     
-    $scope.showLoading("Gravando dados...");
-    FactoryOpcoes.postRequerente(constantConfig.url+'Requerente',
-        { 
-          id:'-1',
-          Nome: user.name,
-          Endereco: user.endereco.logradouro + '- N. '+ user.endereco.numero + ', ' + user.endereco.complemento,
-          Bairro: user.endereco.bairro,
-          Cidade : user.endereco.localidade,
-          UfId: 15,
-          TipoDoDocumentoId :user.tipoDocumento ,
-          Cep : user.cep,
-          Documento : user.nDocumento,
-          Telefone : user.telefone,
-          Email : user.email
 
-        }
-
-      ).then(function(resp) {
-          
-          $state.go('tab.reclamacao');
-          localDBService.saveLocal('documento',user.nDocumento);
-          console.log(resp);
-          $scope.hideLoading();
-      
-      }, function(err){
-          $scope.hideLoading();
-          console.error(err);
-      }).finally( function(){
-
-          $scope.hideLoading();
-
-        });
-
-    
-  };
-
-  $scope.postReclamacao = function(data){
+    $scope.postReclamacao = function(data){
       var numeroDocumentoRequerente = window.localStorage['documento'];
       //console.log(numeroDocumentoRequerente);
       var reclamacao = {
@@ -172,11 +397,21 @@ angular.module('starter.controllers', [])
         DocumentoReclamante : numeroDocumentoRequerente
       };
       console.log(reclamacao);
-      $scope.showLoading("Salvando denuncia...");
+     
 
-      FactoryOpcoes.postReclamacao(constantConfig.url+'Denuncia', reclamacao).then(function(resp) {
-          //$scope.hideLoading();
-          $scope.showLoading("Denuncia Salva...");
+      if(true){
+         alert("Denuncia Salva!");
+         
+         $scope.$parent.loginData.denuncias.push(
+          {"empresa":reclamacao.Empresa,"motivo":reclamacao.Denuncia,"situacao":"Enviada"}
+          );
+
+
+      }else{
+
+        FactoryOpcoes.postReclamacao(constantConfig.url+'Denuncia', reclamacao).then(function(resp) {
+          
+          $scope.showLoading("Denuncia Salva...",3000);
           $state.go('tab.acompanhamento');
           console.log(resp);
       
@@ -188,56 +423,22 @@ angular.module('starter.controllers', [])
           $scope.hideLoading();
 
         });
+      }
 
-  };
+    };
 
-  $scope.onClickBuscar = function(cep){
-    //console.log(cep);
-    $scope.showLoading('Carregando endereco ...');
-    FactoryBuscaEndereco.getEndereco(cep).then(function(resp) {
- 
-          $scope.user.endereco = resp.data;
-          $scope.hideLoading();
-        }, function(err) {
-          
-          $scope.hideLoading();
-          console.error('ERR', err);
-          alert(err);
- 
-        }).finally( function(){
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab('right');
 
-          $scope.hideLoading();
-
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideIn({
+            selector: '.animate-fade-slide-in .item'
         });
+    }, 200);
 
-  };
-
-  //$scope.endereco = FactoryBuscaEndereco.getEndereco('11');
-  //$scope.optcoes = FatoryFormOptions.all();
-  
-}])
-
-//end denuncia controler
-.controller('TabsCtrl', function($scope,$rootScope) {
-  
-  $scope.hide = true;
-  window.addEventListener('native.keyboardshow', function (e){
-        //alert('Keyboard height is: ' + e.keyboardHeight);
-        $scope.hide = true;
-        //alert('Keyboard height is: ' + $scope.hide);
-      });
-
-      
-
-      window.addEventListener('native.keyboardhide', function (e){
-        $scope.hide = false;
-        //alert('Goodnight, sweet prince: ' + $scope.hide);
-      });
-  
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
 });

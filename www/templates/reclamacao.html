@@ -1,21 +1,22 @@
-<ion-view view-title="Denúncia ProCon Campina Grande" ng-controller="DenunciaCtrl">
-  <ion-content class="padding">
+<ion-view view-title="Denúncia ProCon Campina Grande" >
+  <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
     <div class="row">
       <form name="form" novalidate on-valid-submit="enviarReclamacao()"> 
       	<div class="list card">
       		<div class="item item-divider">Reclamação</div>
       		
       		<div class="item">
-      			<ion-select label="Assunto" label-field="assunto" provider="opcoes.assuntos"  ng-model="reclamacao.assunto"/>
+      			<span class="input-label">Assunto</span>
+            <input ng-model="reclamacao.assunto"  placeholder="Assunto" type="text">
       		</div>
       		<div class="item">
-      			<ion-select label="Descritivo" label-field="descritivo" provider="opcoes.descritivos"  ng-model="reclamacao.descritivo"/>
+      			<span class="input-label">Descritivo</span>
+            <input ng-model="reclamacao.descritivo"  placeholder="Assunto" type="text">
       		</div>
       		<div class="item">
                 <select  ng-model="reclamacao.desejo" ng-options="desejo as desejo.nome for desejo in opcoes.desejos" required >
                       <option value="">O Que Deseja?</option>
                 </select>
-
       		</div>
 
       	<div class="row">

@@ -1,0 +1,131 @@
+<ion-view view-title="Cadastro">
+    <ion-content style="background: url(img/bg.png) center; background-size: cover;">
+      
+      <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <h1>Procon App</h1>
+            </div>
+        </div>
+
+      <div class="row" style="center;">
+      <form name="formUser" novalidate on-valid-submit="cadastraUser(user)"> 
+        
+        <div class="list card">
+
+          <div class="item item-divider">Dados Do Consumidor</div> 
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">*Nome Completo</span>
+            <input type="text" class="form-control" ng-model="user.name" placeholder="Nome Completo" required >
+          </label>
+          
+          <label class="item item-input item-floating-label">
+            <span class="input-label">*Email</span>
+            <input type="email" ng-model="user.email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" placeholder="seuemail@provedor.com" required >     
+          </label>
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">*Telefone</span>
+            <input type="tel" ng-model="user.telefone" placeholder="Telefone para contato" ui-br-phone-number required >
+          </label>
+
+          <div class="col col-100">
+            
+            <div ng-switch on="user.tipoDocumento">
+
+              <div class="item item-input" ng-switch-when=2>
+                <label class="item-input-wrapper">
+                  <input placeholder="CPF" type="text" ng-model="user.nDocumento" ui-br-cpf-mask>
+                  <span class="input-label">CPF</span>
+                </label>
+              </div>
+              
+              <div class="item item-input" ng-switch-when=1>
+                <label class="item-input-wrapper">
+                  <input placeholder="CNPJ" type="text" ng-model="user.nDocumento" ui-br-cnpj-mask>
+                  <span  class="input-label">CNPJ</span>
+                </label>
+              </div>
+
+              <div class="item item-input" ng-switch-when=0>
+                <label class="item-input-wrapper">
+                  <input placeholder="Escolha o tipo de documento" type="text" ng-model="user.nDocumento" ui-br-cnpj-mask>
+                  <span class="input-label">Tipo</span>
+                </label>
+              </div>
+
+              <div class="item item-input">
+                <select  ng-model="user.tipoDocumento"  required >
+                  <option value="">Tipo de Documento</option>
+                  <option value="2">CPF</option>
+                  <option value="1">CNPJ</option>
+                </select>
+              </div>
+        </div>
+
+        <div class="list card">
+          
+          <div class="item item-divider">
+              Informações de Endereço
+          </div>
+
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" ng-model="user.cep" placeholder="CEP" ui-br-cep-mask required>
+            </label>
+            <button type="button" ng-click="onClickBuscar(user.cep)" class="icon ion-search button button-small" ng-disabled="(user.cep===undefined)">
+              {{(user.cep===undefined) ? "" : ""}}
+            </button>
+          </div>
+          <div class="row">
+
+            <div class="col col-100">
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Rua</span>
+                <input ng-model="user.endereco.logradouro" placeholder="Logradouro" type="text" required>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col">
+                <label class="item item-input item-stacked-label">
+                <span class="input-label">Bairro</span>
+                <input ng-model="user.endereco.bairro" placeholder="Bairro" type="text">
+              </label>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col">
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Complemento</span>
+                  <input ng-model="user.endereco.complemento" placeholder="Complemento" type="text">
+                </label>
+              </div>
+          </div>
+
+           <div class="row">
+              <div class="col col-70">
+                <label class="item item-input item-stacked-label">
+                <span class="input-label">Cidade</span>
+                <input name="localidade" ng-model="user.endereco.localidade" placeholder="Cidade" type="text">
+              </label>
+              </div>
+              <div class="col col-30">
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">UF</span>
+                  <input ng-model="user.endereco.uf" type="text" placeholder="UF" maxlenght="3">
+                </label>
+              </div>
+          </div>
+         </div>
+      <button type="submit" class="button button-block button-positive" ng-disabled="formUser.$invalid">
+        {{!(formUser.$invalid) ? "Preencher Denuncia" : "Preencha todos os dados solicitados"}} 
+      </button>         
+      
+      </form>
+</div>
+    </ion-content>
+</ion-view>

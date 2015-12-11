@@ -7,15 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   'starter.controllers' ,'starter.services', 'starter.directives',
-  'starter.config'])
+  'starter.config','ionic-material', 'ionMdInput'])
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    
-    $rootScope.tabsHidden = false;
-    
+    // for form inputs)    
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -35,74 +32,107 @@ constant('constantConfig', {
   httpTimeout: 5000
 })
 
-.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider',
+  function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
 
   var localStorage = window.localStorage['documento'];
   //if(localStorage) console.log(localStorage);
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+  $ionicConfigProvider.views.maxCache(0);
+  
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-  .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
+  .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
   })
+
+  .state('app.login', {
+        url: '/login',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/login.html',
+                controller: 'LoginCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+
+   .state('app.cadastro', {
+        url: '/cadastro',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/cadastro.html',
+                controller: 'DenunciaCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+   .state('app.localizacao', {
+        url: '/localizacao',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/localizacao.html',
+                controller: 'MapCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+
+   .state('app.denuncias', {
+        url: '/denuncias',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/denuncias.html',
+                controller: 'DenunciasCtrl'
+            },
+            'fabContent': {
+                template: '',
+                controller: function ($timeout) {
+                    /*$timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);*/
+                }
+            }
+        }
+    })
+
+   .state('app.reclamacao', {
+        url: '/reclamacao',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/reclamacao.html',
+                controller: 'ReclamacaoCtrl'
+            },
+            'fabContent': {
+                template: '',
+                controller: function ($timeout) {
+                    /*$timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);*/
+                }
+            }
+        }
+    })
+  // setup an abstract state for the tabs directive
 
   // Each tab has its own nav history stack:
-
-  .state('tab.denuncia', {
-    url: '/denuncia',
-    views: {
-      'tab-denuncia': {
-        templateUrl: 'templates/tab-denuncia.html',
-        controller: 'DenunciaCtrl'
-      }
-    }
-  })
-
-  .state('tab.reclamacao', {
-    url: '/reclamacao',
-    views: {
-      'tab-denuncia': {
-        templateUrl: 'templates/reclamacao.html',
-        controller: 'DenunciaCtrl'
-      }
-    }
-  })
-
-  .state('tab.acompanhamento', {
-      url: '/acompanhamento',
-      views: {
-        'tab-acompanhamento': {
-          templateUrl: 'templates/tab-acompanhamento.html',
-          controller: 'AcompanhamentoCtrl'
-        }
-      }
-    })
-    
-  .state('tab.sobre', {
-    url: '/sobre',
-    views: {
-      'tab-sobre': {
-        templateUrl: 'templates/tab-sobre.html'
-        //controller: 'AccountCtrl'
-      }
-    }
-  }) 
 
   ;
 
   // if none of the above states are matched, use this as the fallback
   if(localStorage) {
-    $urlRouterProvider.otherwise('/tab/reclamacao');
+    $urlRouterProvider.otherwise('/app/denuncias');
   }
   else {
-    $urlRouterProvider.otherwise('/tab/denuncia');
+    $urlRouterProvider.otherwise('/app/login');
   }
   
 
