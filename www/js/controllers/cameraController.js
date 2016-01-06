@@ -1,58 +1,84 @@
 angular.module('starter.controllers.cam', [])
-.controller('CamCtrl', ['$scope', '$location', 'GetUU',
-	function($scope, $location, GetUU) {
+.controller('ArquivosCtrl', ['$scope', '$location', 'GetUU',
+	'ArquivosFactory', '$timeout','CameraService',
+	function($scope, $location, GetUU,ArquivosFactory,$timeout,CameraService) {
 
-	// init variables
-	$scope.data = {};
-	$scope.obj;
-	var pictureSource;   // picture source
-	var destinationType; // sets the format of returned value
 	var url;
+	$scope.pics = ArquivosFactory.all();
+	
+
+	function onSuccess(imageURI) {
+    	//var image = document.getElementById('myImage');
+    	var data_image = "data:image/jpeg;base64,"+imageURI;
+    	ArquivosFactory.add(data_image);
+    	//console.log(ArquivosFactory.all());
+    	var pics = ArquivosFactory.all();
+    	$scope.pics = pics;
+	}
+
+	function onFail(message) {
+    	alert('Failed because: ' + message);
+	}
 	
 	// on DeviceReady check if already logged in (in our case CODE saved)
 	ionic.Platform.ready(function() {
-		//console.log("ready get camera types");
+		console.log("ready get camera types");
 		if (!navigator.camera)
 			{
-			// error handling
-			return;
+				console.log("Dont have camera");
+				return;
 			}
 		//pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
 		pictureSource=navigator.camera.PictureSourceType.CAMERA;
-		destinationType=navigator.camera.DestinationType.FILE_URI;
-		});
+		destinationType=navigator.camera.DestinationType.DATA_URL;
+		
+	});
 	
 	// get upload URL for FORM
 	GetUU.query(function(response) {
 		$scope.data = response;
-		//console.log("got upload url ", $scope.data.uploadurl);
-		});
+		console.log("got upload url ", $scope.data.uploadurl);
+	});
 	
 	// take picture
 	$scope.takePicture = function() {
-		//console.log("got camera button click");
-		var options =   {
-			quality: 50,
-			destinationType: destinationType,
-			sourceType: pictureSource,
-			encodingType: 0
-			};
+		console.log("got camera button click");
+
 		if (!navigator.camera)
 			{
-			// error handling
-			return;
+				alert("erro ao carregar plugin");
+				return;
 			}
-		navigator.camera.getPicture(
-			function (imageURI) {
-				//console.log("got camera success ", imageURI);
-				$scope.mypicture = imageURI;
-				},
-			function (err) {
-				//console.log("got camera error ", err);
-				// error handling camera plugin
-				},
-			options);
+		var options =   {
+			quality: 60,
+			destinationType: destinationType,
+			sourceType: pictureSource,
+			encodingType: Camera.EncodingType.JPEG,
+			saveToPhotoAlbum: true,
+			targetWidth: 100,
+  			targetHeight: 100
 		};
+
+		CameraService.getPicture(options).then(function(imageURI) {
+      		var data_image = "data:image/jpeg;base64,"+imageURI;
+      		ArquivosFactory.add(data_image);
+    		console.log("imagem: "+data_image[1]);
+    		$timeout(function() {
+        		var pics = ArquivosFactory.all();
+        		$scope.pics = pics;
+				//console.log('update: ' +$scope.pics);
+    		}, 50);
+    		return; 
+    		
+    		}, function(err) {
+      		console.err("error: "+err);
+    	});
+
+		//navigator.camera.getPicture(onSuccess,onFail,options);
+
+		console.log("end takePicture");
+
+	};
 
 	// do POST on upload url form by http / html form    
 	$scope.update = function(obj) {

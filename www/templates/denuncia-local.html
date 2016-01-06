@@ -1,0 +1,37 @@
+<ion-view title="Denuncias">
+    <ion-content>
+       <div class="has-header">
+       	<div class="header">
+       		<h2>Dados</h2>
+       	</div>
+       	<form name="formUser" class="form-validation"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+       		<div class="list">
+  				<label class="item item-input item-stacked-label">
+    				<span class="input-label">Empresa</span>
+    				<input type="text" ng-model="denuncia.empresa" placeholder="Empresa">
+  				</label>
+  				<label class="item item-input item-stacked-label">
+    				<span class="input-label">Assunto</span>
+    				<input ng-model="denuncia.assunto"  type="text" placeholder="Assunto">
+  				</label>
+  				<label class="item item-input item-stacked-label">
+    				<span class="input-label">Descritivo</span>
+    				<input type="text" ng-model="denuncia.descritivo"  placeholder="john@suhr.com">
+  				</label>
+  				<label class="item item-input item-stacked-label">
+    				<span class="input-label">Descritivo</span>
+    				<textarea type="text" ng-model="denuncia.denuncia"  placeholder="Até 1024"></textarea> 
+  				</label>
+			</div>
+			<div class="has-header">
+				<h4>Provas</h4>
+				<div class="list card">
+    				<div ng-repeat="pic in denuncia.fotos" class="item item-image padding">
+      					<img style="width: 100%; height: auto;" src="{{pic}}" />
+    				</div>
+				</div>
+			</div>
+       	</form>
+       </div>
+    </ion-content>
+</ion-view>

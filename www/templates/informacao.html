@@ -1,22 +1,10 @@
-<!--
-  This template loads for the 'tab.cam' state (app.js)
--->
-<ion-view title="Maps">
+<ion-view title="Upload">
   <ion-content class="has-header padding scroll">
-	<div class="list">
-		<form name="myForm">
-			<item class="item item-icon-left"><i class="icon ion-chatbubble-working"></i>
-			<label class="item item-input">
-				<textarea ng-model="obj.text" name="posttext" rows="4"></textarea>
-			</label>
-			</item>
-			<div class="item">
-				<button class="button button-block button-positive icon-left ion-ios7-camera" ng-click="takePicture()">Camera</button>
-			</div>
-			<div class="padding">
-				<button class="button button-block button-positive icon-right ion-chevron-right" ng-disabled="!imp.text" ng-click="update(obj)">Upload</button>
-			</div>
-		</form>
-	</div>
+	<ion-slides options="options" slider="data.slider">
+  <ion-slide-page>
+    <form>
+    </form>
+  </ion-slide-page>
+</ion-slides>
   </ion-content>
 </ion-view>

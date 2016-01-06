@@ -1,34 +1,51 @@
 <ion-view view-title="Denuncias">
-    <ion-content ng-class="{expanded:$scope.isExpanded}">
-        <div class="hero stable-bg flat">
-            <div class="content">
-                <div class="app-icon"></div>
-                <h1>{{$scope.$parent.logged}}</h1>
-            </div>
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+        <div class="row item-divider">
+            <spam class="col" style="text-align: center;">Denuncias Enviadas</spam>
         </div>
-        <div class="tabs tabs-dark tabs-icon-top static">
-            <a ui-sref="app.reclamacao" class="tab-item">
-                <i class="icon ion-speakerphone"></i> Denunciar
-            </a>
-            <a ui-sref="app.acompanhamento" class="tab-item">
-                <i class="icon ion-ios-search"></i> Acompanhamento
-            </a>
-            <a ui-sref="app.gallery" class="tab-item">
-                <i class="icon ion-information-circled"></i> Informações
-            </a>
+        <div class="row header">
+          <div class="col">Empresa</div>
+          <div class="col">Ultimo Parecer</div>
+          <div class="col">Data</div>
+          <div class="col"></div>
         </div>
-        <h4 class="content padding double-padding-x">Denuncias Recentes</h4>
-        <div class="row" ng-repeat="denuncia in ultimasDenuncias | limitTo:30">
-
+        <div class="row item-denuncia animate-fade-slide-in-right" ng-repeat="denuncia in denuncias | filter:denuncia.enviada===true" ui-sref="app.denuncia-historico({denunciaId:denuncia.id})">
             <div class="col">
-                <div class="item item-button-right">
-                    <span class="col-33">{{denuncia.empresa}}</span> 
-                    <span class="col-33">-- {{denuncia.motivo}}</span>
-                    <spanclass="col-33">-- {{denuncia.parecer}}</span>  
-                </div>
-            </div>             
-
+                {{denuncia.empresa}}
+            </div>
+            <div class="col">
+                {{denuncia.ultimoParecer}}
+            </div>
+            <div class="col">
+                {{denuncia.data}}
+            </div>
+            <div class="col">
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </div>     
         </div>
-    </div>
+
+        <div class="row item-divider">
+            <spam class="col" style="text-align: center;">Denuncias Ainda Não Enviadas</spam>
+        </div>
+        <div class="row header">
+          <div class="col">Empresa</div>
+          <div class="col">Ultimo Parecer</div>
+          <div class="col">Data</div>
+          <div class="col"></div>
+        </div>
+        <div class="row" ng-repeat="denuncia in denunciasLocal" ui-sref="app.enviar({denunciaId:denuncia.id})">
+            <div class="col">
+                {{denuncia.empresa}}
+            </div>
+            <div class="col">
+                {{denuncia.ultimoParecer}}
+            </div>
+            <div class="col">
+                {{denuncia.data}}
+            </div>
+            <div class="col">
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </div>     
+        </div>
     </ion-content>
 </ion-view>

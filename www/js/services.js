@@ -52,10 +52,19 @@ angular.module('starter.services', [])
 }]).factory('FactoryBuscaEndereco',function($q,$http){
     return {
       getEndereco : function(cep) {
-        //console.log(cep);
+        console.log(cep);
+        var deferred = $q.defer();
         var url = 'http://cep.correiocontrol.com.br/'+cep+'.json'
-        return $http.get(url);
-        //return deferred.promise;
+        $http.get(url,{timeout:3000}).success(function(data){
+
+        deferred.resolve(data);
+        //console.log("data" + data);               
+          }).error(function(err) {
+          deferred.reject("Error: " + err); 
+        });
+        
+        return deferred.promise;
+
       }
     };
  }).factory('FactoryOpcoes', function($q,$http){

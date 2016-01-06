@@ -19,17 +19,26 @@
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
-                <ion-item nav-clear menu-close ui-sref="app.localizacao">
-                    Localizacao
+                <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.inicio">
+                    Inicio
                 </ion-item>
                 <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.login">
                     Login
                 </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.cadastro">
+                <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.cadastro">
                     Cadastro
+                </ion-item>
+                 <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.area-restrita">
+                    Principal
                 </ion-item>
                 <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.denuncias">
                     Denuncias
+                </ion-item>
+                <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.denuncias">
+                    Reclações
+                </ion-item>
+                <ion-item nav-clear menu-close ui-sref="app.localizacao">
+                    Localizacao
                 </ion-item>
                 <ion-item nav-clear menu-close ui-sref="app.info">
                     Informações
@@ -40,8 +49,6 @@
                  <ion-item nav-clear menu-close ui-sref="app.codigo">
                     Codigo Do Consumidor
                 </ion-item>
-
-
             </ion-list>
         </ion-content>
     </ion-side-menu>

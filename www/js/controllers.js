@@ -101,50 +101,9 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LoginCtrl', 
-  ['FactoryLogin','$scope', '$timeout', '$stateParams', 'ionicMaterialInk','localDBService','$state','$ionicHistory',
-  function(FactoryLogin,$scope, $timeout, $stateParams, ionicMaterialInk,localDBService,$state,$ionicHistory) {
-    
-    $scope.$parent.clearFabs();
-    $timeout(function() {
-        $scope.$parent.hideHeader();
-    }, 300);
-    ionicMaterialInk.displayEffect();
-
-    $scope.user = {
-      numDocumento:"039",
-      password:"1"
-    };
-    
-    $scope.login = function(user) {
-        console.log("LOGIN user: " + $scope.user.numDocumento + " - PW: " + $scope.user.password);
-        if($scope.user.numDocumento!=="039" || $scope.user.password!=="1" )
-        {
-            console.log("LOGIN user: error");
-            $timeout(function() {
-              $scope.showLoading("login invalido",3000);
-              //$scope.$parent.hideHeader();
-              }, 20);
-        }else{
-          
-          $ionicHistory.nextViewOptions({
-            disableBack: true
-          });
-
-          $scope.$parent.loginData = {"documento":$scope.user.numDocumento};
-          console.log("logado");
-          localDBService.saveLocal('documento',$scope.user.numDocumento);
-          $scope.$parent.setLogged(true);
-          $timeout(function() {
-              $scope.showLoading("entrando",1000);
-              $state.go('app.denuncias');
-              }, 2000);
-        }
-    }
-    
-    
-}])
-
+    ////////////////////////////////////////
+    // Controllers
+    ////////////////////////////////////////
 //acompanhamento
 .controller('AcompanhamentoCtrl', ['$scope','$timeout','FactoryHistorico','$ionicLoading',
   function($scope,$timeout,FactoryHistorico,$ionicLoading) {
@@ -167,149 +126,6 @@ angular.module('starter.controllers', [])
 
   
 }])
-//end acompanhamento
-//denuncia
-.controller('DenunciaCtrl', ['$scope','$state','$timeout' ,'FactoryBuscaEndereco','FactoryOpcoes',
-  'constantConfig' , '$ionicLoading', 'localDBService' , 
-  function($scope, $state, $timeout,FactoryBuscaEndereco,FactoryOpcoes,
-    constantConfig,$ionicLoading,localDBService) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  $scope.user = {
-    cep:"",
-    name: "",
-    nDocumento:"",
-    email: "",
-    tipoDocumento: "",
-    endereco:{
-      localidade: "",
-      bairro : "",
-      logradouro : "",
-      numero: "",
-      complemento:""
-
-    }
-
-  };
-  
-
-  
-
-  $scope.cadastraUser = function(user){
-    
-    
-    if(true){
-      $scope.showLoading("Gravando dados...",3000);
-      alert("Confirme seu email:"+user.email+"\npara receber sua senha");
-      
-      $timeout(function() {
-        $state.go('app.login');
-      }, 1000);
-
-    }
-    else{
-
-      FactoryOpcoes.postRequerente(constantConfig.url+'Requerente',
-        { 
-          id:'-1',
-          Nome: user.name,
-          Endereco: user.endereco.logradouro + '- N. '+ user.endereco.numero + ', ' + user.endereco.complemento,
-          Bairro: user.endereco.bairro,
-          Cidade : user.endereco.localidade,
-          UfId: 15,
-          TipoDoDocumentoId :user.tipoDocumento ,
-          Cep : user.cep,
-          Documento : user.nDocumento,
-          Telefone : user.telefone,
-          Email : user.email
-
-        }
-
-      ).then(function(resp) {
-          
-          $state.go('tab.reclamacao');
-          localDBService.saveLocal('documento',user.nDocumento);
-          console.log(resp);
-          $scope.hideLoading();
-      
-      }, function(err){
-          $scope.hideLoading();
-          console.error(err);
-      }).finally( function(){
-
-          $scope.hideLoading();
-
-        });
-    }
-    
-
-    
-  };
-
-  
-  $scope.onClickBuscar = function(cep){
-    //console.log(cep);
-    $scope.showLoading('Carregando endereco ...',4000);
-    FactoryBuscaEndereco.getEndereco(cep).then(function(resp) {
- 
-          $scope.user.endereco = resp.data;
-          $scope.hideLoading();
-        }, function(err) {
-          
-          $scope.hideLoading();
-          console.error('ERR', err);
-          alert(err);
- 
-        }).finally( function(){
-
-          $scope.hideLoading();
-
-        });
-
-  };
-
-  //$scope.endereco = FactoryBuscaEndereco.getEndereco('11');
-  //$scope.optcoes = FatoryFormOptions.all();
-  
-}])
-.controller('DenunciasCtrl', function($scope, $stateParams, $timeout, 
-  ionicMaterialMotion, ionicMaterialInk,FactoryOpcoes) {
-    // Set Header
-    //$scope.$parent.showHeader();
-    //$scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    //$scope.$parent.setExpanded(false);
-    //$scope.$parent.setHeaderFab(false);
-    $scope.ultimasDenuncia = {};
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-    $scope.ultimasDenuncias = {};
-    FactoryOpcoes.getOpcoes('denuncias').then(function(resp) {
-          console.log('Success', resp.data.denuncias);
- 
-          $scope.ultimasDenuncias = resp.data.denuncias;
-          $timeout(function() {}, 0);
-
-        }, function(err) {
-        console.error('ERR', err);
-        // err.status will contain the status code
-    });
-
-
-})
 //end denuncia controler
 .controller('TabsCtrl', function($scope,$rootScope) {
   
@@ -327,6 +143,12 @@ angular.module('starter.controllers', [])
         //alert('Goodnight, sweet prince: ' + $scope.hide);
       });
   
+})
+
+.controller('CadastroSlideCtrl', function($scope,$ionicSlideBoxDelegate) { 
+  $scope.nextSlide = function() {
+    $ionicSlideBoxDelegate.next();
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {

@@ -77,6 +77,15 @@ p {
     position: fixed;
     bottom: 0;
 }
+.item-denuncia {
+  min-height:50px;
+  height:auto !important;
+  height:50px;
+  padding:5px;
+}
+.inicio{
+    margin: 10px;
+}
 
 #map {
   width: 100%;
