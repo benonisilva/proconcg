@@ -1,4 +1,4 @@
-<ion-view view-title="Denuncias/Reclamações">
+<ion-view view-title="Area Principal">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
         <div class="hero stable-bg flat">
             <div class="content">
@@ -7,25 +7,17 @@
         </div>
         <div class="tabs tabs-dark tabs-icon-top static">
             <a ui-sref="app.denuncias" class="tab-item">
-                <i class="icon ion-speakerphone"></i> Denunciar
+                <i class="icon ion-speakerphone"></i> Denuncias
             </a>
             <a ui-sref="app.reclamacoes" class="tab-item">
                 <i class="icon ion-sad-outline"></i> Reclamações
             </a>
             <a ui-sref="app.restrito-informacoes" class="tab-item">
-                <i class="icon ion-information-circled"></i> Informações
+                <i class="icon ion-information-circled"></i> Ferramentas
             </a>
         </div>
-        <h4 class="content padding double-padding-x">Denuncias Recentes</h4>
-        <div class="row" ng-repeat="denuncia in ultimasDenuncias | limitTo:30">
-            <div class="col">
-                <div class="item item-button-right">
-                        <span class="col-33">{{denuncia.empresa}}</span> 
-                        <span class="col-33">-- {{denuncia.motivo}}</span>
-                        <spanclass="col-33">-- {{denuncia.parecer}}</span>  
-                    </div>
-                </div>             
-            </div>
+        <div class="list card">
+          <img class="full-image" src="img/bg-prefeitura.jpg"/> 
         </div>
         </ion-content>
 </ion-view>

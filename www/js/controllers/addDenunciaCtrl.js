@@ -1,9 +1,11 @@
 angular.module('starter')
 .controller('AddDenunciaCtrl', 
 	['$scope', '$stateParams', 'DenunciasService',
-  '$ionicSlideBoxDelegate','$timeout','$ionicPopup','ArquivosFactory',
+  '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
+  'ArquivosFactory','$ionicScrollDelegate', '$state',
 		function($scope, $stateParams, DenunciasService,
-      $ionicSlideBoxDelegate,$timeout,$ionicPopup,ArquivosFactory) {
+      $ionicSlideBoxDelegate,$timeout,$ionicPopup,
+      ArquivosFactory,$ionicScrollDelegate,$state) {
 			
       $scope.novaDenuncia = {};
       $scope.myActiveSlide = 0;
@@ -31,14 +33,15 @@ angular.module('starter')
               empresa:denuncia.empresa,
               ultimoParecer:"Enviado",
               data:"01/01/16",
-              situacao: denuncia.situacao,
+              assunto: denuncia.assunto,
               descritivo: denuncia.descritivo,
               fotos: ArquivosFactory.all(),
-              textoDaDenuncia: denuncia.denuncia,
+              textoDaDenuncia: denuncia.textoDaDenuncia,
               historico:[{situacao:"Enviado",local:"Aguardo",dataUltimaVisualizacao:"01/01/16"}]
             };
             DenunciasService.addLocal(nova);
             console.log('denuncia adicionada-local');
+            $state.go('app.denuncias');
           } else {
             console.log('You are not sure');
           }
@@ -48,13 +51,14 @@ angular.module('starter')
 
 
       $scope.enviarDenuncia = function(){
-				DenunciasService.add(novaDenuncia);
+				//DenunciasService.add(novaDenuncia);
 			};
 
 			$scope.nextSlide = function() {
         $timeout( function() {
           console.log("proximo");
           $ionicSlideBoxDelegate.next(500);
+          $ionicScrollDelegate.scrollTop(true);
         }, 50);
   		};
       

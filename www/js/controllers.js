@@ -150,13 +150,6 @@ angular.module('starter.controllers', [])
     $ionicSlideBoxDelegate.next();
   }
 })
-
-.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-      function initialize() {
-        //-7.2191022,-35.8804302
-      };    
-    })
-
 .controller('ReclamacaoCtrl', 
       function($scope,$stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk,
         FactoryBuscaEndereco,FactoryOpcoes,

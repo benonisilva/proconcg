@@ -92,7 +92,7 @@ constant('constantConfig', {
         views: {
             'menuContent': {
                 templateUrl: 'templates/localizacao.html',
-                controller: 'MapCtrl'
+                controller: 'MapaCtrl'
             },
             'fabContent': {
                 template: ''

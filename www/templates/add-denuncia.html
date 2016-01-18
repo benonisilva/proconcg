@@ -70,7 +70,7 @@
           <div class="item">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Denuncia</span>
-                <textarea ng-model="novaDenuncia.denuncia"  placeholder="Digite sua reclamação (Até 1024 caracteres). " type="text">
+                <textarea ng-model="novaDenuncia.textoDaDenuncia"  placeholder="Digite sua reclamação (Até 1024 caracteres). " type="text">
                 </textarea> 
             </label>
           </div> 
@@ -83,7 +83,7 @@
           </div>
         <div class="padding text-center">
           <p class="item-divider">Clique no icone para anexar Fotos(Até 4 fotos)</p>
-          <button ng-click="takePicture()" class="button button-energized-900 text-center"><i class="icon ion-camera"></i></button>
+          <button ng-click="takePicture()" class="button button-energized-900"><i class="icon ion-camera"></i></button>
         </div>
         <ion-list>
           <ion-item ng-repeat="pic in pics">
@@ -99,15 +99,15 @@
         </ion-list>
       </ion-slide>
       <ion-slide> 
-        <div class="has-header">
+        <div class="has-header padding">
         <h3>Confira Os Dados</h3>
         <p>Empresa: {{novaDenuncia.empresa}}</p>
         <p>Assunto: {{novaDenuncia.assunto}}</p>
         <p>Descritivo: {{novaDenuncia.descritivo}}</p>
-        <text>Denuncia: {{novaDenuncia.denuncia}}</text>
-        <div class="button-bar"> 
-            <button ng-click="showConfirm(novaDenuncia)" class="button-small button-energized-900 button-border icon-left">Salvar Localmente</button>
-            <button type="submit" class="button-small button-energized-900 button-border icon-left">Enviar</button>
+        <text>Denuncia: {{novaDenuncia.textoDaDenuncia}}</text>
+        <div class="padding text-center"> 
+            <button ng-click="showConfirm(novaDenuncia)" class="button button-energized-900 button-border ink">Salvar</button>
+            <button type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
         </div>
         </div>
       </ion-slide>

@@ -42,6 +42,18 @@ controller('DenunciasCtrl',['$scope','DenunciasService','$stateParams',
 
         }, 0);
 
+        $timeout(function() {
+            //console.log($scope.denuncias);
+            DenunciasService.getLocal($stateParams.denunciaId).then(function(data){
+                console.log(data);
+                $scope.denuncia = data;
+                },function(erro){
+                    console.log("error local");
+                }
+            );
+
+        }, 0);
+
 }])
 
 ;
