@@ -23,9 +23,9 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
       StatusBar.styleLightContent();
     }
   });
-}).
+})
 
-constant('constantConfig', {
+.constant('constantConfig', {
   url: 'http://192.168.56.1:8088/Home/',
   httpTimeout: 5000
 })
@@ -149,13 +149,17 @@ constant('constantConfig', {
             },
             'fabContent': {
                 template: '<button id="fab-profile" ng-click="enviarDenuncia(denuncia)" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-ios-cloud-upload"></i></button>',
-                controller: function ($scope,$timeout,$state) {
+                controller: function ($scope,$timeout,$state,$ionicLoading) {
                     $timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');
                     }, 300);
                     $scope.enviarDenuncia = function(){
                        console.log("Go To: enviar");
-                       //$state.go("app.add-denuncia"); 
+                       //$state.go("app.add-denuncia");
+                       $ionicLoading.show({
+                         template: "Enviando Denuncia...",
+                         duration: 1000
+                       });
                     };
                 },
             }

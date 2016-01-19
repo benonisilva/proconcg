@@ -105,13 +105,20 @@ angular.module('starter.controllers')
     console.log(cep);
     showLoading('Carregando endereco ...',3000);
     FactoryBuscaEndereco.getEndereco(cep).then(function(resp) {
+          if(resp.erro===true){
+            $ionicLoading.hide();
+            console.log("Cep nao existe");
+             showLoading('Esse Cep Não Existe',3000);
+             //alert("Problemas com conexão");
+             return;
+          }
           $scope.user.endereco = resp;
           $ionicLoading.hide();
-          console.log("reposta: "+resp);
+          console.log("N: "+resp.erro);
         }, function(err) {
           $ionicLoading.hide();
-          console.error('Esse Cep Não Existe', err);
-          alert("Esse Cep Não Existe");
+          console.error('Problemas com conexão', err);
+          alert("Problemas com conexão");
         }
         );
 

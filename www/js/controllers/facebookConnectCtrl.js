@@ -46,7 +46,7 @@ angular.module('start.controllers.social', ['stater.services.user'])
 
   //This is the fail callback from the login method
   var fbLoginError = function(error){
-    console.log('fbLoginError', error);
+    console.log('fbLoginError: ', error);
     $ionicLoading.hide();
   };
 
@@ -69,7 +69,7 @@ angular.module('start.controllers.social', ['stater.services.user'])
 
   //This method is executed when the user press the "Login with facebook" button
   $scope.facebookSignIn = function() {
-
+    console.log("facebookPlugin Is ON: "+facebookConnectPlugin);
     facebookConnectPlugin.getLoginStatus(function(success){
      if(success.status === 'connected'){
         // the user is logged in and has authenticated your app, and response.authResponse supplies
@@ -110,10 +110,12 @@ angular.module('start.controllers.social', ['stater.services.user'])
      } else {
         //if (success.status === 'not_authorized') the user is logged in to Facebook, but has not authenticated your app
         //else The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
-        console.log('getLoginStatus', success.status);
+        //console.log('getLoginStatus', success.status);
 
 			  $ionicLoading.show({
-          template: 'Logging in...'
+          template: 'Entrando com Facebook...',
+          duration: 3000
+
         });
 
         //ask the permissions you need. You can learn more about FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4

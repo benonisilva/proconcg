@@ -54,7 +54,7 @@ angular.module('starter.services', [])
       getEndereco : function(cep) {
         console.log(cep);
         var deferred = $q.defer();
-        var url = 'http://cep.correiocontrol.com.br/'+cep+'.json'
+        var url = 'https://viacep.com.br/ws/'+cep+'/json'
         $http.get(url,{timeout:3000}).success(function(data){
 
         deferred.resolve(data);
