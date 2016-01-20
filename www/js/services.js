@@ -59,8 +59,13 @@ angular.module('starter.services', [])
 
         deferred.resolve(data);
         //console.log("data" + data);               
-          }).error(function(err) {
-          deferred.reject("Error: " + err); 
+          }).error(function(data, status,headers,config) {
+            console.log("Erro-FactoryBuscaEndereco.getEndereco");
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+          deferred.reject("Error: " + status); 
         });
         
         return deferred.promise;

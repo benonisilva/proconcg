@@ -1,0 +1,1 @@
+for file in (D:\DevBenoni\GitRepository\proconcg\platforms\android\build\outputs\apk\android-armv7-debug-unaligned.apk); do adb install $file; done
