@@ -8,28 +8,29 @@
 
     function FacebookService() { 
     	var profile {
-    		getInfo: getInfo,
-    		getLoginStatus :getLoginStatus
+    		getInfo : getInfo,
+    		getLoginStatus : getLoginStatus
     	};
 
     	return profile;
 
+        //inner func
     	function getInfo(authResponse){
     	    var info = $q.defer();
 
-    	    facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
-    	      function (response) {
-    					console.log("FacebookService");
-    					console.log("getInfo");
-    					console.log("Sucess");
-    					console.log(response);
-    	        info.resolve(response);
+    	   facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
+    	       function (response) {
+    		      console.log("FacebookService");
+    		      console.log("getInfo");
+    	          console.log("Sucess");
+    		      console.log(response);
+    	          info.resolve(response);
     	      },
     	      function (response) {
-    					console.log("FacebookService");
-    					console.log("getInfo");
-    					console.log("Sucess");
-    					console.log(response);
+    			console.log("FacebookService");
+    			console.log("getInfo");
+    			console.log("Sucess");
+    			console.log(response);
     	        info.reject(response);
     	      }
     	    );
@@ -38,6 +39,7 @@
     };
 
     function getLoginStatus (fnSuccess,fnFail) {
-    	// body...
+        facebookConnectPlugin.getLoginStatus(fnSuccess,fnFail);
     };
+
 })();
