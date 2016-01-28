@@ -2,27 +2,25 @@
     'use strict';
 
     angular
-        .module('starter.servives')
-        .factory('LoginService', LoginService);
-        CadastroService.$inject = ['$q','$http','$timeout'];
+        .module('starter.controllers')
+        .controller('LoginCtrl', LoginCtrl);
+        LoginCtrl.$inject = ['$scope','LoginService'];
 
-    function LoginService($q,$http,$timeout) { 
-    	var login {
-    		getUser : getUser
-    	};
+    function LoginCtrl($scope,LoginService) { 
+    	var vm = this;
+        vm.user = {email:'seuemail@gmail.com',password:'1'};
+        vm.login = login;
+        
+        function login(user) {
+            console.log("login: "+user.email);
+            LoginService.login.getUser(user).then(fnSuccess,fnFail);
+        };
 
-    	return login;
-
-    	function getUser(user) {
-    		var deferred = $q.defer();
-    		//fake
-    		$timeout(function(){
-    			if(user.email==="user@email.com" && user.password==="1"){
-    				deferred.resolve(true);
-    			}else{
-    				deferred.reject(false);
-    			}
-    		},5000);
-    		return deferred.promise;
-    	};
+        function fnSuccess(arg){
+            console.log("login success: "+arq);
+        };
+        function fnFail(arg){
+            console.log("login fail: "+arq);
+        };
+    }    
 })();

@@ -2,44 +2,43 @@
     'use strict';
 
     angular
-        .module('starter.servives')
+        .module('starter.services')
         .factory('FacebookService', FacebookService);
         FacebookService.$inject = ['$q'];
 
-    function FacebookService() { 
-    	var profile {
-    		getInfo : getInfo,
-    		getLoginStatus : getLoginStatus
-    	};
+    function FacebookService($q) { 
+    	var profile = {
+            getInfo : getInfo,
+            getLoginStatus : getLoginStatus
+        };
 
-    	return profile;
+        return profile;
 
-        //inner func
-    	function getInfo(authResponse){
-    	    var info = $q.defer();
+        function getLoginStatus (fnSuccess,fnFail) {
+            facebookConnectPlugin.getLoginStatus(fnSuccess,fnFail);
+        };
 
-    	   facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
-    	       function (response) {
-    		      console.log("FacebookService");
-    		      console.log("getInfo");
-    	          console.log("Sucess");
-    		      console.log(response);
-    	          info.resolve(response);
-    	      },
-    	      function (response) {
-    			console.log("FacebookService");
-    			console.log("getInfo");
-    			console.log("Sucess");
-    			console.log(response);
-    	        info.reject(response);
-    	      }
-    	    );
-    	    return info.promise;
-    	};
-    };
+        function getInfo(authResponse){
+            var info = $q.defer();
 
-    function getLoginStatus (fnSuccess,fnFail) {
-        facebookConnectPlugin.getLoginStatus(fnSuccess,fnFail);
-    };
+           facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
+               function (response) {
+                  console.log("FacebookService");
+                  console.log("getInfo");
+                  console.log("Sucess");
+                  console.log(response);
+                  info.resolve(response);
+              },
+              function (response) {
+                console.log("FacebookService");
+                console.log("getInfo");
+                console.log("Sucess");
+                console.log(response);
+                info.reject(response);
+              }
+            );
+            return info.promise;
+        };
+    }  
 
 })();

@@ -1,15 +1,5 @@
 (function() {
 'use strict';
-// LocalStorage service have ability to store data by HTML5 localStorage feature.
-// 
-// The data will store in a json format.
-// object schema of note data is: 
-// [{
-//     id: id of note,
-//     title: title of note,
-//     detail: note detail,
-//     createDate: note created date
-// }]
 
 angular.module('starter.services')
   .factory('localStorage',['$filter', '$window', 

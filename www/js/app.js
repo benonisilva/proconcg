@@ -6,8 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
-  'starter.controllers','starter.controllers.cam' , 'start.controllers.social',
-  'starter.services', 'starter.services.cam','starter.directives',
+  'starter.controllers','stater.services.user','starter.services','starter.directives',
   'starter.config','ionic-material', 'ionMdInput'])
 
 .run(function($ionicPlatform,$rootScope) {
@@ -49,11 +48,11 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
       controller: 'AppCtrl'
   })
 
-  .state('app.inicio', {
-        url: '/inicio',
+  .state('app.home', {
+        url: '/home',
         views: {
             'menuContent': {
-                templateUrl: 'templates/inicio.html',
+                templateUrl: 'templates/home/html/home.html',
                 controller: 'WelcomeCtrl'
             },
             'fabContent': {
@@ -63,163 +62,24 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     })
 
   .state('app.login', {
-        url: '/login',
+        url: '/home/login',
         views: {
             'menuContent': {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
+                templateUrl: 'templates/home/html/login.html',
+                controller: 'LoginCtrl as vm'
             },
             'fabContent': {
                 template: ''
-            }
-        }
-    })
-
-   .state('app.cadastro', {
-        url: '/cadastro',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/cadastro.html',
-                controller: 'CadastroCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-   .state('app.localizacao', {
-        url: '/localizacao',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/localizacao.html',
-                controller: 'MapaCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-   .state('app.area-restrita', {
-        url: '/area-restrita',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita.html',
-                controller: 'PerfilCtrl'
-            },
-            'fabContent': {
-                template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-            }
-        }
-    })
-
-   .state('app.denuncias', {
-        url: '/denuncias',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/denuncias.html',
-                controller: 'DenunciasCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" ng-click="addDenuncia()" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
-                controller: function ($scope,$timeout,$state) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 300);
-                    $scope.addDenuncia = function(){
-                       console.log("Go To: add-denuncia");
-                       $state.go("app.add-denuncia"); 
-                    };
-                }
-            }
-        }
-    })
-
-    .state('app.enviar', {
-        url: '/enviar/:denunciaId',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/denuncia-local.html',
-                controller: 'EnviarCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" ng-click="enviarDenuncia(denuncia)" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-ios-cloud-upload"></i></button>',
-                controller: function ($scope,$timeout,$state,$ionicLoading) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 300);
-                    $scope.enviarDenuncia = function(){
-                       console.log("Go To: enviar");
-                       //$state.go("app.add-denuncia");
-                       $ionicLoading.show({
-                         template: "Enviando Denuncia...",
-                         duration: 1000
-                       });
-                    };
-                },
-            }
-        }
-    })
-
-   .state('app.denuncia-historico', {
-      url: '/denuncias/:denunciaId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/denuncia-historico.html',
-          controller: 'denunciaHistoricoCtrl'
-        },
-        'fabContent':{
-          template : ''
-        }
-      }
-    })
-
-   .state('app.add-denuncia', {
-        url: '/add-denuncia',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/add-denuncia.html',
-                controller: 'AddDenunciaCtrl'
-            },
-            'fabContent': {
-                template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-            }
-        }
-    })
-
-   .state('app.info', {
-        url: '/informacao',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/informacao.html',
-                controller: 'ArquivosCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" ng-click="takePicture()" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-camera"></i></button>',
-                controller: 'ArquivosCtrl'
             }
         }
     });
-  // setup an abstract state for the tabs directive
 
-  // Each tab has its own nav history stack:
-
-  // if none of the above states are matched, use this as the fallback
+   
   if(localStorage) {
-    $urlRouterProvider.otherwise('/app/inicio');
+    $urlRouterProvider.otherwise('/app/home');
   }
   else {
-    $urlRouterProvider.otherwise('/app/inicio');
+    $urlRouterProvider.otherwise('/app/home');
   }
-}])
-;
+
+}]);
