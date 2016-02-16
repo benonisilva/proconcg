@@ -53,11 +53,27 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         views: {
             'menuContent': {
                 templateUrl: 'templates/home/html/home.html',
-                controller: 'WelcomeCtrl'
+                controller: 'HomeCtrl as vm'
             },
             'fabContent': {
                 template: ''
             }
+        }
+    })
+
+  .state('app.cadastro', {
+        url: '/home/cadastro',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/home/html/cadastro.html',
+                controller: 'CadastroCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+        },
+        params: {
+                profile: null
         }
     })
 

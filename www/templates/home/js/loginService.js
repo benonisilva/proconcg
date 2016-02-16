@@ -7,8 +7,9 @@
         LoginService.$inject = ['$q','$http','$timeout'];
 
     function LoginService($q,$http,$timeout) { 
-    	
-        var login = {
+    	var login;
+        
+        login = {
     		getUser : getUser
     	};
 

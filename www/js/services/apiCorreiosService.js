@@ -2,16 +2,18 @@
     'use strict';
 
     angular
-        .module('starter.servives')
+        .module('starter.services')
         .factory('EnderecoService', EnderecoService);
         EnderecoService.$inject = ['$q','$http'];
 
     function EnderecoService($q,$http) { 
-    	var endereco {
+    	var service = {
     		getEndereco : getEndereco
     	};
 
-    	function getEndereco(cep) {
+        return service;
+    	
+        function getEndereco(cep) {
     		console.log(cep);
     		var deferred = $q.defer();
     		var url = 'https://viacep.com.br/ws/'+cep+'/json'
@@ -29,4 +31,5 @@
     		
     		return deferred.promise;
     	};
+    }    
 })();

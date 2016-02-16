@@ -3,10 +3,10 @@
 
     angular
         .module('starter.services')
-        .factory('CadastroService', CadastroService);
-        CadastroService.$inject = ['$q','$http','$timeout','UserService'];
+        .factory('ArquivosService', ArquivosService);
+        ArquivosService.$inject = ['$q','$http','$timeout','UserService'];
 
-    function CadastroService($q,$http,$timeout,UserService) { 
+    function ArquivosService($q,$http,$timeout,UserService) { 
     	var cadastro = {
     		save : save
     	};
@@ -14,7 +14,7 @@
     	return cadastro;
 
     	function save(cadastro) {
-    	   console.log("CadastroService.save: "+cadastro);
+    	   console.log("ArquivosService.get: "+cadastro);
            var deferred = $q.defer();
             //fake
             $timeout(function(){

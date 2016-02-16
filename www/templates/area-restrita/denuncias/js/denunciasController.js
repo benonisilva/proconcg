@@ -3,12 +3,12 @@
 
     angular
         .module('starter.controller')
-        .controller('AddDenunciaCtrl', AddDenunciaCtrl);
-        AddDenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciasService',
+        .controller('DenunciaCtrl', DenunciaCtrl);
+        DenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciasService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
   'ArquivosFactory','$ionicScrollDelegate', '$state'];
 
-    function AddDenunciaCtrl($scope, $stateParams, DenunciasService,
+    function DenunciaCtrl($scope, $stateParams, DenunciasService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,
       ArquivosFactory,$ionicScrollDelegate,$state){ 
 
