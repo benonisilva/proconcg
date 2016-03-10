@@ -20,4 +20,5 @@
         setUser: setUser
       };
     }
+
 })();

@@ -11,20 +11,23 @@
     	vm.user = {};
     	vm.buscarEndereco = buscarEndereco;
     	vm.cadastraUser = cadastraUser;
-        console.log($stateParams);
-    	function buscarEndereco (cep) {
+        console.log("FBProfile");
+        console.log($stateParams||"null");
+        var profileFBId = $stateParams.profile || "";
+    	
+        function buscarEndereco (cep) {
     		console.log("CadastroCtrl.buscarEndereco: "+cep);
-    		EnderecoService.getEndereco(cep).then(fnBuscaEnderecoSuccess,fnBuscaEnderecoFail);
+    		EnderecoService.getEndereco(cep).then(_fnBuscaEnderecoSuccess,_fnBuscaEnderecoFail);
     	};
 
-    	function fnBuscaEnderecoSuccess(resp){
-    		showLoading("BUscando...");
+    	function _fnBuscaEnderecoSuccess(resp){
+    		showLoading("Buscando...");
     		console.log("CadastroCtrl.buscarEndereco.fnBuscaEnderecoSuccess: ");
     		console.log(resp);
     		vm.user.endereco = resp;
     	};
 
-    	function fnBuscaEnderecoFail(resp){
+    	function _fnBuscaEnderecoFail(resp){
     		console.log("CadastroCtrl.buscarEndereco.fnBuscaEnderecoFail: ");
     		console.log(resp);
     	};
@@ -33,16 +36,41 @@
     		showLoading("Salvando...");
     		console.log("CadastroCtrl.cadastraUser.fnBuscaEnderecoSuccess: ");
     		console.log(user);
-    		CadastroService.save(user).then(fnSucessCadastro,fnFailCadastro);
+            
+            var requerente = {
+                
+                Nome: user.name,
+                Documento: user.nDocumento,
+                Endereco: user.endereco.logradouro + ", Complemento: " + user.endereco.complemento,
+                Bairro : user.endereco.bairro,
+                Cidade: user.endereco.localidade,
+                Cep: user.endereco.cep,
+                UfId : 15, //LightBase
+                Telefone:user.telefone,
+                TipoDoDocumentoId: user.tipoDocumento,
+                Email: user.email,
+                FacebookUserId: profileFBId
+
+            };
+    		
+            CadastroService.save(requerente).then(_fnSucessCadastro,_fnFailCadastro);
+
     	};
 
-    	function fnSucessCadastro (resp) {
-    		console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
-    		console.log(resp || "");
-    		hideLoading();
+    	function _fnSucessCadastro (resp) {
+    		
+            if(resp===true){
+                console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
+                console.log(resp || "");
+                hideLoading();
+                alert("Link de concifrmação foi enviado para seu email");
+                $state.go('app.home');
+
+            }
+    
     	};
 
-    	function fnFailCadastro (resp) {
+    	function _fnFailCadastro (resp) {
     		console.log("CadastroCtrl.cadastraUser.fnFailCadastro: ");
     		console.log(resp || "");
     		hideLoading();
@@ -55,7 +83,7 @@
     		    showBackdrop: true,
     		    maxWidth: 200,
     		    showDelay: 0,
-    		    duration:time || 5000,
+    		    duration:time || 15000,
     		    template:text || "..."
     		});	
     	};

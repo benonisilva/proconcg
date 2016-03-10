@@ -77,6 +77,21 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         }
     })
 
+  .state('app.area-restrita', {
+        url: '/area-restrita',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/html/denuncias.html'
+            },
+            'fabContent': {
+                template: ''
+            }
+        },
+        params: {
+                profile: null
+        }
+    })
+
   .state('app.login', {
         url: '/home/login',
         views: {
