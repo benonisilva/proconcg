@@ -5,19 +5,19 @@
         </div>
         <div class="row header">
           <div class="col">Empresa</div>
-          <div class="col">Ultimo Parecer</div>
+          <div class="col">Situação</div>
           <div class="col">Data</div>
           <div class="col"></div>
         </div>
-        <div class="row item-denuncia animate-fade-slide-in-right" ng-repeat="denuncia in denuncias | filter:denuncia.enviada===true" ui-sref="app.denuncia-historico({denunciaId:denuncia.id})">
+        <div class="row item-denuncia animate-fade-slide-in-right" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
             <div class="col">
-                {{denuncia.empresa}}
+                {{denuncia.Fornecedor.RazaoSocial}}
             </div>
             <div class="col">
-                {{denuncia.ultimoParecer}}
+                Em Andamento
             </div>
             <div class="col">
-                {{denuncia.data}}
+                04/04/2016
             </div>
             <div class="col">
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -29,19 +29,20 @@
         </div>
         <div class="row header">
           <div class="col">Empresa</div>
-          <div class="col">Ultimo Parecer</div>
+          <div class="col">Situação</div>
           <div class="col">Data</div>
           <div class="col"></div>
         </div>
-        <div class="row" ng-repeat="denuncia in denunciasLocal" ui-sref="app.enviar({denunciaId:denuncia.id})">
+        <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
+            {{denuncia.Id}}
             <div class="col">
-                {{denuncia.empresa}}
+                {{denuncia.Fornecedor.RazaoSocial}}
             </div>
             <div class="col">
-                {{denuncia.ultimoParecer}}
+                Não Enviada
             </div>
             <div class="col">
-                {{denuncia.data}}
+                04/01/2016
             </div>
             <div class="col">
                 <i class="icon ion-chevron-right icon-accessory"></i>

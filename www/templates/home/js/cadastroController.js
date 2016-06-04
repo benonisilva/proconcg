@@ -8,7 +8,19 @@
 
     function CadastroCtrl($scope,$state,$stateParams,$ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
-    	vm.user = {};
+    	vm.user = {
+            name:"nome fake teste",rg:"123123",
+            cpf:"03921117488",telefone:"8399991111",
+            email:"benonisilva@hotmail.com",
+            endereco:{
+                logradouro:"rua qualquer",
+                localidade:"Campina Grande",
+                uf:"PB",
+                cep:"58400565",
+                bairro:"bairro"
+
+            }
+        };
     	vm.buscarEndereco = buscarEndereco;
     	vm.cadastraUser = cadastraUser;
         console.log("FBProfile");
@@ -40,16 +52,18 @@
             var requerente = {
                 
                 Nome: user.name,
-                Documento: user.nDocumento,
-                Endereco: user.endereco.logradouro + ", Complemento: " + user.endereco.complemento,
+                Cpf: user.cpf,
+                Endereco: user.endereco.logradouro,
                 Bairro : user.endereco.bairro,
+                Complemento: user.endereco.complemento,
                 Cidade: user.endereco.localidade,
                 Cep: user.endereco.cep,
                 UfId : 15, //LightBase
                 Telefone:user.telefone,
-                TipoDoDocumentoId: user.tipoDocumento,
+                //TipoDoDocumentoId: user.tipoDocumento,
                 Email: user.email,
-                FacebookUserId: profileFBId
+                FacebookUserId: profileFBId || "",
+                Rg: user.rg
 
             };
     		
@@ -64,7 +78,7 @@
                 console.log(resp || "");
                 hideLoading();
                 alert("Link de concifrmação foi enviado para seu email");
-                $state.go('app.home');
+                //$state.go('app.home');
 
             }
     

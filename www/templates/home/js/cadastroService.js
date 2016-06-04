@@ -32,7 +32,7 @@
             
             console.log("CadastroService.save: ");
             console.log(cadastro||"null");
-            var url = 'http://localhost:1118/Home/Requerente';
+            var url = 'http://189.71.6.16:8088/Home/Consumidor';
 
             var deferred = $q.defer();
             $http.post(url, cadastro).then(_successCallback, _errorCallback);
@@ -40,11 +40,13 @@
             function _successCallback(data){
                 console.log("_successCallback");
                 console.log(data||"null");
+                alert(data ||"null");
                 deferred.resolve(true);
             };
 
             function _errorCallback(data){
                 console.log("_errorCallback");
+                alert(data||"null");
                 console.log(data||"null");
                 deferred.reject(false);
             };

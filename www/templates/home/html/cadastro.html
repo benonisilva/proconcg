@@ -31,39 +31,15 @@
               <input type="tel" ng-model="vm.user.telefone" placeholder="Telefone para contato" ui-br-phone-number required >
             </label>
 
-            <div class="col col-100">
-              
-              <div ng-switch on="vm.user.tipoDocumento">
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*RG</span>
+              <input type="tel" ng-model="vm.user.rg" placeholder="Seu Rg"  required >
+            </label>
 
-                <div class="item item-input" ng-switch-when=2>
-                  <label class="item-input-wrapper">
-                    <input placeholder="CPF" type="tel" ng-model="vm.user.nDocumento" ui-br-cpf-mask>
-                    <span class="input-label">CPF</span>
-                  </label>
-                </div>
-                
-                <div class="item item-input" ng-switch-when=1>
-                  <label class="item-input-wrapper">
-                    <input placeholder="CNPJ" type="tel" ng-model="vm.user.nDocumento" ui-br-cnpj-mask>
-                    <span  class="input-label">CNPJ</span>
-                  </label>
-                </div>
-
-                <div class="item item-input" ng-switch-default>
-                  <label class="item-input-wrapper">
-                    <input ng-disabled="true" placeholder="Escolha o tipo de documento" type="tel" ng-model="vm.user.nDocumento" ui-br-cnpj-mask>
-                    <span class="input-label">Tipo</span>
-                  </label>
-                </div>
-
-                <div class="item item-input">
-                  <select  ng-model="vm.user.tipoDocumento"  required >
-                    <option value="">Tipo de Documento</option>
-                    <option value="2">CPF</option>
-                    <option value="1">CNPJ</option>
-                  </select>
-                </div>
-          </div>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">CPF</span>
+              <input placeholder=*"CPF" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
+            </label>
 
           <div class="list card">
             

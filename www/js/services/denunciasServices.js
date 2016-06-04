@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('starter.services')
 
 .service('DenunciasService', function(DenunciaDB,$q,$timeout) {
   // Might use a resource here that returns a JSON array

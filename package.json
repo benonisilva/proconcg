@@ -23,6 +23,9 @@
     "org.apache.cordova.camera"
   ],
   "cordovaPlatforms": [
-    "android"
+    {
+      "platform": "android",
+      "locator": "browser"
+    }
   ]
 }

@@ -46,37 +46,17 @@ angular.module('starter.services')
         // note = data that will store in localStorage.
         insert: function (denuncia) {
             var denunciaList = localStorage.get("localDenuncias");
-            if (denunciaList == null) {
+            if (denunciaList === null) {
                 // For first value of data.
-                var newDenunciaData = [{
-                    id: 1,
-                    empresa: denuncia.empresa,
-                    assunto: denuncia.assunto,
-                    descritivo: denuncia.descritivo,
-                    textoDaDenuncia: denuncia.textoDaDenuncia,
-                    ultimoParecer: denuncia.ultimoParecer,
-                    data: denuncia.data,
-                    enviada : false,
-                    fotos:denuncia.fotos,
-                    historicos: denuncia.historico
-                }];
+                denuncia.Id = 1;
+                var newDenunciaData = [denuncia];
+                
                 localStorage.set("localDenuncias", newDenunciaData);
             } 
             else {
                 // For up to second value of data.
-                var newDenunciaData = {
-                    id: (denunciaList.length + 1),
-                    empresa: denuncia.empresa,
-                    assunto: denuncia.assunto,
-                    descritivo: denuncia.descritivo,
-                    textoDaDenuncia: denuncia.textoDaDenuncia,
-                    ultimoParecer: denuncia.ultimoParecer,
-                    data: denuncia.data,
-                    enviada : false,
-                    fotos:denuncia.fotos,
-                    historicos: denuncia.historico
-                };
-                denunciaList.push(newDenunciaData);
+                denuncia.Id = denunciaList.length+1;
+                denunciaList.push(denuncia);
                 localStorage.set("localDenuncias", denunciaList);
             }
         },
@@ -89,7 +69,7 @@ angular.module('starter.services')
             var denunciaList = localStorage.get("localDenuncias");
 
             for (var i = 0; i <= denunciaList.length; i++) {
-                if (denunciaList[i].id == denuncia.id) {
+                if (denunciaList[i].Id == denuncia.Id) {
                     denunciaList[i] = denuncia;
                     break;
                 }
@@ -106,7 +86,7 @@ angular.module('starter.services')
             var denunciaList = localStorage.get("localDenuncias");
 
             for (var i = 0; i <= denunciaList.length; i++) {
-                if (denunciaList[i].id == denuncia.id) {
+                if (denunciaList[i].Id == denuncia.Id) {
                     denunciaList.splice(i, 1);
                     break;
                 }

@@ -8,7 +8,7 @@
 
     function LoginCtrl($scope,$ionicLoading,$state,LoginService) { 
     	var vm = this;
-        vm.user = {email:'user@email.com',password:'1'};
+        vm.user = {email:'benonisilva@hotmail.com',password:'2e62'};
         vm.login = login;
         
         function login(user) {
@@ -25,14 +25,18 @@
         };
 
         function fnSuccess(arg){
-            console.log("login success: "+arg);
             $ionicLoading.hide();
-            $state.go("app.home");
+            if(arg===true){    
+                console.log("login success: "+arg);
+                $scope.$parent.setLogged(true);
+                $state.go("app.area-restrita");
+            }
+            
         };
         function fnFail(arg){
             console.log("login fail: "+arg);
             $ionicLoading.hide();
-            alert("Email ou senha invalidos.");
+            alert("Falha no servidor");
         };
     }    
 })();

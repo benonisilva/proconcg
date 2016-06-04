@@ -7,12 +7,14 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   'starter.controllers','stater.services.user','starter.services','starter.directives',
-  'starter.config','ionic-material', 'ionMdInput'])
+  'starter.config','ionic-material', 'ionMdInput','ngCookies'])
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)    
+    //$http.defaults.headers.post['X-CSRFToken'] = $cookiesProvider.csrftoken;
+
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);               
@@ -29,10 +31,13 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   httpTimeout: 5000
 })
 
-.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$compileProvider',
-  function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$compileProvider) {
+.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$compileProvider','$httpProvider',
+  function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$compileProvider,$httpProvider) {
 
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|data):/);  
+  $httpProvider.defaults.withCredentials = true;
+  $httpProvider.defaults.useXDomain = true;
+  //delete $httpProvider.defaults.headers.common['X-Requested-With'];
     
   var localStorage = window.localStorage['documento'];
   //if(localStorage) console.log(localStorage);
@@ -81,7 +86,29 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         url: '/area-restrita',
         views: {
             'menuContent': {
-                templateUrl: 'templates/area-restrita/html/denuncias.html'
+                templateUrl: 'templates/area-restrita/denuncias/html/denuncias.html',
+                controller: 'DenunciaCtrl as vm'
+            },
+            'fabContent': {
+                template: '<button id="fab-profile" ng-click="addDenuncia()" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                controller: function ($scope,$state) {
+                                $scope.addDenuncia = function(){
+                                   $state.go('app.add-denuncia');
+                        }
+                }
+            }
+        },
+        params: {
+                profile: null
+        }
+    })
+
+  .state('app.add-denuncia', {
+        url: '/area-restrita/add/denuncia/:Id',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/denuncias/html/add-denuncia.html',
+                controller : 'AddDenunciaCtrl as vm'
             },
             'fabContent': {
                 template: ''
