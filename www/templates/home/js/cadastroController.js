@@ -10,7 +10,7 @@
     	var vm = this;
     	vm.user = {
             name:"nome fake teste",rg:"123123",
-            cpf:"03921117488",telefone:"8399991111",
+            cpf:"40852775610",telefone:"8399991111",
             email:"benonisilva@hotmail.com",
             endereco:{
                 logradouro:"rua qualquer",

@@ -7,29 +7,30 @@
         .controller('AddDenunciaCtrl', AddDenunciaCtrl);
         AddDenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
-  'ArquivosService','$ionicScrollDelegate', '$state','$ionicLoading'];
+  '$ionicScrollDelegate', '$state','$ionicLoading','$q','Id','CameraService'];
 
     function AddDenunciaCtrl($scope, $stateParams, DenunciaService,
-      $ionicSlideBoxDelegate,$timeout,$ionicPopup,
-      ArquivosFactory,$ionicScrollDelegate,$state,$ionicLoading){ 
+      $ionicSlideBoxDelegate,$timeout,$ionicPopup,$ionicScrollDelegate,
+      $state,$ionicLoading,$q,Id,CameraService){ 
 
-      var IdLocal = $stateParams.Id;
-      console.log(IdLocal||"Id null");
+      console.log(Id||"Id null");
       var vm = this;
+      vm.openAlbum = openAlbum;
+      vm.removePic = removePic;      
       vm.denuncia = {
         Fornecedor:{
-          Cnpj:"09412872000131",
-          Cep:"58400565",
-          Endereco : "Rua Qualquer, numero 12",
-          Bairro: "Prata",
-          Complemento:"Bloco A",
-          InscricaoEstadual:"0021212121",
+          Cnpj:"71283513000103",
+          Cep:"5843443",
+          Endereco : "Endereco",
+          Bairro: "Bairro",
+          Complemento:"QUadra A",
+          InscricaoEstadual:"1212-212",
           RazaoSocial:"Empresa Denunciada",
-          Telefone : "08311166612"
+          Telefone : "1122222222"
         },
-        Data : "01/01/2001"
+        Data : "",
+        Arquivos : []
       };
-      //vm.takePicture = takePicture;
       
       vm.myActiveSlide = 0;
       vm.showConfirm = showConfirm;
@@ -39,7 +40,24 @@
       vm.previousSlide = previousSlide;
       vm.slideIndex = 0;
 
-      
+      active(Id);
+
+      function removePic(pos){
+        vm.denuncia.Arquivos.splice(pos,1);
+      }
+
+      function openAlbum(){
+       console.log("CameraCtrl:openAlbum");
+       //console.log(JSON.stringify(CameraService));  
+       CameraService.getFromAlbum().then(function(data){
+        vm.denuncia.Arquivos.push(data);
+
+       },function(err){
+        var strData = JSON.stringify(err);
+        console.log(strData);
+
+       });  
+      }
 
       /*Definicao de funcoes de escopo */
       function showConfirm(denuncia) {
@@ -61,9 +79,17 @@
           console.log('Res: ' +res);
           if(res) {
             console.log('denuncia adicionada-local');
-            console.log(vm.denuncia||"");
-            DenunciaService.saveLocal(vm.denuncia);
-            //$state.go('app.denuncias');
+            console.log(JSON.stringify(denuncia));
+            if(denuncia.Id){
+              console.log("Ja existe. Id: "+denuncia.Id);
+              DenunciaService.updateLocal(denuncia);
+
+            }else{
+              
+              DenunciaService.saveLocal(denuncia);
+            }
+            //DenunciaService.saveLocal(vm.denuncia);
+            $state.go('app.area-restrita');
           } else {
             console.log('You are not sure');
           }
@@ -89,7 +115,7 @@
           console.log('Res: ' +res);
           if(res) {
             console.log('denuncia enviar para servidor');
-            console.log(vm.denuncia||"");
+            console.log(denuncia||"");
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -102,7 +128,8 @@
                 $ionicLoading.hide();
                 if(arg===true){    
                     console.log("showConfirmEnviar success: "+arg);
-                    $scope.$parent.setLogged(true);
+                    //$scope.$parent.setLogged(true);
+                    //DenunciaService.deleteLocal();
                     $state.go("app.area-restrita");
                 }
                 
@@ -114,7 +141,7 @@
                 alert("Falha no servidor");
             };
 
-            DenunciaService.enviar(vm.denuncia).then(fnSuccess,fnFail);
+            DenunciaService.enviar(denuncia).then(fnSuccess,fnFail);
           } else {
             console.log('You are not sure');
           }
@@ -127,41 +154,41 @@
       };
 
       function nextSlide() {
-        console.log("click next");
+        //console.log("click next");
         $timeout( function() {
-          console.log("proximo");
+          //console.log("proximo");
           $ionicSlideBoxDelegate.next(500);
           $ionicScrollDelegate.scrollTop(true);
         }, 50);
       };
 
       function previousSlide() {
-        console.log("voltar");
+        //console.log("voltar");
         $ionicSlideBoxDelegate.previous(500);
       };
 
       function getLocal(id){
-
-        var denuncia = {
-        Fornecedor:{
-          Cnpj:"04011575000160",
-          Cep:"58400565",
-          Endereco : "Rua Qualquer, numero 12",
-          Bairro: "Prata",
-          Complemento:"Bloco A",
-          InscricaoEstadual:"0021212121",
-          RazaoSocial:"Empresa Denunciada",
-          Telefone : "08311166612"
-        },
-        Data : "01/01/01"
+        if(id){
+          return DenunciaService.getDenunciaLocal(id).then(function(data){
+            vm.denuncia = data;
+            //ArquivosImagensService.imagens = data.Arquivos;
+            return vm.denuncia;
+          });
+        }else{
+          //ArquivosImagensService.imagens = [];
+          return vm.denuncia;
+        }
+        
       };
 
-        if(id) return  DenunciaService.getDenunciaLocal(id);
-        else return denuncia;
-      };
-
-      function takePicture() {
-        console.log("Take a takePicture");
+      function active(id) {
+        console.log("Id:");
+        console.log(id||"id null");
+        var promises = [getLocal(id)];
+              return $q.all(promises).then(function() {
+                console.log("activate:getLocal");
+                //logger.info('Activated Dashboard View');
+              });
       };
 
       /*Definicao de funcoes de escopo */

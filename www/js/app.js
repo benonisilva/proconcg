@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   'starter.controllers','stater.services.user','starter.services','starter.directives',
-  'starter.config','ionic-material', 'ionMdInput','ngCookies'])
+  'starter.config','ionic-material', 'ionMdInput','ngCookies','ngCordova'])
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
@@ -27,14 +27,15 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 })
 
 .constant('constantConfig', {
-  url: 'http://192.168.56.1:8088/Home/',
+  url: 'http://179.197.169.63:8088',
   httpTimeout: 5000
 })
 
 .config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$compileProvider','$httpProvider',
   function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$compileProvider,$httpProvider) {
 
-  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|data):/);  
+  //$compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//); 
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
   $httpProvider.defaults.withCredentials = true;
   $httpProvider.defaults.useXDomain = true;
   //delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -116,7 +117,13 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         },
         params: {
                 profile: null
-        }
+        },
+
+        resolve:{
+              Id: ['$stateParams', function($stateParams){
+                  return $stateParams.Id;
+              }]
+           }
     })
 
   .state('app.login', {

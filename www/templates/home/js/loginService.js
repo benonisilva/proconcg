@@ -34,7 +34,7 @@
             console.log("LoginService.getUser: ");
             console.log(login||"null");
             //var headers = {'Access-Control-Allow-Origin:':'http://localhost/*','Authorization': 'Token token=xxxxYYYYZzzz'};
-            var url = 'http://189.71.6.16:8088/Home/Login';
+            var url = 'http://179.197.169.63:8088/Home/Login';
 
             var deferred = $q.defer();
             $http.post(url,login)
@@ -43,12 +43,13 @@
             });
 
             function _successCallback(data){
+                var strData = JSON.stringify(data);
                 console.log("_successCallback");
-                console.log(data||"null");
+                console.log(strData||"null");
                 if(data.data.success===true){
-                    console.log("login correct");
+                    console.log("LOGIN CERTO");
                     deferred.resolve(true);
-                    alert(data||"null");
+                    //alert(data||"null");
                 }else{
                     console.log("login incorrect");
                     deferred.resolve(false);
@@ -57,9 +58,10 @@
             };
 
             function _errorCallback(data){
+                var strFail = JSON.stringify(data);
                 console.log("_errorCallback");
-                console.log(data||"null");
-                alert(data||"null");
+                console.log(strFail||"null");
+                alert(strFail||"null");
                 deferred.reject(false);
             };
 

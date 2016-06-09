@@ -12,15 +12,9 @@
 
     </author>
     <content src="index.html" />
-    <access origin="http://google.com" />
-    <access origin="http://189.71.6.16:8088" />
-    <access origin="http://zangief-pc:8088" />
-    <allow-navigation href="http://*/*" />
-    <allow-navigation href="https://*/*" />
-    <allow-navigation href="data:*" />
-    <allow-navigation href="http://localhost:1118/*" />
-
+    <allow-navigation href="*"/>
     <preference name="webviewbounce" value="false" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="xwalkZOrderOnTop" value="true" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

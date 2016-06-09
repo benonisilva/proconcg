@@ -32,22 +32,24 @@
             
             console.log("CadastroService.save: ");
             console.log(cadastro||"null");
-            var url = 'http://189.71.6.16:8088/Home/Consumidor';
+            var url = 'http://179.197.169.63:8088/Home/Consumidor';
 
             var deferred = $q.defer();
             $http.post(url, cadastro).then(_successCallback, _errorCallback);
 
             function _successCallback(data){
                 console.log("_successCallback");
-                console.log(data||"null");
-                alert(data ||"null");
+                var strDados = JSON.stringify(data);
+                console.log(strDados||"null");
+                alert(strDados ||"null");
                 deferred.resolve(true);
             };
 
-            function _errorCallback(data){
+            function _errorCallback(error){
                 console.log("_errorCallback");
-                alert(data||"null");
-                console.log(data||"null");
+                var strDados = JSON.stringify(error);
+                alert("Erro");
+                console.log(strDados||"null");
                 deferred.reject(false);
             };
 
