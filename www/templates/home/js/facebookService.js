@@ -3,11 +3,14 @@
 
     angular
         .module('starter.services')
-        .factory('FacebookService', FacebookService);
-        FacebookService.$inject = ['$q','UserService'];
+        .factory('FacebookAuthService', FacebookAuthService);
+        
+        FacebookAuthService.$inject = ['$q','UserService'];
+        document.addEventListener("deviceready", FacebookAuthService, false);
 
-    function FacebookService($q,UserService) { 
-    	var profile = {
+    function FacebookAuthService($q,UserService) { 
+    	
+      var profile = {
             getInfo : getInfo,
             getLoginStatus : getLoginStatus
         };
@@ -15,26 +18,40 @@
         return profile;
 
         function getLoginStatus() {
-            console.log("FacebookService.getLoginStatus");
-            var info = $q.defer();
-
+            console.log("FacebooAuthkService.getLoginStatus");
+            var q = $q.defer();
+            //var prom;
             facebookConnectPlugin.getLoginStatus(function(resp){
               if(resp.status === 'connected'){
                 console.log("Conectado");
-                return getInfo(resp.authResponse);
+                getInfo(resp.authResponse).then(function(data){
+                    q.resolve(data);
+                },function(err){
+                    q.reject(err);
+                });
               }
               else{
-                  console.log("Conectaando...");
+                  console.log("Conectando...");
                   facebookConnectPlugin.login(['email', 'public_profile'], function(resp){
-                      console.log("Conectaando...");
-                      return getInfo(resp.authResponse);
+                      console.log("Conectando...");
+                      getInfo(resp.authResponse).then(function(data){
+                        q.resolve(data);
+                      },function(err){
+                        q.reject(err);
+                      });
+                      
                   }, function(resp){
-
+                      q.reject('erro desconhecido');
+                      console.log("errrrrrrrrr");
                   });
               }
             },function(resp){
               console.log("erro getLoginStatus");
+              q.reject('erro getLoginStatus');
             });
+
+            return q.promise;
+        
         };
 
         function getInfo(authResponse){
@@ -51,11 +68,12 @@
               function (response) {
                 console.log("FacebookService");
                 console.log("getInfo");
-                console.log("Sucess");
+                console.log("Error");
                 console.log(response);
                 info.reject(response);
               }
             );
+            
             return info.promise;
         };
 
@@ -78,6 +96,5 @@
         function fbLoginSuccess(resp){
           return getInfo(resp.authResponse);
         };
-    }  
-
+    }
 })();

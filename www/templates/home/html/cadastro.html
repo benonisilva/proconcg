@@ -47,11 +47,11 @@
                 Informações de Endereço
             </div>
 
-            <div class="item item-input-inset">
-              <label class="item-input-wrapper">
+            <div class="item item-input-inset row">
+              <label class="col col-66 item-input-wrapper">
                 <input type="text" ng-model="vm.user.endereco.cep" placeholder="CEP" ui-br-cep-mask required>
               </label>
-              <button type="button" ng-click="vm.buscarEndereco(vm.user.endereco.cep)" class="icon ion-search button button-small" ng-disabled="(vm.user.endereco.cep===undefined)">
+              <button type="button" ng-click="vm.buscarEndereco(vm.user.endereco.cep)" class="icon ion-search button button-small col col-33" ng-disabled="(vm.user.endereco.cep===undefined)">
                 {{(user.cep===undefined) ? "" : ""}}
               </button>
             </div>

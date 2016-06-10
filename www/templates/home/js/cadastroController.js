@@ -6,7 +6,8 @@
         .controller('CadastroCtrl', CadastroCtrl);
         CadastroCtrl.$inject = ['$scope','$state','$stateParams','$ionicLoading','CadastroService','EnderecoService'];
 
-    function CadastroCtrl($scope,$state,$stateParams,$ionicLoading,CadastroService,EnderecoService) { 
+    function CadastroCtrl($scope,$state,$stateParams,
+        $ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
     	vm.user = {
             name:"nome fake teste",rg:"123123",
@@ -24,9 +25,11 @@
     	vm.buscarEndereco = buscarEndereco;
     	vm.cadastraUser = cadastraUser;
         console.log("FBProfile");
-        console.log($stateParams||"null");
+        //console.log($stateParams||"null");
         var profileFBId = $stateParams.profile || "";
-    	
+        console.log(JSON.stringify(profileFBId));
+    	vm.user.name = profileFBId.name;
+        vm.user.email = profileFBId.email;
         function buscarEndereco (cep) {
     		console.log("CadastroCtrl.buscarEndereco: "+cep);
     		EnderecoService.getEndereco(cep).then(_fnBuscaEnderecoSuccess,_fnBuscaEnderecoFail);

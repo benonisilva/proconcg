@@ -6,9 +6,9 @@
         .module('starter.controllers')
         .controller('HomeCtrl', HomeCtrl);
         HomeCtrl.$inject = ['$scope', '$state', 'UserService', 
-        '$ionicLoading','FacebookService'];
+        '$ionicLoading','FacebookAuthService'];
     
-    function HomeCtrl($scope, $state,UserService, $ionicLoading,FacebookService) { 
+    function HomeCtrl($scope, $state,UserService, $ionicLoading,FacebookAuthService) { 
     	var vm = this;
     	var status;
     	var profileInfo;
@@ -27,7 +27,7 @@
 
         function facebookSignIn () {
             console.log("HomeCtrl.facebookSignIn:");
-            FacebookService.getLoginStatus().then(fnSuccess,fnFail);
+            FacebookAuthService.getLoginStatus().then(fnSuccess,fnFail);
         };    	
 
     }

@@ -12,7 +12,7 @@
 
     </author>
     <content src="index.html" />
-    <allow-navigation href="*"/>
+    <allow-navigation href="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="xwalkZOrderOnTop" value="true" />
@@ -50,4 +50,8 @@
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
+    <plugin name="phonegap-facebook-plugin" spec="https://github.com/Wizcorp/phonegap-facebook-plugin.git">
+        <variable name="APP_ID" value="1671136189811231" />
+        <variable name="APP_NAME" value="gov.br.proconcg" />
+    </plugin>
 </widget>
