@@ -1,0 +1,13 @@
+<ion-view view-title="Eventos">
+    <ion-content class="has-header">
+        <div class="list" ng-repeat="evento in vm.eventos">
+        	<div class="item item-text-wrap">
+        		<div class="card">
+                    <h2><strong>{{evento.Titulo}}</strong></h2>
+                    <strong>Publicado Em: </strong> {{evento.DataPublicacao}} <br />
+                    <strong>De : </strong> {{evento.DataInicio}} até {{evento.DataFim}} 
+                </div>
+        	</div>
+        </div>
+    </ion-content>
+</ion-view>

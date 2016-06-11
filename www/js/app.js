@@ -126,6 +126,47 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
            }
     })
 
+  .state('app.localizacao',{
+    url : '/localizacao',
+    views: {
+          'menuContent' : {
+            templateUrl:'templates/ferramentas/localizacao/html/localizacao.html',
+            controller: 'MapCtrl as vm'
+          },
+          'fabContent': {
+            template:''
+          }
+    }
+
+  })
+
+  .state('app.eventos',{
+    url : '/eventos',
+    views: {
+          'menuContent' : {
+            templateUrl:'templates/ferramentas/eventos/html/eventos.html',
+            controller: 'EventosCtrl as vm'
+          },
+          'fabContent': {
+            template:''
+          }
+    }
+
+  })
+
+  .state('app.info',{
+    url : '/informacoes',
+    views: {
+          'menuContent' : {
+            templateUrl:'templates/ferramentas/informacoes/html/informacoes.html'
+          },
+          'fabContent': {
+            template:''
+          }
+    }
+
+  })
+
   .state('app.login', {
         url: '/home/login',
         views: {

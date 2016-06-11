@@ -13,6 +13,7 @@
     	var status;
     	var profileInfo;
         vm.facebookSignIn = facebookSignIn;
+        //console.log(constantConfig.url);
 		
 		function fnSuccess(resp){
 			console.log("HomeCtrl.facebookSignIn.fnSuccess:");

@@ -14,7 +14,7 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+    <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/angular-input-masks/angular-input-masks-standalone.min.js"></script>
@@ -39,7 +39,10 @@
     <script src="js/services/apiCorreiosService.js"></script>
     <script src="js/services/arquivosFactory.js"></script>
     
-
+    
+    <script src="templates/ferramentas/localizacao/js/localizacaoController.js"></script>
+    <script src="templates/ferramentas/eventos/js/eventosService.js"></script>
+    <script src="templates/ferramentas/eventos/js/eventosCtrl.js"></script>
 
     <script src="templates/home/js/homeController.js"></script>
     <script src="templates/home/js/cadastroController.js"></script>
@@ -52,14 +55,8 @@
     <script src="templates/area-restrita/denuncias/js/addDenunciaController.js"></script>
     <script src="templates/area-restrita/denuncias/js/denunciasController.js"></script>
     <script src="templates/area-restrita/denuncias/js/denunciasService.js"></script>
-    <!-- <script src="templates/area-restrita/denuncias/js/cameraController.js"></script> -->
     <script src="templates/area-restrita/denuncias/js/denunciasLocalDBService.js"></script>
-    <!-- <script src="templates/area-restrita/denuncias/js/arquivosImagensService.js"></script> -->
 
-    
-    
-
-    
     <!-- <script src="http://192.168.25.90:8080/target/target-script-min.js#anonymous"></script> -->
   </head>
   <body ng-app="starter">

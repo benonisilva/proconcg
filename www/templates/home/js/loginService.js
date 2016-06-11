@@ -4,9 +4,9 @@
     angular
         .module('starter.services')
         .factory('LoginService', LoginService);
-        LoginService.$inject = ['$q','$http','$timeout'];
+        LoginService.$inject = ['$q','$http','$timeout','constantConfig'];
 
-    function LoginService($q,$http,$timeout) { 
+    function LoginService($q,$http,$timeout,constantConfig) { 
     	var login;
         
         login = {
@@ -15,26 +15,12 @@
 
     	return login;
 
-    	function _getUser(user) {
-    		console.log("LoginService.getUser: " + user);
-            var deferred = $q.defer();
-    		//fake
-    		$timeout(function(){
-    			if(user.email==="user@email.com" && user.password==="1"){
-    				deferred.resolve(true);
-    			}else{
-    				deferred.reject(false);
-    			}
-    		},5000);
-    		return deferred.promise;
-    	};
-
         function getUser(login){
             
             console.log("LoginService.getUser: ");
             console.log(login||"null");
             //var headers = {'Access-Control-Allow-Origin:':'http://localhost/*','Authorization': 'Token token=xxxxYYYYZzzz'};
-            var url = 'http://179.197.169.63:8088/Home/Login';
+            var url = constantConfig.url+'/Home/Login';
 
             var deferred = $q.defer();
             $http.post(url,login)
@@ -61,7 +47,7 @@
                 var strFail = JSON.stringify(data);
                 console.log("_errorCallback");
                 console.log(strFail||"null");
-                alert(strFail||"null");
+                //alert(strFail||"null");
                 deferred.reject(false);
             };
 

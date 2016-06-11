@@ -11,7 +11,7 @@
 
     function ArquivosService($q) { 
 
-        console.log(cordova.file.cacheDirectory);
+        //console.log(cordova.file.cacheDirectory);
         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (dirEntry) {
             console.log('file system open: ' + dirEntry.name);
             //var isAppend = true;

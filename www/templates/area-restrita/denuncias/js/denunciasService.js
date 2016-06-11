@@ -5,10 +5,10 @@
         .module('starter.services')
         .factory('DenunciaService', DenunciaService);
         DenunciaService.$inject = ['$q','$http','$timeout',
-        'DenunciaLocalDBService','$cordovaFileTransfer'];
+        'DenunciaLocalDBService','$cordovaFileTransfer','constantConfig'];
 
     function DenunciaService($q,$http,$timeout,
-      DenunciaLocalDBService,$cordovaFileTransfer) { 
+      DenunciaLocalDBService,$cordovaFileTransfer,constantConfig) { 
       
       var denuncia = {
         
@@ -31,7 +31,7 @@
             
             console.log("Denuncia.enviar: ");
             console.log(denuncia||"null");
-            var url = 'http://179.197.169.63:8088/Home/Fato';
+            var url = constantConfig.url+'/Home/Fato';
             var idLocal = denuncia.Id;
 
             var retVal = {
@@ -78,7 +78,7 @@
       function _uploadFiles(id,arquivos) {
         console.log("_uploadFiles: " + id);
 
-        var server = 'http://179.197.169.63:8088/Home/Upload';
+        var server = constantConfig.url+'/Home/Upload';
         var promisses = [];
         var options = {
           
@@ -143,7 +143,7 @@
 
       function getDenunciasRemoto(){
           console.log("DenunciaService.getDenunciasRemoto: ");
-          var url = 'http://179.197.169.63:8088/Home/Denuncias';
+          var url = constantConfig.url+'/Home/Denuncias';
           
           return $http.get(url).then(_successCallback, _errorCallback).
             catch(_getFailed);
@@ -152,7 +152,6 @@
                var strResp = JSON.stringify(response);
                console.log("getDenunciasRemoto:_successCallback");
                console.log(strResp||"null");
-               //alert(strResp||"null");
                return response.data;
            };
 
@@ -160,16 +159,13 @@
                var strResp = JSON.stringify(data);
                console.log("getDenunciasRemoto:_errorCallback");
                console.log(strResp||"null");
-               //alert(strResp||"null");
-               
            };
 
           
           function _getFailed(_getFailed) {
             var strResp = JSON.stringify(error);
             console.log("_errorCallback");
-            alert(strResp||"null");
-            //logger.error('XHR Failed for getAvengers.' + error.data);
+            console.log(strResp||"null");
           };
       };
 
