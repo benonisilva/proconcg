@@ -5,10 +5,10 @@
     angular
         .module('starter.controllers')
         .controller('HomeCtrl', HomeCtrl);
-        HomeCtrl.$inject = ['$scope', '$state', 'UserService', 
+        HomeCtrl.$inject = ['$scope', '$state', 
         '$ionicLoading','FacebookAuthService'];
     
-    function HomeCtrl($scope, $state,UserService, $ionicLoading,FacebookAuthService) { 
+    function HomeCtrl($scope, $state, $ionicLoading,FacebookAuthService) { 
     	var vm = this;
     	var status;
     	var profileInfo;

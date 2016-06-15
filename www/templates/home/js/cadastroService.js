@@ -4,9 +4,9 @@
     angular
         .module('starter.services')
         .factory('CadastroService', CadastroService);
-        CadastroService.$inject = ['$q','$http','$timeout','UserService','constantConfig'];
+        CadastroService.$inject = ['$q','$http','$timeout','constantConfig'];
 
-    function CadastroService($q,$http,$timeout,UserService,constantConfig) { 
+    function CadastroService($q,$http,$timeout,constantConfig) { 
     	var cadastro = {
     		save : save
     	};
@@ -39,9 +39,9 @@
 
             function _successCallback(data){
                 console.log("_successCallback");
-                var strDados = JSON.stringify(data);
+                var strDados = JSON.stringify(data.data);
                 console.log(strDados||"null");
-                //alert(strDados ||"null");
+                window.localStorage.setItem('_user',strDados);
                 deferred.resolve(true);
             };
 

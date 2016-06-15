@@ -3,21 +3,27 @@
 
     angular
         .module('stater.services.user',[])
-        .factory('UserService', UserService);
-        UserService.$injetc = ['localStorage'];
-    function UserService(localStorage) { 
+        .provider('UserLocal', UserLocal);
+       
+    
+    function UserLocal() { 
 
-      var setUser = function(user_data) {
-        localStorage.set('user',user_data);
+      var user = {};
+      //$window.localStorage["_user"];
+
+      this.setUser = function(user_data) {
+        window.localStorage.setItem('_user',JSON.stringify(user_data));
+        user = user_data;
       };
 
-      var getUser = function(){
-        return localStorage.get('user');
-      };
+      function User() {
+          this.user = function() {
+            return window.localStorage.getItem('_user');
+          }
+        }
 
-      return {
-        getUser: getUser,
-        setUser: setUser
+      this.$get = function(){
+        return new User();
       };
     }
 

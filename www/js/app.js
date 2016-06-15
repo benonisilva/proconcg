@@ -31,8 +31,10 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   httpTimeout: 5000
 })
 
-.config(['$stateProvider','$urlRouterProvider','$ionicConfigProvider','$compileProvider','$httpProvider',
-  function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$compileProvider,$httpProvider) {
+.config(['$stateProvider','$urlRouterProvider',
+  '$ionicConfigProvider','$compileProvider','$httpProvider',
+  function($stateProvider, $urlRouterProvider,
+    $ionicConfigProvider,$compileProvider,$httpProvider) {
 
   //$compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//); 
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
@@ -40,7 +42,8 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   $httpProvider.defaults.useXDomain = true;
   //delete $httpProvider.defaults.headers.common['X-Requested-With'];
     
-  var localStorage = window.localStorage['documento'];
+  var user = window.localStorage.getItem('_user');
+  //console.log(user|| "user null");
   //if(localStorage) console.log(localStorage);
   //Debug
   $ionicConfigProvider.views.maxCache(0);
@@ -73,6 +76,22 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
             'menuContent': {
                 templateUrl: 'templates/home/html/cadastro.html',
                 controller: 'CadastroCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+        },
+        params: {
+                profile: null
+        }
+    })
+
+  .state('app.perfil', {
+        url: '/perfil',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/perfil/html/perfil.html',
+                controller: 'PerfilCtrl as vm'
             },
             'fabContent': {
                 template: ''
@@ -181,8 +200,18 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     });
 
    
-  if(localStorage) {
-    $urlRouterProvider.otherwise('/app/home');
+  if(user) {
+    //console.log(user);
+    var userOjb = JSON.parse(user);
+    console.log(userOjb);
+    if(userOjb.ativo){
+      console.log("app/login");
+      $urlRouterProvider.otherwise('/app/perfil');
+    }else{
+      $urlRouterProvider.otherwise('/app/login');
+      //alert("Cheque seu Email para ativar sua conta,após isso tera acesso ao sistema");
+    }
+    
   }
   else {
     $urlRouterProvider.otherwise('/app/home');

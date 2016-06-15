@@ -7,7 +7,12 @@ angular.module('starter.controllers', [])
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
     $scope.hasHeaderFabRight = false;
-    $scope.logged = false;
+    
+
+    var user = window.localStorage.getItem('_user');
+    //var userObj = JSON.parse(user);
+    //userObj.data.ativo = true;
+    $scope.logged = user.ativo;
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {

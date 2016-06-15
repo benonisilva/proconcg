@@ -5,10 +5,10 @@
         .module('starter.services')
         .factory('FacebookAuthService', FacebookAuthService);
         
-        FacebookAuthService.$inject = ['$q','UserService'];
+        FacebookAuthService.$inject = ['$q'];
         document.addEventListener("deviceready", FacebookAuthService, false);
 
-    function FacebookAuthService($q,UserService) { 
+    function FacebookAuthService($q) { 
     	
       var profile = {
             getInfo : getInfo,
