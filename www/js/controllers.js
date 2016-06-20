@@ -10,9 +10,11 @@ angular.module('starter.controllers', [])
     
 
     var user = window.localStorage.getItem('_user');
-    //var userObj = JSON.parse(user);
-    //userObj.data.ativo = true;
-    $scope.logged = user.ativo;
+    if(user){
+
+      var userObj = JSON.parse(user);
+      $scope.logged = userObj.ativo;
+    }
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {

@@ -28,9 +28,13 @@
           RazaoSocial:"Empresa Denunciada",
           Telefone : "1122222222"
         },
+        TipoId:1,
         Data : "",
         Arquivos : []
       };
+
+      vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
+      //vm.tipo = 1;
       
       vm.myActiveSlide = 0;
       vm.showConfirm = showConfirm;

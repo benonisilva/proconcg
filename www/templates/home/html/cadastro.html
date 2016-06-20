@@ -77,26 +77,30 @@
             <div class="row">
                 <div class="col">
                   <label class="item item-input item-stacked-label">
-                    <span class="input-label">Complemento</span>
-                    <input ng-model="vm.user.endereco.complemento" placeholder="Complemento" type="text">
+                    <span class="input-label">Complemento/Número</span>
+                    <input ng-model="vm.user.endereco.complemento" placeholder="Complemento/Número" type="text">
                   </label>
                 </div>
             </div>
 
              <div class="row">
-                <div class="col col-70">
+                <div class="col">
                   <label class="item item-input item-stacked-label">
-                  <span class="input-label">Cidade</span>
-                  <input name="localidade" ng-model="vm.user.endereco.localidade" placeholder="Cidade" type="text">
-                </label>
+                    <span class="input-label">Cidade</span>
+                    <input name="localidade" ng-model="vm.user.endereco.localidade" placeholder="Cidade" type="text">
+                   </label>
                 </div>
+              </div>
+              
+              <div class="row">
                 <div class="col col-30">
                   <label class="item item-input item-stacked-label">
                     <span class="input-label">UF</span>
                     <input ng-model="vm.user.endereco.uf" type="text" placeholder="UF" maxlenght="3">
                   </label>
                 </div>
-            </div>
+              </div>
+
            </div>
         <button type="submit" class="button button-block button-positive" ng-disabled="formUser.$invalid">
           {{!(formUser.$invalid) ? "Enviar Cadastro" : "Faltando Dados"}} 
