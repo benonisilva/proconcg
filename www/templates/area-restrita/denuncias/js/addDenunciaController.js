@@ -13,6 +13,8 @@
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,$ionicScrollDelegate,
       $state,$ionicLoading,$q,Id,CameraService){ 
 
+      /*$scope.$parent.clearFabs();*/
+
       console.log(Id||"Id null");
       var vm = this;
       vm.openAlbum = openAlbum;
@@ -129,12 +131,13 @@
             });
 
             function fnSuccess(arg){
+                $state.go("app.perfil");
                 $ionicLoading.hide();
                 if(arg===true){    
                     console.log("showConfirmEnviar success: "+arg);
                     //$scope.$parent.setLogged(true);
                     //DenunciaService.deleteLocal();
-                    $state.go("app.area-restrita");
+                    //$state.go("app.area-restrita");
                 }
                 
             };

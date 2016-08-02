@@ -5,9 +5,9 @@
         .module('starter.controllers')
         .controller('PerfilCtrl', PerfilCtrl);
         
-        PerfilCtrl.$inject = ['$scope','$q','$ionicModal','PerfilService'];
+        PerfilCtrl.$inject = ['$scope','$q','$ionicModal','PerfilService','$ionicLoading'];
 
-        function PerfilCtrl($scope,$q,$ionicModal,PerfilService){
+        function PerfilCtrl($scope,$q,$ionicModal,PerfilService,$ionicLoading){
         	
         	var vm = this;
         	console.log("init:PerfilCtrl");
@@ -65,8 +65,12 @@
 
             function salva(endereco){
                
-                //console.log(endereco);
-                PerfilService.updatePerfil(endereco);
+                $ionicLoading.show({
+                      template: 'Salvando...'
+                    });
+                PerfilService.updatePerfil(endereco).then(function(){
+                    $ionicLoading.hide();
+                });
 
             }
 

@@ -25,6 +25,14 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   });
 })
+.filter("mydate", function() {
+    var re = /\/Date\(([0-9]*)\)\//;
+    return function(x) {
+        var m = x.match(re);
+        if( m ) return new Date(parseInt(m[1]));
+        else return null;
+    };
+})
 
 .constant('constantConfig', {
   url: 'http://189.71.0.169:8088',

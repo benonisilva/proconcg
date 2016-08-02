@@ -80,8 +80,8 @@
                 console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
                 console.log(resp || "");
                 hideLoading();
-                alert("Link de concifrmação foi enviado para seu email");
-                //$state.go('app.home');
+                alert("Link de confirmação foi enviado para seu email");
+                $state.go('app.home');
 
             }
     

@@ -7,24 +7,28 @@
         
         DenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
-  'ArquivosService','$ionicScrollDelegate', '$state','$q'];
+  'ArquivosService','$ionicScrollDelegate', '$state','$q','$ionicHistory','$ionicLoading'];
 
     function DenunciaCtrl($scope, $stateParams, DenunciaService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,
-      ArquivosFactory,$ionicScrollDelegate,$state,$q){ 
+      ArquivosFactory,$ionicScrollDelegate,$state,$q,$ionicHistory,$ionicLoading){ 
 
       var vm = this;
-      
+      vm.status = ["","Em Andamento","Arquivado"]
       vm.denunciasLocal = [];
       vm.denunciasRemotas = [];
-
+      $ionicHistory.clearHistory();
       activate();
       //getLocal();
 
       function activate() {
         var promises = [getLocal(), initDenuncias()];
+              $ionicLoading.show({
+                      template: 'Carregando...'
+                    });
               return $q.all(promises).then(function() {
                 console.log("activate");
+                $ionicLoading.hide();
                 //logger.info('Activated Dashboard View');
               });
       };
@@ -43,8 +47,5 @@
           return vm.denunciasRemotas;
         });
       };
-
-
-
     }
 })();

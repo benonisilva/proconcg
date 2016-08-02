@@ -9,19 +9,16 @@
           <div class="col">Data</div>
           <div class="col"></div>
         </div>
-        <div class="row item-denuncia animate-fade-slide-in-right" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
+        <div class="row item-denuncia" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
             <div class="col">
                 {{denuncia.Fornecedor.RazaoSocial}}
             </div>
             <div class="col">
-                Em Andamento
+                {{vm.status[denuncia.StatusId]}}
             </div>
             <div class="col">
-                04/04/2016
-            </div>
-            <div class="col">
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </div>     
+                {{denuncia.Data | mydate | date:'dd-MM-yy'}}
+            </div>  
         </div>
 
         <div class="row item-divider">
@@ -42,7 +39,7 @@
                 Não Enviada
             </div>
             <div class="col">
-                04/01/2016
+                {{denuncia.Data}}
             </div>
             <div class="col">
                 <i class="icon ion-chevron-right icon-accessory"></i>
