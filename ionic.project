@@ -1,11 +1,4 @@
 {
   "name": "ProconCGMobile",
-  "app_id": "gov.br.proconcg",
-  "browsers": [
-    {
-      "platform": "android",
-      "browser": "crosswalk",
-      "version": "12.41.296.5"
-    }
-  ]
+  "app_id": "gov.br.proconcg"
 }
