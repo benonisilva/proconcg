@@ -35,9 +35,14 @@
                 if(data.data.success===true){
                     console.log("LOGIN CERTO");
                     var user = window.localStorage.getItem('_user');
-                    var userObj = JSON.parse(user);
-                    userObj.ativo = true;
-                    window.localStorage.setItem('_user',JSON.stringify(userObj));
+                    
+                    if(user){
+                         var userObj = JSON.parse(user);
+                         userObj.ativo = true;
+                         window.localStorage.setItem('_user',JSON.stringify(userObj));
+                    }
+                    
+                   
                     deferred.resolve(true);
                     //alert(data||"null");
                 }else{

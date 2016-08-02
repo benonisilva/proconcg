@@ -25,9 +25,17 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   });
 })
+.filter("mydate", function() {
+    var re = /\/Date\(([0-9]*)\)\//;
+    return function(x) {
+        var m = x.match(re);
+        if( m ) return new Date(parseInt(m[1]));
+        else return null;
+    };
+})
 
 .constant('constantConfig', {
-  url: 'http://179.197.169.63:8088',
+  url: 'http://189.71.0.169:8088',
   httpTimeout: 5000
 })
 
@@ -46,7 +54,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   //console.log(user|| "user null");
   //if(localStorage) console.log(localStorage);
   //Debug
-  $ionicConfigProvider.views.maxCache(0);
+  //$ionicConfigProvider.views.maxCache(0);
   
   $stateProvider
 

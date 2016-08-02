@@ -36,7 +36,7 @@
 
             var retVal = {
               StatusId:1,
-              TipoId:1,
+              TipoId:denuncia.TipoId,
               DescricaoDosFatos : denuncia.DescricaoDosFatos,
               Fornecedor: {
                 Cnpj : denuncia.Fornecedor.Cnpj,
