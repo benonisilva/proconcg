@@ -1,7 +1,0 @@
-{
- "denuncias":[
-	{"id":"1","empresa":"CAGEPA","motivo":"FALTA DE SERVIÇO","parecer":"EM ANDAMENTO"},
-	{"id":"2","empresa":"TIM","motivo":"FALHA NO SINAL","parecer":"PROCEDENTE"},
-	{"id":"3","empresa":"OI/TELEMAR","motivo":"COBRANÇA INDEVIDA","parecer":"EM ANDAMENTO"}
- ]
-}
