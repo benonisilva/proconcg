@@ -35,7 +35,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 })
 
 .constant('constantConfig', {
-  url: 'http://189.71.0.169:8088',
+  url: 'http://189.71.6.5:8088',
   httpTimeout: 5000
 })
 
@@ -114,20 +114,9 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         url: '/area-restrita',
         views: {
             'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/denuncias.html',
-                controller: 'DenunciaCtrl as vm'
+                templateUrl: 'templates/area-restrita/denuncias/html/denuncias.html'
             },
-            'fabContent': {
-                template: '<button id="fab-profile" ng-click="addDenuncia()" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
-                controller: function ($scope,$state) {
-                                $scope.addDenuncia = function(){
-                                   $state.go('app.add-denuncia');
-                        }
-                }
-            }
-        },
-        params: {
-                profile: null
+            'fabContent': ''
         }
     })
 
@@ -148,9 +137,36 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 
         resolve:{
               Id: ['$stateParams', function($stateParams){
+                  //$scope.$parent.clearFabs();
                   return $stateParams.Id;
               }]
            }
+    })
+
+  .state('app.denuncias-historico', {
+        url: '/area-restrita/add/denuncia-historico',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/denuncias/html/denuncia-historico.html',
+                controller : 'DenunciasHistoricoCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+
+  .state('app.denuncias-local', {
+        url: '/area-restrita/add/denuncias-local',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/denuncias/html/denuncia-local.html',
+                controller : 'DenunciaCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
     })
 
   .state('app.localizacao',{

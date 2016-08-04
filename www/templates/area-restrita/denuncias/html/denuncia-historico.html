@@ -1,14 +1,24 @@
-<ion-view view-title="{{denuncia.empresa}}">
-  <ion-content class="padding">
-    <div class="row header">
-    	<div class="col">Situação</div>
-    	<div class="col">Local</div>
-    	<div class="col">Ultima Vis.</div>
-    </div>
-    <div class="row" ng-repeat="historico in denuncia.historico">
-    	<div class="col">{{historico.situacao}}</div>
-    	<div class="col">{{historico.local}}</div>
-    	<div class="col">{{historico.dataUltimaVisualizacao}}</div>
-    </div>
-  </ion-content>
+<ion-view view-title="Denuncias" cache-view="false">
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+        <div class="row item-divider">
+            <spam class="col" style="text-align: center;">Denuncias Enviadas</spam>
+        </div>
+        <div class="row header">
+          <div class="col">Empresa</div>
+          <div class="col">Situação</div>
+          <div class="col">Data</div>
+          <div class="col"></div>
+        </div>
+        <div class="row item-denuncia" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
+            <div class="col">
+                {{denuncia.Fornecedor.RazaoSocial}}
+            </div>
+            <div class="col">
+                {{vm.status[denuncia.StatusId]}}
+            </div>
+            <div class="col">
+                {{denuncia.Data | mydate | date:'dd-MM-yy' }}
+            </div>  
+        </div>
+    </ion-content>
 </ion-view>

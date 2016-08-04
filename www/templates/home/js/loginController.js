@@ -29,9 +29,10 @@
             $ionicLoading.hide();
             if(arg===true){    
                 console.log("login success: "+strArg);
+                $ionicHistory.clearHistory();
                 $scope.$parent.setLogged(true);
                 $state.go("app.area-restrita");
-                $ionicHistory.clearHistory();
+                
             }else{
                 alert("Seu login esta incorreto");
             }

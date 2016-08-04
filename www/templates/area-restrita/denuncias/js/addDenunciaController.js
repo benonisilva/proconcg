@@ -13,8 +13,6 @@
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,$ionicScrollDelegate,
       $state,$ionicLoading,$q,Id,CameraService){ 
 
-      /*$scope.$parent.clearFabs();*/
-
       console.log(Id||"Id null");
       var vm = this;
       vm.openAlbum = openAlbum;
@@ -36,7 +34,6 @@
       };
 
       vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
-      //vm.tipo = 1;
       
       vm.myActiveSlide = 0;
       vm.showConfirm = showConfirm;
@@ -53,11 +50,9 @@
       }
 
       function openAlbum(){
-       console.log("CameraCtrl:openAlbum");
-       //console.log(JSON.stringify(CameraService));  
+       console.log("CameraCtrl:openAlbum"); 
        CameraService.getFromAlbum().then(function(data){
         vm.denuncia.Arquivos.push(data);
-
        },function(err){
         var strData = JSON.stringify(err);
         console.log(strData);
@@ -89,12 +84,11 @@
             if(denuncia.Id){
               console.log("Ja existe. Id: "+denuncia.Id);
               DenunciaService.updateLocal(denuncia);
-
             }else{
               
               DenunciaService.saveLocal(denuncia);
             }
-            //DenunciaService.saveLocal(vm.denuncia);
+            
             $state.go('app.area-restrita');
           } else {
             console.log('You are not sure');
@@ -131,15 +125,11 @@
             });
 
             function fnSuccess(arg){
-                $state.go("app.perfil");
                 $ionicLoading.hide();
                 if(arg===true){    
                     console.log("showConfirmEnviar success: "+arg);
-                    //$scope.$parent.setLogged(true);
-                    //DenunciaService.deleteLocal();
-                    //$state.go("app.area-restrita");
+                    $state.go("app.area-restrita");
                 }
-                
             };
             
             function fnFail(arg){
@@ -170,7 +160,6 @@
       };
 
       function previousSlide() {
-        //console.log("voltar");
         $ionicSlideBoxDelegate.previous(500);
       };
 
@@ -178,11 +167,9 @@
         if(id){
           return DenunciaService.getDenunciaLocal(id).then(function(data){
             vm.denuncia = data;
-            //ArquivosImagensService.imagens = data.Arquivos;
             return vm.denuncia;
           });
         }else{
-          //ArquivosImagensService.imagens = [];
           return vm.denuncia;
         }
         
@@ -194,11 +181,8 @@
         var promises = [getLocal(id)];
               return $q.all(promises).then(function() {
                 console.log("activate:getLocal");
-                //logger.info('Activated Dashboard View');
               });
       };
-
-      /*Definicao de funcoes de escopo */
 
     }  
       

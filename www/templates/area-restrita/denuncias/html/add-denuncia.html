@@ -1,4 +1,4 @@
-<ion-view view-title="Enviar Denuncia/Reclamação">
+<ion-view view-title="Enviar Denuncia/Reclamação" cache-view="false">
   <ion-content class="has-subheader">
 <!--   <form name="form" novalidate on-valid-submit="vm.enviarDenuncia()" style="margin-top:0">  -->
     <ion-slide-box on-slide-changed="vm.slideChanged(index)" active-slide="vm.myActiveSlide">
@@ -91,7 +91,7 @@
                 <textarea style="min-height:200px" ng-model="vm.denuncia.DescricaoDosFatos"  placeholder="Digite sua denúncia (Até 1024 caracteres). " type="text">
                 </textarea> 
             </label>
-          </div> 
+          </div>
           <div class="item item-input item-select">
             <label for="repeatSelect"> Tipo: </label>
                 <select name="repeatSelect" id="repeatSelect" ng-model="vm.denuncia.TipoId">
@@ -123,10 +123,19 @@
         </ion-list>
       </ion-slide>
       <ion-slide> 
-        <div class="has-header padding">
-        <h3>Confira Os Dados</h3>
-        <p>Empresa: {{vm.denuncia.Fornecedor.RazaoSocial}}</p>
-        <text>Denuncia: {{vm.denuncia.DescricaoDosFatos}}</text>
+        <div class="padding">
+        <h3 class="tittle">Confira Os Dados</h3>
+        <p class="card">Empresa: {{vm.denuncia.Fornecedor.RazaoSocial}}</p>
+        <text class="card">Denuncia: {{vm.denuncia.DescricaoDosFatos}}</text>
+        <div class="card">
+         <p>
+           <label>
+             Data do Ocorrido
+           </label>
+           <input type="date" data-date-format="DD MM YY"  placeholder="DD MM YY" ng-model="vm.denuncia.Data">
+         </p>
+        </div> 
+        <br />
         <div class="text-center"> 
             <button ng-click="vm.showConfirm(vm.denuncia)" class="button button-energized-900 button-border ink">Salvar</button>
             <button ng-click="vm.showConfirmEnviar(vm.denuncia)" type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
@@ -134,8 +143,6 @@
         </div>
       </ion-slide>
     </ion-slide-box>
-  <!-- </form> -->
-
     <button show="vm.slideIndex != 5" class="button button-small icon ion-chevron-right icon-accessory button-calm-900" ng-click="vm.nextSlide()">Próximo</button>
     <button ng-show="vm.slideIndex > 0" class="button button-small icon ion-chevron-left icon-accessory button-calm-900" ng-click="vm.previousSlide()">Voltar</button>
   </ion-content>

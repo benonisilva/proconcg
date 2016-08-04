@@ -1,42 +1,28 @@
-<ion-view title="Enviar Denuncia">
+<ion-view title="Não Enviadas" cache-view="false">
     <ion-content>
        
-       	<div class="row">
-        <div class="col col-center has-header">
-          <div class="header">
-            <div  class="item item-divider text-center">Dados</div>
-          </div>
-               <div class="col col-center">
-               <form name="formUser" class="form-validation"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
-                  <div class="list card">
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Empresa</span>
-                  <input type="text" ng-model="denuncia.empresa" placeholder="Empresa">
-                </label>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Assunto</span>
-                  <input ng-model="denuncia.assunto"  type="text" placeholder="Assunto">
-                </label>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Descritivo</span>
-                  <input type="text" ng-model="denuncia.descritivo"  placeholder="john@suhr.com">
-                </label>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Denuncia</span>
-                  <textarea type="text" ng-model="denuncia.textoDaDenuncia"  placeholder="Até 1024"></textarea> 
-                </label>
-            </div>
-            <div class="col col-center has-header">
-              <div  class="item item-divider text-center">Provas</div>
-              <div class="list card">
-                  <div ng-repeat="pic in denuncia.fotos" class="item item-image padding">
-                      <img style="width: 100%; height: auto;" src="{{pic}}" />
-                  </div>
-              </div>
-            </div>
-                </form>
+       	<div class="row item-divider">
+                    <spam class="col" style="text-align: center;">Envie Sua Denuncia</spam>
                 </div>
-        </div>
-       </div>
+                <div class="row header">
+                  <div class="col">Empresa</div>
+                  <div class="col">Situação</div>
+                  <div class="col">Data</div>
+                  <div class="col"></div>
+                </div>
+                <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
+                    <div class="col">
+                        {{denuncia.Fornecedor.RazaoSocial}}
+                    </div>
+                    <div class="col">
+                        Não Enviada
+                    </div>
+                    <div class="col">
+                        {{denuncia.Data | date : 'dd-MM-yy' }}
+                    </div>
+                    <div class="col">
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+                    </div>     
+                </div>
     </ion-content>
 </ion-view>

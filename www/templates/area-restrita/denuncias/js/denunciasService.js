@@ -38,6 +38,7 @@
               StatusId:1,
               TipoId:denuncia.TipoId,
               DescricaoDosFatos : denuncia.DescricaoDosFatos,
+              Data: denuncia.Data,
               Fornecedor: {
                 Cnpj : denuncia.Fornecedor.Cnpj,
                 Cep : denuncia.Fornecedor.Cep,

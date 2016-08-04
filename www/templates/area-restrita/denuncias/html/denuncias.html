@@ -1,49 +1,15 @@
-<ion-view view-title="Denuncias">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="row item-divider">
-            <spam class="col" style="text-align: center;">Denuncias Enviadas</spam>
-        </div>
-        <div class="row header">
-          <div class="col">Empresa</div>
-          <div class="col">Situação</div>
-          <div class="col">Data</div>
-          <div class="col"></div>
-        </div>
-        <div class="row item-denuncia" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
-            <div class="col">
-                {{denuncia.Fornecedor.RazaoSocial}}
-            </div>
-            <div class="col">
-                {{vm.status[denuncia.StatusId]}}
-            </div>
-            <div class="col">
-                {{denuncia.Data | mydate | date:'dd-MM-yy'}}
-            </div>  
-        </div>
-
-        <div class="row item-divider">
-            <spam class="col" style="text-align: center;">Denuncias Ainda Não Enviadas</spam>
-        </div>
-        <div class="row header">
-          <div class="col">Empresa</div>
-          <div class="col">Situação</div>
-          <div class="col">Data</div>
-          <div class="col"></div>
-        </div>
-        <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
-            {{denuncia.Id}}
-            <div class="col">
-                {{denuncia.Fornecedor.RazaoSocial}}
-            </div>
-            <div class="col">
-                Não Enviada
-            </div>
-            <div class="col">
-                {{denuncia.Data}}
-            </div>
-            <div class="col">
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </div>     
+<ion-view view-title="Area De Denuncias">
+    <ion-content>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.denuncias-historico" class="tab-item">
+                <i class="icon ion-ios-compose"></i> Historico
+            </a>
+            <a ui-sref="app.denuncias-local" class="tab-item">
+                <i class="icon ion-ios-cart"></i> Denuncias Não Enviadas
+            </a>
+            <a ui-sref="app.add-denuncia({Id:null})" class="tab-item">
+                <i class="icon ion-ios-book"></i> Nova Denuncia
+            </a>
         </div>
     </ion-content>
 </ion-view>

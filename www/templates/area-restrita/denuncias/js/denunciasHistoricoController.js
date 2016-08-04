@@ -3,23 +3,24 @@
 
     angular
         .module('starter.controllers')
-        .controller('DenunciaCtrl', DenunciaCtrl);
+        .controller('DenunciasHistoricoCtrl', DenunciasHistoricoCtrl);
         
-        DenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
+        DenunciasHistoricoCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
   'ArquivosService','$ionicScrollDelegate', '$state','$q','$ionicHistory','$ionicLoading'];
 
-    function DenunciaCtrl($scope, $stateParams, DenunciaService,
+    function DenunciasHistoricoCtrl($scope, $stateParams, DenunciaService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,
       ArquivosFactory,$ionicScrollDelegate,$state,$q,$ionicHistory,$ionicLoading){ 
 
       var vm = this;
       vm.status = ["","Em Andamento","Arquivado"]
-      vm.denunciasLocal = [];
+      vm.denunciasRemotas = [];
+      
       activate();
-
+      
       function activate() {
-        var promises = [getLocal()];
+        var promises = [initDenuncias()];
               $ionicLoading.show({
                       template: 'Carregando...',
                       duration: 1000
@@ -29,14 +30,12 @@
                 $ionicLoading.hide();
               });
       };
-      function getLocal(){
-        return DenunciaService.getDenunciasLocal().then(function(data){
-          console.log("DenunciasCtrl.getLocal")
-          vm.denunciasLocal = data;
-          console.log(data||"getLocal null");
-          return vm.denunciasLocal;
+
+      function initDenuncias(){
+        return DenunciaService.getDenunciasRemoto().then(function(data){
+          vm.denunciasRemotas = data;
+          return vm.denunciasRemotas;
         });
-        
       };
     }
 })();
