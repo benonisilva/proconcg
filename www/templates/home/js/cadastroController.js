@@ -10,15 +10,15 @@
         $ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
     	vm.user = {
-            name:"nome fake teste",rg:"123123",
-            cpf:"40852775610",telefone:"8399991111",
-            email:"benonisilva@hotmail.com",
+            name: null,rg:null,
+            cpf:null,telefone:null,
+            email:null,
             endereco:{
-                logradouro:"rua qualquer",
-                localidade:"Campina Grande",
-                uf:"PB",
-                cep:"58400565",
-                bairro:"bairro"
+                logradouro:null,
+                localidade:null,
+                uf:null,
+                cep:null,
+                bairro:null
 
             }
         };
@@ -100,7 +100,7 @@
     		    showBackdrop: true,
     		    maxWidth: 200,
     		    showDelay: 0,
-    		    duration:time || 15000,
+    		    duration:time || 1500,
     		    template:text || "..."
     		});	
     	};

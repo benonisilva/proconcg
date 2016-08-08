@@ -6,7 +6,7 @@
                 </div>
                 <div class="row header">
                   <div class="col">Empresa</div>
-                  <div class="col">Situação</div>
+                  <div class="col">Tipo</div>
                   <div class="col">Data</div>
                   <div class="col"></div>
                 </div>
@@ -15,7 +15,7 @@
                         {{denuncia.Fornecedor.RazaoSocial}}
                     </div>
                     <div class="col">
-                        Não Enviada
+                        <p>{{vm.tipos[denuncia.TipoId-1].name}}</p>
                     </div>
                     <div class="col">
                         {{denuncia.Data | date : 'dd-MM-yy' }}

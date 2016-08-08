@@ -11,9 +11,6 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)    
-    //$http.defaults.headers.post['X-CSRFToken'] = $cookiesProvider.csrftoken;
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -49,12 +46,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   $httpProvider.defaults.withCredentials = true;
   $httpProvider.defaults.useXDomain = true;
   //delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    
-  var user = window.localStorage.getItem('_user');
-  //console.log(user|| "user null");
-  //if(localStorage) console.log(localStorage);
-  //Debug
-  //$ionicConfigProvider.views.maxCache(0);
+
   
   $stateProvider
 
@@ -224,11 +216,9 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     });
 
    
-  if(user) {
-    //console.log(user);
-    var userOjb = JSON.parse(user);
-    console.log(userOjb);
-    if(userOjb.ativo){
+  if(false) {
+
+    if(false){
       console.log("app/login");
       $urlRouterProvider.otherwise('/app/perfil');
     }else{

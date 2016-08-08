@@ -19,14 +19,14 @@
       vm.removePic = removePic;      
       vm.denuncia = {
         Fornecedor:{
-          Cnpj:"71283513000103",
-          Cep:"5843443",
-          Endereco : "Endereco",
-          Bairro: "Bairro",
-          Complemento:"QUadra A",
-          InscricaoEstadual:"1212-212",
-          RazaoSocial:"Empresa Denunciada",
-          Telefone : "1122222222"
+          Cnpj:null,
+          Cep:null,
+          Endereco : null,
+          Bairro: null,
+          Complemento:null,
+          InscricaoEstadual:null,
+          RazaoSocial:null,
+          Telefone : null
         },
         TipoId:1,
         Data : "",
@@ -183,7 +183,5 @@
                 console.log("activate:getLocal");
               });
       };
-
     }  
-      
 })();

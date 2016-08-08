@@ -16,6 +16,7 @@
       var vm = this;
       vm.status = ["","Em Andamento","Arquivado"]
       vm.denunciasLocal = [];
+      vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
       activate();
 
       function activate() {

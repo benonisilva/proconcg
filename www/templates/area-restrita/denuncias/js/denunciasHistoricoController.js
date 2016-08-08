@@ -16,14 +16,14 @@
       var vm = this;
       vm.status = ["","Em Andamento","Arquivado"]
       vm.denunciasRemotas = [];
+      vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
       
       activate();
       
       function activate() {
         var promises = [initDenuncias()];
               $ionicLoading.show({
-                      template: 'Carregando...',
-                      duration: 1000
+                      template: 'Carregando...'
                     });
               return $q.all(promises).then(function() {
                 console.log("activate");

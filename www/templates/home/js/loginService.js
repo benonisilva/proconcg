@@ -19,7 +19,7 @@
             
             console.log("LoginService.getUser: ");
             console.log(login||"null");
-            //var headers = {'Access-Control-Allow-Origin:':'http://localhost/*','Authorization': 'Token token=xxxxYYYYZzzz'};
+            
             var url = constantConfig.url+'/Home/Login';
 
             var deferred = $q.defer();

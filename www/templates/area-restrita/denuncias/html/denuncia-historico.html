@@ -7,7 +7,7 @@
           <div class="col">Empresa</div>
           <div class="col">Situação</div>
           <div class="col">Data</div>
-          <div class="col"></div>
+          <div class="col">Tipo</div>
         </div>
         <div class="row item-denuncia" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.id})">
             <div class="col">
@@ -18,6 +18,9 @@
             </div>
             <div class="col">
                 {{denuncia.Data | mydate | date:'dd-MM-yy' }}
+            </div>
+            <div class="col">
+                <p>{{vm.tipos[denuncia.TipoId-1].name}}</p>
             </div>  
         </div>
     </ion-content>
