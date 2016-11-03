@@ -31,19 +31,19 @@
           <div class="item item-divider">Empresa</div>
           <div class="item">
             <span class="input-label">Nome Da Empresa</span>
-            <input ng-model="vm.denuncia.Fornecedor.RazaoSocial"  placeholder="Razão Social" type="text">
+            <input ng-model="vm.denuncia.Empresa.RazaoSocial"  placeholder="Razão Social" type="text">
           </div>
           <div class="item">
             <span class="input-label">CNPJ</span>
-            <input ui-br-cnpj-mask ng-model="vm.denuncia.Fornecedor.Cnpj"  placeholder="CNPJ" type="text">
+            <input ui-br-cnpj-mask ng-model="vm.denuncia.Empresa.Cnpj"  placeholder="CNPJ" type="text">
           </div>
           <div class="item">
             <span class="input-label">Inscricao Estadual</span>
-            <input ng-model="vm.denuncia.Fornecedor.InscricaoEstadual"  placeholder="Inscricao Estadual" type="text">
+            <input ng-model="vm.denuncia.Empresa.InscricaoEstadual"  placeholder="Inscricao Estadual" type="text">
           </div>
           <div class="item">
             <span class="input-label">Telefone</span>
-            <input ng-model="vm.denuncia.Fornecedor.Telefone"  placeholder="Telefone" type="tel" ui-br-phone-number >
+            <input ng-model="vm.denuncia.Empresa.Endereco.Telefone"  placeholder="Telefone" type="tel" ui-br-phone-number >
           </div>
         </div>
         <br />
@@ -59,19 +59,23 @@
           <div class="item item-divider">Endereço Da Empresa</div>
           <div class="item">
             <span class="input-label">CEP</span>
-            <input ui-br-cep-mask  ng-model="vm.denuncia.Fornecedor.Cep"  placeholder="CEP" type="tel">
+            <input ui-br-cep-mask  ng-model="vm.denuncia.Empresa.Endereco.Cep"  placeholder="CEP" type="tel">
           </div>
           <div class="item">
             <span class="input-label">Endereço</span>
-            <input ng-model="vm.denuncia.Fornecedor.Endereco"  placeholder="Endereço" type="text">
+            <input ng-model="vm.denuncia.Empresa.Endereco.Rua"  placeholder="Endereço" type="text">
           </div>
           <div class="item">
             <span class="input-label">Bairro</span>
-            <input ng-model="vm.denuncia.Fornecedor.Bairro"  placeholder="Bairro" type="text">
+            <input ng-model="vm.denuncia.Empresa.Bairro"  placeholder="Bairro" type="text">
           </div>
           <div class="item">
             <span class="input-label">Complemento</span>
-            <input ng-model="vm.denuncia.Fornecedor.Complemento"  placeholder="Complemento" type="text">
+            <input ng-model="vm.denuncia.Empresa.Endereco.Numero"  placeholder="Numero" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">Complemento</span>
+            <input ng-model="vm.denuncia.Empresa.Complemento"  placeholder="Complemento" type="text">
           </div>
         </div>
       </ion-slide>
@@ -88,14 +92,14 @@
           <div class="item">
             <label class="item-input item-stacked-label">
                 <span class="input-label">Denuncia</span>
-                <textarea style="min-height:200px" ng-model="vm.denuncia.DescricaoDosFatos"  placeholder="Digite sua denúncia (Até 1024 caracteres). " type="text">
+                <textarea style="min-height:200px" ng-model="vm.denuncia.Descricao"  placeholder="Digite sua denúncia (Até 1024 caracteres). " type="text">
                 </textarea> 
             </label>
           </div>
           <div class="item item-input item-select">
             <label for="repeatSelect"> Tipo: </label>
-                <select name="repeatSelect" id="repeatSelect" ng-model="vm.denuncia.TipoId">
-                  <option ng-repeat="option in vm.tipos" value="{{option.id}}">{{option.name}}</option>
+                <select name="repeatSelect" id="repeatSelect" ng-model="vm.denuncia.TipoFatoId">
+                  <option ng-repeat="option in vm.tipos" value="{{option.TipoFatoId}}">{{option.Nome}}</option>
             </select>
           </div>
         </div>
@@ -125,8 +129,8 @@
       <ion-slide> 
         <div class="padding">
         <h3 class="tittle">Confira Os Dados</h3>
-        <p class="card">Empresa: {{vm.denuncia.Fornecedor.RazaoSocial}}</p>
-        <text class="card">Denuncia: {{vm.denuncia.DescricaoDosFatos}}</text>
+        <p class="card">Empresa: {{vm.denuncia.Empresa.RazaoSocial}}</p>
+        <text class="card">Denuncia: {{vm.denuncia.Descricao}}</text>
         <div class="card">
          <p>
            <label>

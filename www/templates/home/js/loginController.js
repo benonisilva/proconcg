@@ -8,7 +8,7 @@
 
     function LoginCtrl($scope,$ionicLoading,$state,LoginService,$ionicHistory) { 
     	var vm = this;
-        vm.user = {email:null,password:null};
+        vm.user = {Email:"benonisilva@hotmail.com",Password:"123456"};
         vm.login = login;
         
         function login(user) {

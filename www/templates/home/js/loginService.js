@@ -20,7 +20,7 @@
             console.log("LoginService.getUser: ");
             console.log(login||"null");
             
-            var url = constantConfig.url+'/Home/Login';
+            var url = constantConfig.url+'/Account/Login';
 
             var deferred = $q.defer();
             $http.post(url,login)

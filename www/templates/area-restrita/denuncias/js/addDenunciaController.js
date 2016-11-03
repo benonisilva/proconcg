@@ -18,22 +18,27 @@
       vm.openAlbum = openAlbum;
       vm.removePic = removePic;      
       vm.denuncia = {
-        Fornecedor:{
+        FatoId : -1,
+        Descricao : "",
+        Empresa:{
           Cnpj:null,
-          Cep:null,
-          Endereco : null,
-          Bairro: null,
-          Complemento:null,
           InscricaoEstadual:null,
-          RazaoSocial:null,
-          Telefone : null
-        },
+          Endereco : {
+              Cep:null,
+              Rua : null,
+              Bairro: null,
+              Complemento:null,
+              RazaoSocial:null,
+              Telefone : null
+            },
+          },
         TipoId:1,
         Data : "",
-        Arquivos : []
+        Anexos : [],
+        Tipo : {}
       };
 
-      vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
+      vm.tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
       
       vm.myActiveSlide = 0;
       vm.showConfirm = showConfirm;

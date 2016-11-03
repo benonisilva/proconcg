@@ -10,8 +10,10 @@
         $ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
     	vm.user = {
-            name: null,rg:null,
-            cpf:null,telefone:null,
+            name: null,
+            rg:null,
+            cpf:null,
+            telefone:null,
             email:null,
             endereco:{
                 logradouro:null,
@@ -54,19 +56,20 @@
             
             var requerente = {
                 
-                Nome: user.name,
-                Cpf: user.cpf,
-                Endereco: user.endereco.logradouro,
-                Bairro : user.endereco.bairro,
-                Complemento: user.endereco.complemento,
-                Cidade: user.endereco.localidade,
-                Cep: user.endereco.cep,
-                UfId : 15, //LightBase
-                Telefone:user.telefone,
-                //TipoDoDocumentoId: user.tipoDocumento,
-                Email: user.email,
-                FacebookUserId: profileFBId || "",
-                Rg: user.rg
+                "Nome": user.name,
+                "Documentos[0].Numero": user.cpf,
+                "Documentos[0].Tipo" : "CPF",
+                "Documentos[1].Numero": user.rg,
+                "Documentos[1].Tipo" : "RG",
+                "Endereco.Rua": user.endereco.logradouro,
+                "Endereco.Bairro" : user.endereco.bairro,
+                "Endereco.Complemento": user.endereco.complemento,
+                "Endereco.Cidade": user.endereco.localidade,
+                "Endereco.Cep": user.endereco.cep,
+                "Endereco.Estado" : "PB",
+                "Endereco.Telefone":user.telefone,
+                "Email": user.email,
+                "Endereco.Numero" : "00"
 
             };
     		

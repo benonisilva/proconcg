@@ -32,7 +32,7 @@
             
             console.log("CadastroService.save: ");
             console.log(cadastro||"null");
-            var url = constantConfig.url +'/Home/Consumidor';
+            var url = constantConfig.url +'/Account/Register';
 
             var deferred = $q.defer();
             $http.post(url, cadastro).then(_successCallback, _errorCallback);
@@ -41,7 +41,7 @@
                 console.log("_successCallback");
                 var strDados = JSON.stringify(data.data);
                 console.log(strDados||"null");
-                window.localStorage.setItem('_user',strDados);
+                //window.localStorage.setItem('_user',strDados);
                 deferred.resolve(true);
             };
 

@@ -58,7 +58,7 @@ function DenunciaLocalDBService($q,$timeout,localStorage) {
     	var denunciaList = localStorage.get(key);
         if(denunciaList){
             for (var i = 0; i <= denunciaList.length; i++) {
-                if (denunciaList[i].Id == id) {
+                if (denunciaList[i].FatoId == id) {
                     denunciaList.splice(i, 1);
                     break;
                 }

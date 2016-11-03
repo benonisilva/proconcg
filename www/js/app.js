@@ -32,7 +32,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 })
 
 .constant('constantConfig', {
-  url: 'http://189.71.6.5:8088',
+  url: 'http://192.168.25.176:8088',
   httpTimeout: 5000
 })
 

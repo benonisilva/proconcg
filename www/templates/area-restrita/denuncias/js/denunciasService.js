@@ -31,25 +31,27 @@
             
             console.log("Denuncia.enviar: ");
             console.log(denuncia||"null");
-            var url = constantConfig.url+'/Home/Fato';
+            var url = constantConfig.url+'/Fato/Adicionar';
             var idLocal = denuncia.Id;
-
+            var tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
+            
             var retVal = {
-              StatusId:1,
-              TipoId:denuncia.TipoId,
-              DescricaoDosFatos : denuncia.DescricaoDosFatos,
+              Tipo:tipos[denuncia.TipoId -1],
+              Descricao : denuncia.Descricao,
               Data: denuncia.Data,
-              Fornecedor: {
-                Cnpj : denuncia.Fornecedor.Cnpj,
-                Cep : denuncia.Fornecedor.Cep,
-                RazaoSocial : denuncia.Fornecedor.RazaoSocial,
-                Endereco : denuncia.Fornecedor.Endereco,
-                Telefone : denuncia.Fornecedor.Telefone,
-                Complemento : denuncia.Fornecedor.Complemento,
-                Bairro : denuncia.Fornecedor.Bairro,
-                IncricaoEstadual : denuncia.Fornecedor.IncricaoEstadual
+              Empresa: {
+                Cnpj : denuncia.Empresa.Cnpj,
+                Cep : denuncia.Empresa.Cep,
+                RazaoSocial : denuncia.Empresa.RazaoSocial,
+                IncricaoEstadual : denuncia.Empresa.IncricaoEstadual,
+                Endereco : {
+                         Rua : denuncia.Empresa.Endereco.Rua,
+                         Telefone : denuncia.Empresa.Endereco.Telefone,
+                         Complemento : denuncia.Empresa.Endereco.Complemento,
+                         Bairro : denuncia.Empresa.Endereco.Bairro
+                }
               },
-              Arquivos : denuncia.Arquivos
+              Anexos : denuncia.Anexos
             };
 
             var deferred = $q.defer();
@@ -62,7 +64,7 @@
                 if(idLocal){
                   DenunciaLocalDBService.deleta(idLocal);
                 }
-                _uploadFiles(data.data.Id,retVal.Arquivos);
+                //_uploadFiles(data.data.FatoId,retVal.Anexos);
                 deferred.resolve(true);
             };
 
@@ -79,7 +81,7 @@
       function _uploadFiles(id,arquivos) {
         console.log("_uploadFiles: " + id);
 
-        var server = constantConfig.url+'/Home/Upload';
+        var server = constantConfig.url+'/Fato/AdicionarAnexo/'+id;
         var promisses = [];
         var options = {
           
