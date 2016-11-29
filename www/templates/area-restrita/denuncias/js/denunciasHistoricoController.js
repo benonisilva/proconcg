@@ -14,7 +14,7 @@
       ArquivosFactory,$ionicScrollDelegate,$state,$q,$ionicHistory,$ionicLoading){ 
 
       var vm = this;
-      vm.status = ["","Em Andamento","Arquivado"]
+      vm.status = ["","Recebido","Processado","Falta Documento","Arquivado"]
       vm.denunciasRemotas = [];
       vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
       
@@ -33,7 +33,7 @@
 
       function initDenuncias(){
         return DenunciaService.getDenunciasRemoto().then(function(data){
-          vm.denunciasRemotas = data;
+          vm.denunciasRemotas = data.fatos;
           return vm.denunciasRemotas;
         });
       };

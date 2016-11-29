@@ -10,17 +10,17 @@
         $ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
     	vm.user = {
-            name: null,
-            rg:null,
-            cpf:null,
-            telefone:null,
-            email:null,
+            name: "null",
+            rg:"null",
+            cpf:"03921117488",
+            telefone:"83987630778",
+            email:"benoni.silva@gmail.com",
             endereco:{
-                logradouro:null,
-                localidade:null,
-                uf:null,
-                cep:null,
-                bairro:null
+                logradouro:"null",
+                localidade:"null",
+                uf:"PB",
+                cep:"null",
+                bairro:"null"
 
             }
         };
@@ -50,7 +50,7 @@
     	};
 
     	function cadastraUser (user) {
-    		showLoading("Salvando...");
+    		
     		console.log("CadastroCtrl.cadastraUser.fnBuscaEnderecoSuccess: ");
     		console.log(user);
             
@@ -72,7 +72,7 @@
                 "Endereco.Numero" : "00"
 
             };
-    		
+    		showLoading("Salvando...",10000);
             CadastroService.save(requerente).then(_fnSucessCadastro,_fnFailCadastro);
 
     	};
@@ -82,11 +82,12 @@
             if(resp===true){
                 console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
                 console.log(resp || "");
-                hideLoading();
-                alert("Link de confirmação foi enviado para seu email");
                 $state.go('app.home');
+                alert("Link de confirmação foi enviado para seu email");
+                
 
             }
+            hideLoading();
     
     	};
 

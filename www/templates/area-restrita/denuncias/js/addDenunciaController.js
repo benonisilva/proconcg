@@ -7,11 +7,11 @@
         .controller('AddDenunciaCtrl', AddDenunciaCtrl);
         AddDenunciaCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
-  '$ionicScrollDelegate', '$state','$ionicLoading','$q','Id','CameraService'];
+  '$ionicScrollDelegate', '$state','$ionicLoading','$q','Id','CameraService','EnderecoService'];
 
     function AddDenunciaCtrl($scope, $stateParams, DenunciaService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,$ionicScrollDelegate,
-      $state,$ionicLoading,$q,Id,CameraService){ 
+      $state,$ionicLoading,$q,Id,CameraService,EnderecoService){ 
 
       console.log(Id||"Id null");
       var vm = this;
@@ -21,18 +21,20 @@
         FatoId : -1,
         Descricao : "",
         Empresa:{
-          Cnpj:null,
+          Cnpj:"35173755000172",
           InscricaoEstadual:null,
+          RazaoSocial:null,
           Endereco : {
               Cep:null,
               Rua : null,
               Bairro: null,
               Complemento:null,
-              RazaoSocial:null,
-              Telefone : null
+              Telefone : null,
+              Municipio : "Campina Grande",
+              Estado : "PB",
             },
           },
-        TipoId:1,
+        TipoFatoId:1,
         Data : "",
         Anexos : [],
         Tipo : {}
@@ -47,17 +49,18 @@
       vm.slideChanged = slideChanged;
       vm.previousSlide = previousSlide;
       vm.slideIndex = 0;
+      vm.buscarEndereco = buscarEndereco;
 
       active(Id);
 
       function removePic(pos){
-        vm.denuncia.Arquivos.splice(pos,1);
+        vm.denuncia.Anexos.splice(pos,1);
       }
 
       function openAlbum(){
        console.log("CameraCtrl:openAlbum"); 
        CameraService.getFromAlbum().then(function(data){
-        vm.denuncia.Arquivos.push(data);
+        vm.denuncia.Anexos.push(data);
        },function(err){
         var strData = JSON.stringify(err);
         console.log(strData);
@@ -178,6 +181,26 @@
           return vm.denuncia;
         }
         
+      };
+
+      function _fnBuscaEnderecoSuccess(data){
+        console.log(data);
+        vm.denuncia.Empresa.Endereco =  {
+              Cep : data.cep,
+              Rua : data.logradouro,
+              Bairro: data.bairro,
+              Complemento:data.complemento,
+              Municipio : data.localidade,
+        }
+      };
+
+      function _fnBuscaEnderecoFail(error){
+        console.log(error);
+      };
+
+      function buscarEndereco(cep){
+        console.log("CadastroCtrl.buscarEndereco: "+cep);
+        EnderecoService.getEndereco(cep).then(_fnBuscaEnderecoSuccess,_fnBuscaEnderecoFail);
       };
 
       function active(id) {

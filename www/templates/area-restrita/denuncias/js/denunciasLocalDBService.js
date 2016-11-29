@@ -90,7 +90,6 @@ function DenunciaLocalDBService($q,$timeout,localStorage) {
     	    }
     	}
     }
-
     /*End def.*/
 }
 

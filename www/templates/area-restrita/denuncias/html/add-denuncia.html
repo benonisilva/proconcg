@@ -31,7 +31,7 @@
           <div class="item item-divider">Empresa</div>
           <div class="item">
             <span class="input-label">Nome Da Empresa</span>
-            <input ng-model="vm.denuncia.Empresa.RazaoSocial"  placeholder="Razão Social" type="text">
+            <input ng-model="vm.denuncia.Empresa.NomeFantasia"  placeholder="Nome Da Empresa" type="text">
           </div>
           <div class="item">
             <span class="input-label">CNPJ</span>
@@ -60,6 +60,9 @@
           <div class="item">
             <span class="input-label">CEP</span>
             <input ui-br-cep-mask  ng-model="vm.denuncia.Empresa.Endereco.Cep"  placeholder="CEP" type="tel">
+                 <button type="button" ng-click="vm.buscarEndereco(vm.denuncia.Empresa.Endereco.Cep)" class="icon ion-search button button-small col col-33" ng-disabled="(vm.denuncia.Empresa.Endereco.Cep===undefined)">
+                {{(user.cep===undefined) ? "" : ""}}
+              </button>
           </div>
           <div class="item">
             <span class="input-label">Endereço</span>
@@ -67,15 +70,15 @@
           </div>
           <div class="item">
             <span class="input-label">Bairro</span>
-            <input ng-model="vm.denuncia.Empresa.Bairro"  placeholder="Bairro" type="text">
+            <input ng-model="vm.denuncia.Empresa.Endereco.Bairro"  placeholder="Bairro" type="text">
           </div>
           <div class="item">
-            <span class="input-label">Complemento</span>
+            <span class="input-label">Numero</span>
             <input ng-model="vm.denuncia.Empresa.Endereco.Numero"  placeholder="Numero" type="text">
           </div>
           <div class="item">
             <span class="input-label">Complemento</span>
-            <input ng-model="vm.denuncia.Empresa.Complemento"  placeholder="Complemento" type="text">
+            <input ng-model="vm.denuncia.Empresa.Endereco.Complemento"  placeholder="Complemento" type="text">
           </div>
         </div>
       </ion-slide>
@@ -110,11 +113,11 @@
             <h4 class="text">Etapa 3</h4>
           </div>
         <div class="padding text-center">
-          <p class="item-divider">Clique no icone para anexar Fotos(Até 4 fotos)</p>
+          <p class="item-divider">Clique no icone para anexar Anexos(Até 4 fotos)</p>
           <button ng-click="vm.openAlbum()" class="button button-energized-900"><i class="icon ion-camera"></i></button>
         </div>
         <ion-list>
-          <ion-item ng-repeat="pic in vm.denuncia.Arquivos track by $index">
+          <ion-item ng-repeat="pic in vm.denuncia.Anexos track by $index">
             <div class="row">
               <div class="col col-50">
                 <img style="width: 100%; height: auto;" ng-src="{{pic}}" />

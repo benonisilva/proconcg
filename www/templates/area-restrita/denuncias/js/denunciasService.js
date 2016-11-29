@@ -36,19 +36,22 @@
             var tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
             
             var retVal = {
-              Tipo:tipos[denuncia.TipoId -1],
+              Tipo:tipos[denuncia.TipoFatoId -1],
               Descricao : denuncia.Descricao,
               Data: denuncia.Data,
               Empresa: {
                 Cnpj : denuncia.Empresa.Cnpj,
-                Cep : denuncia.Empresa.Cep,
+                NomeFantasia : "",
                 RazaoSocial : denuncia.Empresa.RazaoSocial,
-                IncricaoEstadual : denuncia.Empresa.IncricaoEstadual,
+                InscricaoEstadual : denuncia.Empresa.InscricaoEstadual,
                 Endereco : {
                          Rua : denuncia.Empresa.Endereco.Rua,
                          Telefone : denuncia.Empresa.Endereco.Telefone,
                          Complemento : denuncia.Empresa.Endereco.Complemento,
-                         Bairro : denuncia.Empresa.Endereco.Bairro
+                         Bairro : denuncia.Empresa.Endereco.Bairro,
+                         Numero : denuncia.Empresa.Endereco.Numero,
+                         Cep : denuncia.Empresa.Endereco.Cep,
+                         Municipio : denuncia.Empresa.Endereco.Municipio,
                 }
               },
               Anexos : denuncia.Anexos
@@ -59,12 +62,14 @@
 
             function _successCallback(data){
                 var strData = JSON.stringify(data);
+                //var novoFato = JSON.parse(data).data.novoFato;
                 console.log("Service:_successCallback");
                 console.log(strData||"null");
                 if(idLocal){
-                  DenunciaLocalDBService.deleta(idLocal);
+                  //DenunciaLocalDBService.deleta(idLocal);
                 }
-                //_uploadFiles(data.data.FatoId,retVal.Anexos);
+                console.log(data.data.novoFato.FatoId);
+                _uploadFiles(data.data.novoFato.FatoId,retVal.Anexos);
                 deferred.resolve(true);
             };
 
@@ -81,7 +86,7 @@
       function _uploadFiles(id,arquivos) {
         console.log("_uploadFiles: " + id);
 
-        var server = constantConfig.url+'/Fato/AdicionarAnexo/'+id;
+        var server = constantConfig.url+'/Fato/AdicionarAnexo?fatoId='+id;
         var promisses = [];
         var options = {
           
@@ -146,16 +151,17 @@
 
       function getDenunciasRemoto(){
           console.log("DenunciaService.getDenunciasRemoto: ");
-          var url = constantConfig.url+'/Home/Denuncias';
+          var url = constantConfig.url+'/Fato/Listar';
           
           return $http.get(url).then(_successCallback, _errorCallback).
             catch(_getFailed);
 
           function _successCallback(response){
-               var strResp = JSON.stringify(response);
+               //var strResp = JSON.stringify(response);
+               var fatos = JSON.parse(response.data);
                console.log("getDenunciasRemoto:_successCallback");
-               console.log(strResp||"null");
-               return response.data;
+               console.log(fatos||"null");
+               return fatos;
            };
 
            function _errorCallback(data){

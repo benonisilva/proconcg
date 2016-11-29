@@ -12,7 +12,7 @@
                 </div>
                 <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
                     <div class="col">
-                        {{denuncia.Fornecedor.RazaoSocial}}
+                        {{denuncia.Empresa.RazaoSocial}}
                     </div>
                     <div class="col">
                         <p>{{vm.tipos[denuncia.TipoId-1].name}}</p>
