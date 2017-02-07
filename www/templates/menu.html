@@ -13,9 +13,9 @@
         <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="right">
-        <ion-header-bar class="dark-bg expanded">
-            <span class="avatar" style="background: url('img/bg-prefeitura.jpg'); background-size: cover;"></span>
-            <h2>Procon App</h2>
+        <ion-header-bar class="dark-bg">
+            <!-- <span class="avatar" style="background: url('img/bg-prefeitura.jpg'); background-size: cover;"></span> -->
+            <h2>Opções</h2>
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
@@ -27,9 +27,6 @@
                 </ion-item>
                 <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.cadastro">
                     Cadastro
-                </ion-item>
-                 <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.perfil">
-                    Perfil
                 </ion-item>
                 <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.area-restrita">
                     Denúncias

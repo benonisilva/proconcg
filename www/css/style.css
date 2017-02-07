@@ -66,12 +66,26 @@ p {
 ==================================*/
 .app-icon {
     background-color: #222;
-    background: url('../img/crown.jpg') center;
+    background: url('../img/procon.png') center;
     background-size: cover;
-    border-radius: 50%;
-    height: 125px;
+    border-radius: 10%;
+    height: 100px;
     margin: 0 auto;
-    width: 125px;
+    width: 225px;
+}
+
+.app-icon2 {
+    background-color: #222;
+    background: url('../img/lb_logo.jpg') center;
+    background-size: cover;
+    border-radius: 1%;
+    height: 48px;
+    margin: 0 auto;
+    bottom: 5px;
+    width: 100%;
+    min-width: 300px;
+    position: fixed;
+
 }
 
 .social-login {

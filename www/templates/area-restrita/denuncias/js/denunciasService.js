@@ -42,7 +42,7 @@
               Empresa: {
                 Cnpj : denuncia.Empresa.Cnpj,
                 NomeFantasia : "",
-                RazaoSocial : denuncia.Empresa.RazaoSocial,
+                NomeFantasia : denuncia.Empresa.NomeFantasia,
                 InscricaoEstadual : denuncia.Empresa.InscricaoEstadual,
                 Endereco : {
                          Rua : denuncia.Empresa.Endereco.Rua,
@@ -66,7 +66,7 @@
                 console.log("Service:_successCallback");
                 console.log(strData||"null");
                 if(idLocal){
-                  //DenunciaLocalDBService.deleta(idLocal);
+                  DenunciaLocalDBService.deleta(idLocal);
                 }
                 console.log(data.data.novoFato.FatoId);
                 _uploadFiles(data.data.novoFato.FatoId,retVal.Anexos);

@@ -19,11 +19,7 @@
     "cordova-plugin-console",
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
-    "cordova-plugin-camera",
-    {
-      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
-      "id": "cordova-plugin-whitelist"
-    }
+    "cordova-plugin-camera"
   ],
   "cordovaPlatforms": [
     "android"

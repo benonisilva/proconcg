@@ -37,8 +37,13 @@
             </label>
 
             <label class="item item-input item-floating-label">
+              <span class="input-label">*Orgão Emissor</span>
+              <input type="text" ng-model="vm.user.emissor" placeholder="Orgão Emissor. Exemplo: SSP-PB"  required >
+            </label>
+
+            <label class="item item-input item-floating-label">
               <span class="input-label">CPF</span>
-              <input placeholder=*"CPF" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
+              <input placeholder="*CPF" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
             </label>
 
           <div class="list card">

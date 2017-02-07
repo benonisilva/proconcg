@@ -16,7 +16,7 @@
       var vm = this;
       vm.status = ["","Recebido","Processado","Falta Documento","Arquivado"]
       vm.denunciasRemotas = [];
-      vm.tipos = [{id:1,name:"Denúncia"},{id:2,name:"Reclamação"}];
+      vm.tipos = [{TipoFatoId:1,name:"Denúncia"},{TipoFatoId:2,name:"Reclamação"}];
       
       activate();
       

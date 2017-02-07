@@ -1,10 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   'starter.controllers','stater.services.user','starter.services','starter.directives',
   'starter.config','ionic-material', 'ionMdInput','ngCookies','ngCordova'])
@@ -32,7 +25,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 })
 
 .constant('constantConfig', {
-  url: 'http://192.168.1.108:8088/',
+  url: 'http://proconcg.sa-east-1.elasticbeanstalk.com',
   httpTimeout: 5000
 })
 
@@ -41,11 +34,9 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   function($stateProvider, $urlRouterProvider,
     $ionicConfigProvider,$compileProvider,$httpProvider) {
 
-  //$compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//); 
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
   $httpProvider.defaults.withCredentials = true;
   $httpProvider.defaults.useXDomain = true;
-  //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   
   $stateProvider

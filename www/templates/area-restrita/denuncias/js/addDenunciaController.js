@@ -21,15 +21,15 @@
         FatoId : -1,
         Descricao : "",
         Empresa:{
-          Cnpj:"35173755000172",
-          InscricaoEstadual:null,
-          RazaoSocial:null,
+          Cnpj:"",
+          InscricaoEstadual:"",
+          NomeFantasia:"",
           Endereco : {
-              Cep:null,
+              Cep:"",
               Rua : null,
               Bairro: null,
               Complemento:null,
-              Telefone : null,
+              Telefone : "",
               Municipio : "Campina Grande",
               Estado : "PB",
             },
@@ -154,12 +154,20 @@
       };
 
       function slideChanged(index) {
-        console.log(index);
+        console.log(vm.form.$error);
         vm.slideIndex = index;
       };
 
       function nextSlide() {
-        //console.log("click next");
+        console.log("click next");
+        if(vm.form.$error.cnpj){
+         alert('Cnpj invalido.');
+         return;
+        }
+        if(!vm.form.$pristine && vm.form.$error.required){
+          alert('Cnpj e Nome da empresa são obrigatorios');
+         return;
+        }
         $timeout( function() {
           //console.log("proximo");
           $ionicSlideBoxDelegate.next(500);
@@ -175,6 +183,8 @@
         if(id){
           return DenunciaService.getDenunciaLocal(id).then(function(data){
             vm.denuncia = data;
+            vm.denuncia.Data = new Date(data.Data);
+            //console.log(vm.denuncia);
             return vm.denuncia;
           });
         }else{

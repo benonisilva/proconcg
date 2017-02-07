@@ -10,17 +10,17 @@
         $ionicLoading,CadastroService,EnderecoService) { 
     	var vm = this;
     	vm.user = {
-            name: "null",
-            rg:"null",
-            cpf:"03921117488",
-            telefone:"83987630778",
-            email:"benoni.silva@gmail.com",
+            name: "",
+            rg:"",
+            cpf:"",
+            telefone:"",
+            email:"",
             endereco:{
-                logradouro:"null",
-                localidade:"null",
-                uf:"PB",
-                cep:"null",
-                bairro:"null"
+                logradouro:"",
+                localidade:"",
+                uf:"",
+                cep:"",
+                bairro:""
 
             }
         };
@@ -59,7 +59,7 @@
                 "Nome": user.name,
                 "Documentos[0].Numero": user.cpf,
                 "Documentos[0].Tipo" : "CPF",
-                "Documentos[1].Numero": user.rg,
+                "Documentos[1].Numero": user.rg+','+user.emissor,
                 "Documentos[1].Tipo" : "RG",
                 "Endereco.Rua": user.endereco.logradouro,
                 "Endereco.Bairro" : user.endereco.bairro,

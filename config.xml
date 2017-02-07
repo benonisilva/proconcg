@@ -2,19 +2,19 @@
 <widget id="gov.br.proconcg" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ProconCGMobile</name>
     <description>
-
         Aplicativo De Denuncias Do Procon De Campina Grande-PB
-
     </description>
     <author email="benoni.silva@gmail.com" href="http://adicioneAUrl.com">
-
       LighInfocon
-
     </author>
     <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="*" />
     <allow-navigation href="*" />
+    <allow-navigation href="data:*" />
     <access origin="*" subdomains="true" />
     <preference name="webviewbounce" value="false" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="xwalkZOrderOnTop" value="true" />
     <preference name="UIWebViewBounce" value="false" />
@@ -46,8 +46,6 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
-    <preference name="xwalkVersion" value="14+" />
-    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
-    <preference name="xwalkMode" value="embedded" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~1.8.0" />
+    <plugin name="cordova-plugin-file" spec="~4.3.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.6.0" />
 </widget>

@@ -1,6 +1,6 @@
 <ion-view view-title="Enviar Denuncia/Reclamação" cache-view="false">
   <ion-content class="has-subheader">
-<!--   <form name="form" novalidate on-valid-submit="vm.enviarDenuncia()" style="margin-top:0">  -->
+  <form name="vm.form" novalidate on-valid-submit="vm.enviarDenuncia()" style="margin-top:0"> 
     <ion-slide-box on-slide-changed="vm.slideChanged(index)" active-slide="vm.myActiveSlide">
       
       <ion-slide> 
@@ -31,15 +31,15 @@
           <div class="item item-divider">Empresa</div>
           <div class="item">
             <span class="input-label">Nome Da Empresa</span>
-            <input ng-model="vm.denuncia.Empresa.NomeFantasia"  placeholder="Nome Da Empresa" type="text">
+            <input ng-model="vm.denuncia.Empresa.NomeFantasia" name="nome" required placeholder="Nome Da Empresa" type="text">
           </div>
           <div class="item">
             <span class="input-label">CNPJ</span>
-            <input ui-br-cnpj-mask ng-model="vm.denuncia.Empresa.Cnpj"  placeholder="CNPJ" type="text">
+            <input ui-br-cnpj-mask ng-model="vm.denuncia.Empresa.Cnpj" required placeholder="CNPJ" type="text">
           </div>
           <div class="item">
             <span class="input-label">Inscricao Estadual</span>
-            <input ng-model="vm.denuncia.Empresa.InscricaoEstadual"  placeholder="Inscricao Estadual" type="text">
+            <input ng-model="vm.denuncia.Empresa.InscricaoEstadual" placeholder="Inscricao Estadual" type="tel">
           </div>
           <div class="item">
             <span class="input-label">Telefone</span>
@@ -132,7 +132,7 @@
       <ion-slide> 
         <div class="padding">
         <h3 class="tittle">Confira Os Dados</h3>
-        <p class="card">Empresa: {{vm.denuncia.Empresa.RazaoSocial}}</p>
+        <p class="card">Empresa: {{vm.denuncia.Empresa.NomeFantasia}}</p>
         <text class="card">Denuncia: {{vm.denuncia.Descricao}}</text>
         <div class="card">
          <p>
@@ -150,6 +150,7 @@
         </div>
       </ion-slide>
     </ion-slide-box>
+    </form>
     <button show="vm.slideIndex != 5" class="button button-small icon ion-chevron-right icon-accessory button-calm-900" ng-click="vm.nextSlide()">Próximo</button>
     <button ng-show="vm.slideIndex > 0" class="button button-small icon ion-chevron-left icon-accessory button-calm-900" ng-click="vm.previousSlide()">Voltar</button>
   </ion-content>
