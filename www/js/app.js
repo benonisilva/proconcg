@@ -25,7 +25,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
 })
 
 .constant('constantConfig', {
-  url: 'http://proconcg.sa-east-1.elasticbeanstalk.com',
+  url: 'http://proconwebapp-dev.sa-east-1.elasticbeanstalk.com',
   httpTimeout: 5000
 })
 
@@ -191,6 +191,18 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
           }
     }
 
+  })
+  .state('app.config',{
+      url : 'config',
+      views: {
+            'menuContent': {
+                templateUrl: 'templates/ferramentas/config/config.html',
+                controller: 'ConfigCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+    }
   })
 
   .state('app.login', {
