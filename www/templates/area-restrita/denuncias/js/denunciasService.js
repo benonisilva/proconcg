@@ -5,10 +5,10 @@
         .module('starter.services')
         .factory('DenunciaService', DenunciaService);
         DenunciaService.$inject = ['$q','$http','$timeout',
-        'DenunciaLocalDBService','$cordovaFileTransfer','constantConfig'];
+        'DenunciaLocalDBService','$cordovaFileTransfer','ConfigService'];
 
     function DenunciaService($q,$http,$timeout,
-      DenunciaLocalDBService,$cordovaFileTransfer,constantConfig) { 
+      DenunciaLocalDBService,$cordovaFileTransfer,ConfigService) { 
       
       var denuncia = {
         
@@ -31,7 +31,7 @@
             
             console.log("Denuncia.enviar: ");
             console.log(denuncia||"null");
-            var url = constantConfig.url+'/Fato/Adicionar';
+            var url = ConfigService.get()+'/Fato/Adicionar';
             var idLocal = denuncia.Id;
             var tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
             
@@ -86,7 +86,7 @@
       function _uploadFiles(id,arquivos) {
         console.log("_uploadFiles: " + id);
 
-        var server = constantConfig.url+'/Fato/AdicionarAnexo?fatoId='+id;
+        var server = ConfigService.get()+'/Fato/AdicionarAnexo?fatoId='+id;
         var promisses = [];
         var options = {
           
@@ -151,7 +151,7 @@
 
       function getDenunciasRemoto(){
           console.log("DenunciaService.getDenunciasRemoto: ");
-          var url = constantConfig.url+'/Fato/Listar';
+          var url = ConfigService.get()+'/Fato/Listar';
           
           return $http.get(url).then(_successCallback, _errorCallback).
             catch(_getFailed);

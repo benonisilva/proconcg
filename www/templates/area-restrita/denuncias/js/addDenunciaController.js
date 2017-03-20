@@ -12,7 +12,8 @@
     function AddDenunciaCtrl($scope, $stateParams, DenunciaService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,$ionicScrollDelegate,
       $state,$ionicLoading,$q,Id,CameraService,EnderecoService){ 
-
+      
+      console.log("AddDenunciaCtrl:Init");
       console.log(Id||"Id null");
       var vm = this;
       vm.openAlbum = openAlbum;

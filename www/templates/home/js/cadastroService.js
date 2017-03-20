@@ -32,7 +32,7 @@
             
             console.log("CadastroService.save: ");
             console.log(cadastro||"null");
-            var url = constantConfig.url +'/Account/Register';
+            var url = ConfigService.get() +'/Account/Register';
 
             var deferred = $q.defer();
             $http.post(url, cadastro).then(_successCallback, _errorCallback);

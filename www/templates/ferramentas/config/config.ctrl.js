@@ -5,7 +5,7 @@
     ConfigCtrl.$inject = ['ConfigService'];
     function ConfigCtrl(ConfigService) {
         var vm = this;
-        vm.server = 'http://proconwebapp-dev.sa-east-1.elasticbeanstalk.com';
+        vm.server = 'http://187.33.231.170:8080/procon-mobile';
 
         vm.setup = setup;
 

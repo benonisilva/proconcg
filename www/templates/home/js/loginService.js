@@ -4,9 +4,9 @@
     angular
         .module('starter.services')
         .factory('LoginService', LoginService);
-        LoginService.$inject = ['$q','$http','$timeout','constantConfig'];
+        LoginService.$inject = ['$q','$http','$timeout','ConfigService'];
 
-    function LoginService($q,$http,$timeout,constantConfig) { 
+    function LoginService($q,$http,$timeout,ConfigService) { 
     	var login;
         
         login = {
@@ -20,7 +20,7 @@
             console.log("LoginService.getUser: ");
             console.log(login||"null");
             
-            var url = constantConfig.url+'/Account/Login';
+            var url = ConfigService.get()+'/Account/Login';
 
             var deferred = $q.defer();
             $http.post(url,login)
