@@ -72,13 +72,13 @@
                 "Endereco.Numero" : "00"
 
             };
-    		showLoading("Salvando...",10000);
+    		showLoading("Salvando...",10000000);
             CadastroService.save(requerente).then(_fnSucessCadastro,_fnFailCadastro);
 
     	};
 
     	function _fnSucessCadastro (resp) {
-    		
+    		console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
             if(resp===true){
                 console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
                 console.log(resp || "");
