@@ -4,9 +4,9 @@
     angular
         .module('starter.services')
         .factory('CadastroService', CadastroService);
-        CadastroService.$inject = ['$q','$http','$timeout','constantConfig'];
+        CadastroService.$inject = ['$q','$http','$timeout','ConfigService'];
 
-    function CadastroService($q,$http,$timeout,constantConfig) { 
+    function CadastroService($q,$http,$timeout,ConfigService) { 
     	var cadastro = {
     		save : save
     	};
