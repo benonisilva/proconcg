@@ -26,7 +26,7 @@
         	    };
         	    
         	    var pushpin= new Microsoft.Maps.Pushpin(mapLoc, null); 
-        	    var infoboxOptions = {title:'Procon - Campina Grande', description:'R. Afonso Campos, 304 - Centro, <br /> Campina Grande - PB, 58400-235. Telefone:(83) 3342-9179'}; 
+        	    var infoboxOptions = {title:'Procon - Campina Grande', description:'R. Pref. Ernane Lauritzen, 226 - Centro, <br /> Campina Grande - PB, 58400-133.  (83) 98802-5525 (83) 3342-9179 - Disk Denúncia151'}; 
         	    var defaultInfobox = new Microsoft.Maps.Infobox(mapLoc, infoboxOptions );    
         	    var map = new Microsoft.Maps.Map(document.getElementById("map_canvas"), mapOptions);
         	    map.entities.push(pushpin);

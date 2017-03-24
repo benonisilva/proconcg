@@ -23,6 +23,9 @@ angular.module('starter.services')
     // key = reference of object in localStorage.
     // value = data that will store in localStorage.
     function set(key,value){
+        console.log("localStorage:set");
+        console.log("key: "+key);
+        console.log("value: "+value);
         $window.localStorage[key] = JSON.stringify(value);
     }
 
