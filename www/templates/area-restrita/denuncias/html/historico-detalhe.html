@@ -5,20 +5,15 @@
   background-color:lightgrey;">Denuncias Enviadas</spam>
         </div>
         <div class="row header">
-          <div class="col col-33">Empresa</div>
-          <div class="col col-33">Situação</div>
-          <div class="col col-33">Data</div>
-          <!-- <div class="col col-25">Tipo</div> -->
+          <div class="col col-50">Data</div>
+          <div class="col col-50">Mensagem</div>
         </div>
-        <div class="row item-denuncia" ng-class-odd="'item-divider'" ng-repeat="historico in vm.lista" ui-sref="app.denuncia-detalhe({denunciaId:denuncia.FatoId})">
-            <div class="col col-33">
-                {{historico}}
+        <div class="row item-denuncia" ng-class-odd="'item-divider'" ng-repeat="historico in vm.lista">
+            <div class="col col-50">
+                {{historico.DataUltimaAlteracao}}
             </div>
-            <div class="col col-33">
-              
-            </div>
-            <div class="col col-33">
-              
+            <div class="col col-50">
+              {{historico.Msg}}
             </div>
         </div>
     </ion-content>

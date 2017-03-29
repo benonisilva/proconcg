@@ -206,7 +206,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   })
 
   .state('app.denuncia-detalhe',{
-      url : 'denuncia-detalhe/:denunciaId',
+      url : 'denuncia-historico/denuncia-detalhe/:denunciaId',
       views: {
             'menuContent': {
                 templateUrl: 'templates/area-restrita/denuncias/html/historico-detalhe.html',
