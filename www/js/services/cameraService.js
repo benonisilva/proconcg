@@ -12,7 +12,8 @@
     	console.log("CameraService:Ready");
     	
     	var camera = {
-    		getFromAlbum : getFromAlbum,
+    		
+			getFromAlbum : getFromAlbum,
     		getFromCamera : getFromCamera
     	};
 
@@ -23,7 +24,8 @@
     	}*/
 
     	function getFromAlbum(){
-    		var q = $q.defer();
+    		
+			var q = $q.defer();
     		var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     		var options = _setOptions(srcType);
     		

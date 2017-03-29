@@ -205,6 +205,24 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   })
 
+  .state('app.denuncia-detalhe',{
+      url : 'config/:denunciaId',
+      views: {
+            'menuContent': {
+                templateUrl: 'templates/area-restrita/denuncias/html/historico-detalhe.html',
+                controller: 'HistoricoCtrl as vm'
+            },
+            'fabContent': {
+                template: ''
+            }
+       },
+       resolve:{
+              Id: ['$stateParams', function($stateParams){
+                  return $stateParams.Id;
+              }]
+           }
+  })
+
   .state('app.login', {
         url: '/home/login',
         views: {

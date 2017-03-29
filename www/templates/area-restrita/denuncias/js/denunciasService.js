@@ -17,7 +17,8 @@
         getDenunciasLocal : getDenunciasLocal,
         getDenunciasRemoto : getDenunciasRemoto,
         getDenunciaLocal : getDenunciaLocal,
-        updateLocal : updateLocal
+        updateLocal : updateLocal,
+        getHistorico : getHistorico
       
       };
 
@@ -25,6 +26,12 @@
 
       function updateLocal(denuncia){
         DenunciaLocalDBService.update(denuncia);
+      }
+      
+      function getHistorico (id) {
+        console.log("DenunciaService.getHistorico: ");
+        var url = ConfigService.get()+'/Fato/Historico?id='+id;
+        return $http.get(url);
       }
 
       function enviar(denuncia){
