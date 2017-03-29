@@ -82,6 +82,7 @@
     <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320"/>
   </platform>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
+  
   <plugin name="cordova-plugin-file" spec="~4.3.0"/>
   <plugin name="cordova-plugin-file-transfer" spec="~1.6.0"/>
   <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0"/>
@@ -91,5 +92,5 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.2"/>
   <plugin name="cordova-plugin-console" spec="~1.0.6"/>
   <plugin name="cordova-plugin-device" spec="~1.1.5"/>
-  <plugin name="Camera" value="CDVCamera" />
+
 </widget>
