@@ -30,7 +30,7 @@
       
       function getHistorico (id) {
         console.log("DenunciaService.getHistorico: ");
-        var url = ConfigService.get()+'/Fato/Historico?id='+id;
+        var url = ConfigService.get()+'/Fato/Historico/'+id;
         return $http.get(url);
       }
 

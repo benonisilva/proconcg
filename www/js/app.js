@@ -205,8 +205,8 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   })
 
-  .state('app.denuncias-historico.denuncia-detalhe',{
-      url : 'area-restrita/add/denuncia-historico/denuncia-detalhe/:denunciaId',
+  .state('app.denuncia-detalhe',{
+      url : '/area-restrita/add/denuncia-detalhe/:denunciaId',
       views: {
             'menuContent': {
                 templateUrl: 'templates/area-restrita/denuncias/html/historico-detalhe.html',
@@ -218,6 +218,7 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
        },
        resolve:{
               Id: ['$stateParams', function($stateParams){
+                  console.log("app.denuncia-detalhe")
                   return $stateParams.denunciaId;
               }]
            }

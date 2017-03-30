@@ -5,17 +5,17 @@
         .module('starter.controllers')
         .controller('HistoricoCtrl', HistoricoCtrl);
         
-        HistoricoCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService','$ionicLoading','$q','denunciaId'];
+        HistoricoCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService','$ionicLoading','$q','Id'];
 
-    function HistoricoCtrl($scope, $stateParams, DenunciaService,$ionicLoading,$q,denunciaId){ 
+    function HistoricoCtrl($scope, $stateParams, DenunciaService,$ionicLoading,$q,Id){ 
 
       var vm = this;
       vm.lista = [];
       
-      activate(denunciaId);
+      activate(Id);
 
-      function activate(denunciaId) {
-        var promises = [getLocal(denunciaId)];
+      function activate(Id) {
+        var promises = [getLocal(Id)];
               $ionicLoading.show({
                       template: 'Carregando...',
                       duration: 4000
@@ -29,7 +29,7 @@
       function getLocal (id) {
          return DenunciaService.getHistorico(id).then(function (data){
             console.log(data);
-            vm.lista = data.historico;
+            vm.lista = data.data.historico;
             return vm.lista;
          });
       }
