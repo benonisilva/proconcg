@@ -69,6 +69,20 @@
        });  
       }
 
+      function fnFail(arg){
+                console.log("showConfirmEnviar fail: "+arg);
+                $ionicLoading.hide();
+                alert("Falha no servidor");
+     };
+     
+     function fnSuccess(arg){
+                $ionicLoading.hide();
+                if(arg===true){    
+                    console.log("showConfirmEnviar success: "+arg);
+                    $state.go("app.area-restrita");
+                }
+    };
+
       /*Definicao de funcoes de escopo */
       function showConfirm(denuncia) {
       
@@ -132,20 +146,6 @@
                 maxWidth: 200,
                 showDelay: 0
             });
-
-            function fnSuccess(arg){
-                $ionicLoading.hide();
-                if(arg===true){    
-                    console.log("showConfirmEnviar success: "+arg);
-                    $state.go("app.area-restrita");
-                }
-            };
-            
-            function fnFail(arg){
-                console.log("showConfirmEnviar fail: "+arg);
-                $ionicLoading.hide();
-                alert("Falha no servidor");
-            };
 
             DenunciaService.enviar(denuncia).then(fnSuccess,fnFail);
           } else {
