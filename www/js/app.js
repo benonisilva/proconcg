@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
   'starter.controllers','stater.services.user','starter.services','starter.directives',
-  'starter.config','ionic-material', 'ionMdInput','ngCookies','ngCordova'])
+  'starter.config','ionic-material', 'ionMdInput','ngCordova'])
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
