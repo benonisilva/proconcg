@@ -37,8 +37,9 @@
                     console.log("getUser:_successCallback:login:success:true");
                     var user = window.localStorage.getItem('_user');
                     
-                    if(!user){
+                    if(user !== null || user !== undefined){
                          var userObj = JSON.parse(user);
+                         console.log(userObj);
                          userObj.ativo = true;
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
