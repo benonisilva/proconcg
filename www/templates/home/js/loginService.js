@@ -37,7 +37,7 @@
                     console.log("getUser:_successCallback:login:success:true");
                     var user = window.localStorage.getItem('_user');
                     if(user === null || user === undefined){
-                         var userObj = {user:login.Email,pass:login.Password};
+                         var userObj = {Email:login.Email,Password:login.Password};
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
                     deferred.resolve(true);
