@@ -11,11 +11,11 @@
         
         login = {
     		
-            getUser : getUser
+            getUser : getUser,
+            getLogin : getLogin
     	};
 
     	return login;
-
         function getUser(login){
             
             console.log("LoginService.getUser: ");
@@ -36,11 +36,8 @@
                 if(data.data.success===true){
                     console.log("getUser:_successCallback:login:success:true");
                     var user = window.localStorage.getItem('_user');
-                    
-                    if(user !== null && user !== undefined){
-                         var userObj = JSON.parse(user);
-                         console.log(userObj);
-                         userObj.ativo = true;
+                    if(user === null || user === undefined){
+                         var userObj = {user:login.Email,pass:login.Password};
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
                     deferred.resolve(true);
@@ -60,5 +57,20 @@
 
             return deferred.promise;
         };
+
+        function getLogin () {
+           var deferred = $q.defer();
+           var user = window.localStorage.getItem('_user');
+            if(user !== null && user !== undefined){
+                var userObj = JSON.parse(user);
+                console.log(userObj);
+                deferred.resolve(userObj);
+            }else{
+                var userObj = {Email:login.Email,Password:login.Password};
+                deferred.resolve(userObj);
+            }
+
+             return deferred.promise;
+        }
     }    
 })();

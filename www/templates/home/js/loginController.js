@@ -4,12 +4,20 @@
     angular
         .module('starter.controllers')
         .controller('LoginCtrl', LoginCtrl);
-        LoginCtrl.$inject = ['$scope','$ionicLoading','$state','LoginService','$ionicHistory'];
+        LoginCtrl.$inject = ['$scope','$ionicLoading','$state','LoginService','$ionicHistory','$q'];
 
-    function LoginCtrl($scope,$ionicLoading,$state,LoginService,$ionicHistory) { 
+    function LoginCtrl($scope,$ionicLoading,$state,LoginService,$ionicHistory,$q) { 
     	var vm = this;
-        vm.user = {Email:"",Password:""};
+        vm.user = {Email:'',Password:''};
         vm.login = login;
+        active();
+        function active() {
+           console.log("LoginCtrl:active");
+           var promises = [getLocal()];
+              return $q.all(promises).then(function() {
+                console.log("activate:getLocal");
+           });
+      };
         
         function login(user) {
             console.log("login: "+user.email);
@@ -44,5 +52,12 @@
             $ionicLoading.hide();
             alert("Falha no servidor");
         };
+
+        function getLocal () {
+            return LoginService.getLogin().then(function (data) {
+                console.log(data);
+                return vm.user = data;
+            });
+        }
     }    
 })();
