@@ -48,7 +48,6 @@
               Data: denuncia.Data,
               Empresa: {
                 Cnpj : denuncia.Empresa.Cnpj,
-                NomeFantasia : "",
                 NomeFantasia : denuncia.Empresa.NomeFantasia,
                 InscricaoEstadual : denuncia.Empresa.InscricaoEstadual,
                 Endereco : {

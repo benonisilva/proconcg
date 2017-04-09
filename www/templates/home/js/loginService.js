@@ -10,7 +10,8 @@
     	var login;
         
         login = {
-    		getUser : getUser
+    		
+            getUser : getUser
     	};
 
     	return login;
@@ -25,7 +26,7 @@
             var deferred = $q.defer();
             $http.post(url,login)
             .then(_successCallback, _errorCallback).catch(function(e){
-                console.log(e || "catch login error");
+                console.log(e || "getUser:catch login error");
             });
 
             function _successCallback(data){
@@ -33,20 +34,17 @@
                 console.log("_successCallback");
                 console.log(strData||"null");
                 if(data.data.success===true){
-                    console.log("LOGIN CERTO");
+                    console.log("getUser:_successCallback:login:success:true");
                     var user = window.localStorage.getItem('_user');
                     
-                    if(user){
+                    if(!user){
                          var userObj = JSON.parse(user);
                          userObj.ativo = true;
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
-                    
-                   
                     deferred.resolve(true);
-                    //alert(data||"null");
                 }else{
-                    console.log("login incorrect");
+                    console.log("getUser:_successCallback:success:false");
                     deferred.resolve(false);
                 }
                 
@@ -54,9 +52,8 @@
 
             function _errorCallback(data){
                 var strFail = JSON.stringify(data);
-                console.log("_errorCallback");
+                console.log("getUser:_errorCallback");
                 console.log(strFail||"null");
-                //alert(strFail||"null");
                 deferred.reject(false);
             };
 

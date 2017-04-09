@@ -205,6 +205,18 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   })
 
+  .state('app.codigo',{
+      url : 'codigo',
+      views: {
+            'menuContent': {
+                templateUrl: 'templates/ferramentas/codigo/codigo.html',
+            },
+            'fabContent': {
+                template: ''
+            }
+    }
+  })
+
   .state('app.denuncia-detalhe',{
       url : '/area-restrita/add/denuncia-detalhe/:denunciaId',
       views: {

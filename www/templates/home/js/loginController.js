@@ -34,7 +34,7 @@
                 $state.go("app.area-restrita");
                 
             }else{
-                alert("Seu login esta incorreto");
+                alert("Email ou senha incorretos, ou não ativou a conta.");
             }
             
         };
