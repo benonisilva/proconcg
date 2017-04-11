@@ -166,7 +166,7 @@
          return;
         }
         if(!vm.form.$pristine && vm.form.$error.required){
-          alert('Cnpj e Nome da empresa são obrigatorios');
+          alert('Nome da empresa é obrigatório');
          return;
         }
         $timeout( function() {
