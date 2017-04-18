@@ -1,6 +1,19 @@
-angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
-  'starter.controllers','stater.services.user','starter.services','starter.directives',
-  'starter.config','ionic-material', 'ionMdInput','ngCordova'])
+angular.module('starter', 
+    [
+        'ionic' ,
+        'ui.utils.masks' ,
+        'ionicSelect' ,
+        'ionic-material', 
+        'ionMdInput',
+        'ngCordova',
+        
+        'starter.controllers',
+        'stater.services.user',
+        'starter.services',
+        'starter.directives',
+        'starter.config',
+        'area-restrita.module'
+    ])
 
 .run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
@@ -93,65 +106,6 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
         }
     })
 
-  .state('app.area-restrita', {
-        url: '/area-restrita',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/denuncias.html'
-            },
-            'fabContent': ''
-        }
-    })
-
-  .state('app.add-denuncia', {
-        url: '/area-restrita/add/denuncia/:Id',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/add-denuncia.html',
-                controller : 'AddDenunciaCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-        },
-        params: {
-                profile: null
-        },
-
-        resolve:{
-              Id: ['$stateParams', function($stateParams){
-                  //$scope.$parent.clearFabs();
-                  return $stateParams.Id;
-              }]
-           }
-    })
-
-  .state('app.denuncias-historico', {
-        url: '/area-restrita/add/denuncia-historico',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/denuncia-historico.html',
-                controller : 'DenunciasHistoricoCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
-  .state('app.denuncias-local', {
-        url: '/area-restrita/add/denuncias-local',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/denuncia-local.html',
-                controller : 'DenunciaCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
-
   .state('app.localizacao',{
     url : '/localizacao',
     views: {
@@ -217,24 +171,24 @@ angular.module('starter', ['ionic' ,'ui.utils.masks' ,'ionicSelect' ,
     }
   })
 
-  .state('app.denuncia-detalhe',{
-      url : '/area-restrita/add/denuncia-detalhe/:denunciaId',
-      views: {
-            'menuContent': {
-                templateUrl: 'templates/area-restrita/denuncias/html/historico-detalhe.html',
-                controller: 'HistoricoCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-       },
-       resolve:{
-              Id: ['$stateParams', function($stateParams){
-                  console.log("app.denuncia-detalhe")
-                  return $stateParams.denunciaId;
-              }]
-           }
-  })
+//   .state('denuncia-detalhe',{
+//       url : '/area-restrita/denuncia-detalhe/:denunciaId',
+//       views: {
+//             'menuContent': {
+//                 templateUrl: 'templates/area-restrita/denuncias/html/historico-menu.html',
+//                 controller: 'HistoricoCtrl as vm'
+//             },
+//             'fabContent': {
+//                 template: ''
+//             }
+//        },
+//        resolve:{
+//               Id: ['$stateParams', function($stateParams){
+//                   console.log("app.denuncia-detalhe")
+//                   return $stateParams.denunciaId;
+//               }]
+//            }
+//   })
 
   .state('app.login', {
         url: '/home/login',

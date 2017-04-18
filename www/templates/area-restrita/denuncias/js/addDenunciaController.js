@@ -59,28 +59,27 @@
       }
 
       function openAlbum(){
-       console.log("CameraCtrl:openAlbum"); 
-       CameraService.getFromAlbum().then(function(data){
-        vm.denuncia.Anexos.push(data);
-       },function(err){
-        var strData = JSON.stringify(err);
-        console.log(strData);
-
+        console.log("CameraCtrl:openAlbum"); 
+        CameraService.getFromAlbum().then(function(data){
+           vm.denuncia.Anexos.push(data);
+        },function(err){
+          var strData = JSON.stringify(err);
+          console.log(strData);
        });  
       }
 
       function fnFail(arg){
-                console.log("showConfirmEnviar fail: "+arg);
-                $ionicLoading.hide();
-                alert("Falha no servidor");
+        console.log("showConfirmEnviar fail: "+arg);
+        $ionicLoading.hide();
+        alert("Falha no servidor");
      };
      
      function fnSuccess(arg){
-                $ionicLoading.hide();
-                if(arg===true){    
-                    console.log("showConfirmEnviar success: "+arg);
-                    $state.go("app.area-restrita");
-                }
+       $ionicLoading.hide();
+       if(arg===true){    
+          console.log("showConfirmEnviar success: "+arg);
+          $state.go("app.area-restrita");
+       }
     };
 
       /*Definicao de funcoes de escopo */
@@ -185,7 +184,7 @@
           return DenunciaService.getDenunciaLocal(id).then(function(data){
             vm.denuncia = data;
             vm.denuncia.Data = new Date(data.Data);
-            //console.log(vm.denuncia);
+            
             return vm.denuncia;
           });
         }else{

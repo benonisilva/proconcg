@@ -18,7 +18,8 @@
         getDenunciasRemoto : getDenunciasRemoto,
         getDenunciaLocal : getDenunciaLocal,
         updateLocal : updateLocal,
-        getHistorico : getHistorico
+        getHistorico : getHistorico,
+        getDenunciaById : getDenunciaById
       
       };
 
@@ -26,6 +27,12 @@
 
       function updateLocal(denuncia){
         DenunciaLocalDBService.update(denuncia);
+      }
+
+      function getDenunciaById(id) {
+         console.log("getDenunciaById.getHistorico: ");
+         var url = ConfigService.get()+'/Fato/Fato/'+id;
+         return $http.get(url);
       }
       
       function getHistorico (id) {
@@ -68,7 +75,6 @@
 
             function _successCallback(data){
                 var strData = JSON.stringify(data);
-                //var novoFato = JSON.parse(data).data.novoFato;
                 console.log("Service:_successCallback");
                 console.log(strData||"null");
                 if(idLocal){
@@ -94,6 +100,7 @@
 
         var server = ConfigService.get()+'/Fato/AdicionarAnexo?fatoId='+id;
         var promisses = [];
+        
         var options = {
           
           fileKey:'arquivo',
@@ -101,12 +108,12 @@
           params:{fatoId:id}
 
         };
-        //var filePath = arquivos[0];
+        
         for(var i=0; arquivos.length > i; i++ ){
           options.fileName = arquivos[i].split("/").pop();
           promisses.push($cordovaFileTransfer.upload(server, arquivos[i], options));
+        
         }
-        //$cordovaFileTransfer.upload(server, filePath, options).then(_win,_fail,_progress);
         return $q.all(promisses).then(_win,_fail,_progress);
         
         function _win(data){

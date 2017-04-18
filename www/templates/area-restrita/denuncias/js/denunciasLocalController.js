@@ -3,39 +3,41 @@
 
     angular
         .module('starter.controllers')
-        .controller('DenunciasHistoricoCtrl', DenunciasHistoricoCtrl);
+        .controller('DenunciaLocalCtrl', DenunciaLocalCtrl);
         
-        DenunciasHistoricoCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
+        DenunciaLocalCtrl.$inject = ['$scope', '$stateParams', 'DenunciaService',
   '$ionicSlideBoxDelegate','$timeout','$ionicPopup',
   'ArquivosService','$ionicScrollDelegate', '$state','$q','$ionicHistory','$ionicLoading'];
 
-    function DenunciasHistoricoCtrl($scope, $stateParams, DenunciaService,
+    function DenunciaLocalCtrl($scope, $stateParams, DenunciaService,
       $ionicSlideBoxDelegate,$timeout,$ionicPopup,
       ArquivosFactory,$ionicScrollDelegate,$state,$q,$ionicHistory,$ionicLoading){ 
 
       var vm = this;
-      vm.status = ["","Recebido","Processado","Falta Documento","Arquivado"]
-      vm.denunciasRemotas = [];
+      vm.status = ["","Em Andamento","Arquivado"]
+      vm.denunciasLocal = [];
       vm.tipos = [{TipoFatoId:1,name:"Denúncia"},{TipoFatoId:2,name:"Reclamação"}];
-      
       activate();
-      
+
       function activate() {
-        var promises = [initDenuncias()];
+        var promises = [getLocal()];
               $ionicLoading.show({
-                      template: 'Carregando...'
+                      template: 'Carregando...',
+                      duration: 1000
                     });
               return $q.all(promises).then(function() {
                 console.log("activate");
                 $ionicLoading.hide();
               });
       };
-
-      function initDenuncias(){
-        return DenunciaService.getDenunciasRemoto().then(function(data){
-          vm.denunciasRemotas = data.fatos;
-          return vm.denunciasRemotas;
+      function getLocal(){
+        return DenunciaService.getDenunciasLocal().then(function(data){
+          console.log("DenunciasCtrl.getLocal")
+          vm.denunciasLocal = data;
+          console.log(data||"getLocal null");
+          return vm.denunciasLocal;
         });
+        
       };
     }
 })();
