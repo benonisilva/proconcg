@@ -9,7 +9,6 @@
     function UserLocal() { 
 
       var user = {};
-      //$window.localStorage["_user"];
 
       this.setUser = function(user_data) {
         window.localStorage.setItem('_user',JSON.stringify(user_data));

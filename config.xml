@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="gov.br.proconcg" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="gov.br.proconcg" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>ProconCGMobile</name>
   <description>
 
         Aplicativo De Denuncias Do Procon De Campina Grande-PB
 
     </description>
-  <author email="benoni.silva@gmail.com" href="http://adicioneAUrl.com">
+  <author email="benoni.silva@gmail.com" href="http://lightbase.com.br/">
 
       LighInfocon
 
@@ -92,4 +92,5 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.2"/>
   <plugin name="cordova-plugin-console" spec="~1.0.6"/>
   <plugin name="cordova-plugin-device" spec="~1.1.5"/>
+
 </widget>

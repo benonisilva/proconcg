@@ -16,11 +16,11 @@ angular.module('starter',
     ])
 
 .run(function($ionicPlatform,$rootScope) {
-  $ionicPlatform.ready(function() {
-
+    window.localStorage.setItem('_url',JSON.stringify('http://187.33.231.170:8080/procon-mobile'));  
+   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);               
+      cordova.plugins.Keyboard.disableScroll(true);              
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -35,11 +35,6 @@ angular.module('starter',
         if( m ) return new Date(parseInt(m[1]));
         else return null;
     };
-})
-
-.constant('constantConfig', {
-  url: 'http://proconwebapp-dev.sa-east-1.elasticbeanstalk.com',
-  httpTimeout: 5000
 })
 
 .config(['$stateProvider','$urlRouterProvider',
@@ -171,25 +166,6 @@ angular.module('starter',
     }
   })
 
-//   .state('denuncia-detalhe',{
-//       url : '/area-restrita/denuncia-detalhe/:denunciaId',
-//       views: {
-//             'menuContent': {
-//                 templateUrl: 'templates/area-restrita/denuncias/html/historico-menu.html',
-//                 controller: 'HistoricoCtrl as vm'
-//             },
-//             'fabContent': {
-//                 template: ''
-//             }
-//        },
-//        resolve:{
-//               Id: ['$stateParams', function($stateParams){
-//                   console.log("app.denuncia-detalhe")
-//                   return $stateParams.denunciaId;
-//               }]
-//            }
-//   })
-
   .state('app.login', {
         url: '/home/login',
         views: {
@@ -202,21 +178,6 @@ angular.module('starter',
             }
         }
     });
-
-   
-  if(false) {
-
-    if(false){
-      console.log("app/login");
-      $urlRouterProvider.otherwise('/app/perfil');
-    }else{
-      $urlRouterProvider.otherwise('/app/login');
-      //alert("Cheque seu Email para ativar sua conta,após isso tera acesso ao sistema");
-    }
-    
-  }
-  else {
     $urlRouterProvider.otherwise('/app/home');
-  }
 
 }]);
