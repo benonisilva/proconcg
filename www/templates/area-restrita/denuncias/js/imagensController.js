@@ -5,9 +5,9 @@
         .module('starter.controllers')
         .controller('ImagensCtrl', ImagensCtrl);
         
-        ImagensCtrl.$inject = ['$scope','DenunciaService','CameraService','$q','Id'];
+        ImagensCtrl.$inject = ['$scope','DenunciaService','$q','Id','CameraService'];
 
-    function ImagensCtrl($scope,DenunciaService,$q,Id){ 
+    function ImagensCtrl($scope,DenunciaService,$q,Id,CameraService){ 
       var vm = this;
       vm.Anexos = [];
       vm.removePic = removePic;
