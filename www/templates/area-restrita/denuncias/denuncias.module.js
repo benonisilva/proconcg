@@ -51,7 +51,7 @@
                      templateUrl: 'templates/area-restrita/denuncias/html/denuncia-imagens.html',
                      controller: 'ImagensCtrl as vm'
                  },
-                 'fabContent': '<p> Salvar {{vm.id}} </p>'
+                 'fabContent': ''
              },
             resolve:{
               Id: ['$stateParams', function($stateParams){

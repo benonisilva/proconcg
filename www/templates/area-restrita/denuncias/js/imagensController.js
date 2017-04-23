@@ -5,9 +5,9 @@
         .module('starter.controllers')
         .controller('ImagensCtrl', ImagensCtrl);
         
-        ImagensCtrl.$inject = ['$scope','DenunciaService','$q','Id','CameraService'];
+        ImagensCtrl.$inject = ['$scope','DenunciaService','$q','Id','CameraService','$ionicLoading'];
 
-    function ImagensCtrl($scope,DenunciaService,$q,Id,CameraService){ 
+    function ImagensCtrl($scope,DenunciaService,$q,Id,CameraService,$ionicLoading){ 
       var vm = this;
       vm.Anexos = [];
       vm.removePic = removePic;
@@ -19,6 +19,8 @@
         vm.id =Id;
         return vm.id;
       }
+
+      vm.salvar = enviaImagem;
       
       vm.openCamera = function () {
           console.log("CameraCtrl:openAlbum:fatoId: "+vm.id); 
@@ -32,13 +34,25 @@
       
       function enviaImagem(anexos) {
         console.log("ImagensCtrl.enviaImagem");
-        var promisses = DenunciaService.uploadFiles(id,anexos);
-        $q.all(promisses).then(function(data){
-          console.log("uploadFiles:success: ", data);
-        },function(err){
-          console.log("uploadFiles:success: "+err);
+        if(anexos.lenght===0){
+          return;
+        }
+        $ionicLoading.show({
+                content: 'Enviando',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+         });
+         var promisses = DenunciaService.uploadFiles(id,anexos);
+         $q.all(promisses).then(function(data){
+           console.log("uploadFiles:success: ", data);
+           $ionicLoading.hide();
+         },function(err){
+           console.log("uploadFiles:success: "+err);
+           $ionicLoading.hide();
         });
-      }
+      };
 
       function removePic(pos){
         vm.Anexos.splice(pos,1);
