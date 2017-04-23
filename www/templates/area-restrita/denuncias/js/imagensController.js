@@ -32,7 +32,7 @@
           });  
        };
       
-      function enviaImagem(anexos) {
+      function enviaImagem(id,anexos) {
         console.log("ImagensCtrl.enviaImagem");
         if(anexos.lenght===0){
           return;
