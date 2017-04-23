@@ -45,19 +45,19 @@
             },
          }).
           state('app.denuncia-imagens',{
-             url: '/denuncias-imagens/:denunciaId',
+             url: '/denuncia-imagens/:fatoId',
              views: {
                  'menuContent' : {
                      templateUrl: 'templates/area-restrita/denuncias/html/denuncia-imagens.html',
                      controller: 'ImagensCtrl as vm'
                  },
-                 'fabContent': ''
+                 'fabContent': '<p> Salvar {{vm.id}} </p>'
              },
-             resolve : {
-                 fato : function ($stateParams,DenunciaService) {
-                    return DenunciaService.getDenunciaById($stateParams.denunciaId);
-                 }
-             }
+            resolve:{
+              Id: ['$stateParams', function($stateParams){
+                  return $stateParams.fatoId;
+              }]
+           }
          });
       };
 

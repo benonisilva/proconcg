@@ -5,16 +5,23 @@
         .module('starter.controllers')
         .controller('ImagensCtrl', ImagensCtrl);
         
-        ImagensCtrl.$inject = ['$scope','DenunciaService','CameraService','$q'];
+        ImagensCtrl.$inject = ['$scope','DenunciaService','CameraService','$q','Id'];
 
-    function ImagensCtrl($scope,DenunciaService){ 
+    function ImagensCtrl($scope,DenunciaService,$q,Id){ 
       var vm = this;
       vm.Anexos = [];
       vm.removePic = removePic;
-      console.log("ImagensCtrl:init");
+      vm.id = 0;
+      init();
+     
+
+      function init () {
+        vm.id =Id;
+        return vm.id;
+      }
       
       vm.openCamera = function () {
-          console.log("CameraCtrl:openAlbum"); 
+          console.log("CameraCtrl:openAlbum:fatoId: "+vm.id); 
           CameraService.getFromAlbum().then(function(data){
              vm.Anexos.push(data);
           },function(err){
