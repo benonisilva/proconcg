@@ -12,7 +12,7 @@
     	};
 
         return service;
-    	
+
         function getEndereco(cep) {
     		console.log(cep);
     		var deferred = $q.defer();

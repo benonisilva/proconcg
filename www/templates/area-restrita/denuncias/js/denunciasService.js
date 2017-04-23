@@ -19,7 +19,8 @@
         getDenunciaLocal : getDenunciaLocal,
         updateLocal : updateLocal,
         getHistorico : getHistorico,
-        getDenunciaById : getDenunciaById
+        getDenunciaById : getDenunciaById,
+        uploadFiles : uploadFiles
       
       };
 
@@ -81,7 +82,8 @@
                   DenunciaLocalDBService.deleta(idLocal);
                 }
                 console.log(data.data.novoFato.FatoId);
-                _uploadFiles(data.data.novoFato.FatoId,retVal.Anexos);
+                var listPromiss = uploadFiles(data.data.novoFato.FatoId,retVal.Anexos);
+                $q.all(listPromiss).then(_win,_fail,_progress);
                 deferred.resolve(true);
             };
 
@@ -95,8 +97,8 @@
             return deferred.promise;
       };
 
-      function _uploadFiles(id,arquivos) {
-        console.log("_uploadFiles: " + id);
+      function uploadFiles(id,arquivos) {
+        console.log("uploadFiles: " + id);
 
         var server = ConfigService.get()+'/Fato/AdicionarAnexo?fatoId='+id;
         var promisses = [];
@@ -114,16 +116,17 @@
           promisses.push($cordovaFileTransfer.upload(server, arquivos[i], options));
         
         }
-        return $q.all(promisses).then(_win,_fail,_progress);
-        
-        function _win(data){
-          console.log("_uploadFiles:_win");
+        return promisses;
+      };
+
+      function _win(data){
+          console.log("uploadFiles:_win");
           var strdata = JSON.stringify(data);
           console.log(strdata);
         };
 
         function _fail(error){
-          console.log("_uploadFiles:_fail");
+          console.log("uploadFiles:_fail");
           var strdata = JSON.stringify(error);
           console.log(strdata);
         };
@@ -133,7 +136,6 @@
           console.log(res);
 
         }; 
-      };
 
       function saveLocal(denuncia){
            

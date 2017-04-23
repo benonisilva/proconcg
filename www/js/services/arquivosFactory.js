@@ -8,7 +8,6 @@
     ArquivosService.$inject = ['$q'];
 
     document.addEventListener("deviceready", ArquivosService, false);
-
     function ArquivosService($q) { 
 
         //console.log(cordova.file.cacheDirectory);
