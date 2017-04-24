@@ -5,9 +5,9 @@
         .module('starter.controllers')
         .controller('ImagensCtrl', ImagensCtrl);
         
-        ImagensCtrl.$inject = ['$scope','DenunciaService','$q','Id','CameraService','$ionicLoading'];
+        ImagensCtrl.$inject = ['$scope','DenunciaService','$q','Id','CameraService','$ionicLoading','$state'];
 
-    function ImagensCtrl($scope,DenunciaService,$q,Id,CameraService,$ionicLoading){ 
+    function ImagensCtrl($scope,DenunciaService,$q,Id,CameraService,$ionicLoading,$state){ 
       var vm = this;
       vm.Anexos = [];
       vm.removePic = removePic;
@@ -16,7 +16,7 @@
      
 
       function init () {
-        vm.id =Id;
+        vm.id = Id;
         return vm.id;
       }
 
@@ -38,7 +38,7 @@
           return;
         }
         $ionicLoading.show({
-                content: 'Enviando',
+                content: 'Enviando...',
                 animation: 'fade-in',
                 showBackdrop: true,
                 maxWidth: 200,
@@ -48,8 +48,11 @@
          $q.all(promisses).then(function(data){
            console.log("uploadFiles:success: ", data);
            $ionicLoading.hide();
+           alert("Provas Enviadas.");
+           $state.go("app.area-restrita");
          },function(err){
            console.log("uploadFiles:success: "+err);
+           alert(err);
            $ionicLoading.hide();
         });
       };
