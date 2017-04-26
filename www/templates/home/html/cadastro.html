@@ -10,7 +10,7 @@
 
       <div class="row stable-bg">
       <div class="col col-center">
-        <form name="formUser" novalidate on-valid-submit="vm.cadastraUser(vm.user)"> 
+        <form name="vm.formUser" novalidate on-valid-submit="vm.cadastraUser(vm.user)"> 
           
           <div class="list card">
 
@@ -42,8 +42,9 @@
             </label>
 
             <label class="item item-input item-floating-label">
-              <span class="input-label">CPF</span>
-              <input placeholder="*CPF" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
+              <span class="input-label">*CPF</span>
+              <input placeholder="*CPF" name="cpf" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
+              <span class="error" ng-show="(vm.formUser.$error.cpf)">Cpf Invalido Ou Incompleto.</span>
             </label>
 
           <div class="list card">
@@ -107,8 +108,8 @@
               </div>
 
            </div>
-        <button type="submit" class="button button-block button-positive" ng-disabled="formUser.$invalid">
-          {{!(formUser.$invalid) ? "Enviar Cadastro" : "Faltando Dados"}} 
+        <button type="submit" class="button button-block button-positive" ng-disabled="vm.formUser.$invalid">
+          {{!(vm.formUser.$invalid) ? "Enviar Cadastro" : "Faltando Dados"}} 
         </button>         
         
         </form>

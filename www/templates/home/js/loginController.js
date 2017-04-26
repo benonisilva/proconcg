@@ -50,7 +50,7 @@
             var strFail = JSON.stringify(arg);
             console.log("login fail: "+strFail);
             $ionicLoading.hide();
-            alert("Falha no servidor");
+            alert("Falha no login: "+strFail);
         };
 
         function getLocal () {

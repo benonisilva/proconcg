@@ -27,11 +27,11 @@
     	vm.buscarEndereco = buscarEndereco;
     	vm.cadastraUser = cadastraUser;
         console.log("FBProfile");
-        //console.log($stateParams||"null");
         var profileFBId = $stateParams.profile || "";
         console.log(JSON.stringify(profileFBId));
     	vm.user.name = profileFBId.name;
         vm.user.email = profileFBId.email;
+        
         function buscarEndereco (cep) {
     		console.log("CadastroCtrl.buscarEndereco: "+cep);
     		EnderecoService.getEndereco(cep).then(_fnBuscaEnderecoSuccess,_fnBuscaEnderecoFail);
@@ -52,7 +52,11 @@
     	function cadastraUser (user) {
     		
     		console.log("CadastroCtrl.cadastraUser.fnBuscaEnderecoSuccess: ");
-    		console.log(user);
+            if(vm.formUser.$error.cpf) {
+                console.log(vm.formUser);
+                return;
+            }
+            console.log(user);
             
             var requerente = {
                 
@@ -72,7 +76,7 @@
                 "Endereco.Numero" : "00"
 
             };
-    		showLoading("Salvando...",10000000);
+    		showLoading("Salvando...",100000);
             CadastroService.save(requerente).then(_fnSucessCadastro,_fnFailCadastro);
 
     	};

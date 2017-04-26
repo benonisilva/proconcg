@@ -107,3 +107,8 @@ p {
   height: 100%;
   display: block;
 }
+
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+}

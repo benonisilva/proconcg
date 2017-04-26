@@ -17,7 +17,8 @@
       console.log(Id||"Id null");
       var vm = this;
       vm.openAlbum = openAlbum;
-      vm.removePic = removePic;      
+      vm.removePic = removePic;
+      vm.openCamera = openCamera;   
       vm.denuncia = {
         FatoId : -1,
         Descricao : "",
@@ -56,6 +57,16 @@
 
       function removePic(pos){
         vm.denuncia.Anexos.splice(pos,1);
+      }
+
+      function openCamera () {
+        console.log("CameraCtrl:openCamera"); 
+        CameraService.getFromCamera().then(function(data){
+           vm.denuncia.Anexos.push(data);
+        },function(err){
+          var strData = JSON.stringify(err);
+          console.log(strData);
+       });  
       }
 
       function openAlbum(){
@@ -155,22 +166,28 @@
       };
 
       function slideChanged(index) {
-        console.log(vm.form.$error);
         vm.slideIndex = index;
+        console.log(vm.form);
       };
 
       function nextSlide() {
-        console.log("click next");
+        console.log("click next index: "+vm.slideIndex);
         if(vm.form.$error.cnpj){
-         alert('Cnpj invalido.');
+         alert('Cnpj invalido. Deixe em Branco Se Não Souber.');
          return;
         }
-        if(!vm.form.$pristine && vm.form.$error.required){
+        
+        if(vm.slideIndex===2 && vm.form.nome.$error.required){
           alert('Nome da empresa é obrigatório');
-         return;
+            return;
         }
+        if(vm.slideIndex===4 && vm.form.descricao.$error.required){
+          alert('Insira uma descrição do ocorrido.');
+            return;
+        }
+        
         $timeout( function() {
-          //console.log("proximo");
+          
           $ionicSlideBoxDelegate.next(500);
           $ionicScrollDelegate.scrollTop(true);
         }, 50);
