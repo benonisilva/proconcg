@@ -16,12 +16,11 @@
 
             function set(url) {
                 var key = "_url";
-                //url = localStorage.set(key,url);
                 return;
             }
 
             function get() {
-                return "http://187.33.231.170:8080/procon-mobile";//localStorage.get('_url');
+                return "http://187.33.231.170:8080/procon-mobile";
             }
         }
 

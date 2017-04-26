@@ -76,6 +76,7 @@
      
      function fnSuccess(arg){
        $ionicLoading.hide();
+        console.log("fnSuccess success: "+arg);
        if(arg===true){    
           console.log("showConfirmEnviar success: "+arg);
           $state.go("app.area-restrita");
