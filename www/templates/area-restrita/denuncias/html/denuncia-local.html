@@ -2,7 +2,7 @@
     <ion-content>
        
        	<div class="row item-divider">
-                    <spam class="col" style="text-align: center;">Envie Sua Denuncia</spam>
+                    <spam class="col" style="text-align: center;">Envie Sua Denúncia</spam>
                 </div>
                 <div class="row header">
                   <div class="col">Empresa</div>
@@ -12,13 +12,13 @@
                 </div>
                 <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
                     <div class="col">
-                        {{denuncia.Empresa.NomeFantasia}}
+                        {{ denuncia.Empresa.NomeFantasia }}
                     </div>
                     <div class="col">
-                        <p>{{vm.tipos[denuncia.TipoFatoId-1].name}}</p>
+                        <p>{{ vm.tipos[denuncia.TipoFatoId-1].name }}</p>
                     </div>
                     <div class="col">
-                        {{denuncia.Data | date : 'dd-MM-yy' }}
+                        {{ denuncia.Data | date : 'dd-MM-yy' }}
                     </div>
                     <div class="col">
                         <i class="icon ion-chevron-right icon-accessory"></i>

@@ -173,7 +173,7 @@
       function nextSlide() {
         console.log("click next index: "+vm.slideIndex);
         if(vm.form.$error.cnpj){
-         alert('Cnpj invalido. Deixe em Branco Se Não Souber.');
+         alert('Cnpj inválido. Deixe em Branco Se Não Souber.');
          return;
         }
         

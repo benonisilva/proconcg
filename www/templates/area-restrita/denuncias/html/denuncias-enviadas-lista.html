@@ -1,8 +1,8 @@
-<ion-view view-title="Denuncias" cache-view="false">
+<ion-view view-title="Denúncias" cache-view="false">
     <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
         <div class="row item-divider">
             <spam class="col" style="text-align: center; border-top: solid 1px grey;
-  background-color:lightgrey;">Denuncias Enviadas</spam>
+  background-color:lightgrey;">Denúncias Enviadas</spam>
         </div>
         <div class="row header">
           <div class="col col-33">Empresa</div>
@@ -17,7 +17,7 @@
                 {{vm.status[denuncia.Status.StatusFatoId]}}
             </div>
             <div class="col col-33">
-                {{denuncia.Data | date:'dd-MM-yy' }}
+                {{ denuncia.Data | date:'dd-MM-yy' }}
             </div>
         </div>
     </ion-content>
