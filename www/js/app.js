@@ -36,6 +36,12 @@ angular.module('starter',
         else return null;
     };
 })
+.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        console.log(url);
+        return $sce.trustAsResourceUrl(url);
+    };
+}])
 
 .config(['$stateProvider','$urlRouterProvider',
   '$ionicConfigProvider','$compileProvider','$httpProvider',
@@ -133,7 +139,8 @@ angular.module('starter',
     url : '/informacoes',
     views: {
           'menuContent' : {
-            templateUrl:'templates/ferramentas/informacoes/html/informacoes.html'
+            templateUrl:'templates/ferramentas/informacoes/html/informacoes.html',
+            controller : 'InfoCtrl as vm'
           },
           'fabContent': {
             template:''
