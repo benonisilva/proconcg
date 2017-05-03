@@ -66,10 +66,10 @@ p {
 ==================================*/
 .app-icon {
     background-color: #222;
-    background: url('../img/procon.png') center;
+    background: url('../img/procon_logo.png') center;
     background-size: cover;
     border-radius: 10%;
-    height: 100px;
+    height: 150px;
     margin: 0 auto;
     width: 225px;
 }

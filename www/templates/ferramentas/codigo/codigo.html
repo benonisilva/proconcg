@@ -1,87 +1,10 @@
-<ion-view view-title="Codigo Consumidor">
-    <ion-content >
-        <div>
-            <div class="card card-gallery item item-text-wrap">
-                <div class="text-center ink dark-bg">
-                    <h2>Dos Direitos do Consumidor</h2>
-                </div>
-                <ion-list>
-                <ion-item>
-                    <p>
-                        <b>Art. 1°</b>  O presente código estabelece normas de proteção e defesa do consumidor, de ordem pública e interesse social, nos termos dos arts. 5°, inciso XXXII, 170, inciso V, da Constituição Federal e art. 48 de suas Disposições Transitórias.
-                    </p>
-                </ion-item>
-                <ion-item>
-                    <p>
-                        <b>Art. 2°</b> Consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.
-                    </p>
-                    <p>
-                        <b>Parágrafo único.</b> Equipara-se a consumidor a coletividade de pessoas, ainda que indetermináveis, que haja intervindo nas relações de consumo.
-                    </p>
-                </ion-item>
-                <ion-item>
-                    <p>
-                        <b> Art. 3°</b> Fornecedor é toda pessoa física ou jurídica, pública ou privada, nacional ou estrangeira, bem como os entes despersonalizados, que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços.
-                    </p>
-                    <p>
-                        <b>
-                        § 1° 
-                        </b> Produto é qualquer bem, móvel ou imóvel, material ou imaterial.
-                    </p>
-                    <p>
-                       <b>
-                        § 2°
-                        </b>  Serviço é qualquer atividade fornecida no mercado de consumo, mediante remuneração, inclusive as de natureza bancária, financeira, de crédito e securitária, salvo as decorrentes das relações de caráter trabalhista.
-                    </p>
-                </ion-item>
-                <ion-item> 
-                    <p>
-                        <b>
-
-                        </b>
-                    </p>
-                </ion-item>
-            </ion-list> 
-            </div>
-            <div  class="card card-gallery item item-text-wrap">
-                <div class="text-center ink dark-bg">
-                    <h2>Da Política Nacional de Relações de Consumo</h2>
-                </div>
-                <ion-list>
-                     <ion-item> 
-                         <p>
-                              <b>
-                                  Art. 4º
-                              </b>  A Política Nacional das Relações de Consumo tem por objetivo o atendimento das necessidades dos consumidores, o respeito à sua dignidade, saúde e segurança, a proteção de seus interesses econômicos, a melhoria da sua qualidade de vida, bem como a transparência e harmonia das relações de consumo, atendidos os seguintes princípios: (Redação dada pela Lei nº 9.008, de 21.3.1995)
-                         </p>
-                     </ion-item>
-                     <ion-item>
-                           <p> I - reconhecimento da vulnerabilidade do consumidor no mercado de consumo; </p>
-
-       <p> II - ação governamental no sentido de proteger efetivamente o consumidor: </p>
-
-         <p>  a) por iniciativa direta; </p>
-
-        <p>  b) por incentivos à criação e desenvolvimento de associações representativas; </p>
-
-         <p> c) pela presença do Estado no mercado de consumo; </p>
-
-         <p> d) pela garantia dos produtos e serviços com padrões adequados de qualidade, segurança, durabilidade e desempenho. </p>
-
-        <p>  III - harmonização dos interesses dos participantes das relações de consumo e compatibilização da proteção do consumidor com a necessidade de desenvolvimento econômico e tecnológico, de modo a viabilizar os princípios nos quais se funda a ordem econômica (art. 170, da Constituição Federal), sempre com base na boa-fé e equilíbrio nas relações entre consumidores e fornecedores; </p>
-
-        <p>  IV - educação e informação de fornecedores e consumidores, quanto aos seus direitos e deveres, com vistas à melhoria do mercado de consumo; </p>
-
-         <p>  V - incentivo à criação pelos fornecedores de meios eficientes de controle de qualidade e segurança de produtos e serviços, assim como de mecanismos alternativos de solução de conflitos de consumo; </p>
-
-        <p>  VI - coibição e repressão eficientes de todos os abusos praticados no mercado de consumo, inclusive a concorrência desleal e utilização indevida de inventos e criações industriais das marcas e nomes comerciais e signos distintivos, que possam causar prejuízos aos consumidores; </p>
-
-        <p>  VII - racionalização e melhoria dos serviços públicos; </p>
-
-        <p>  VIII - estudo constante das modificações do mercado de consumo. </p>
-                     </ion-item>
-                </ion-list>
-            </div>    
-        </div>
+<ion-view view-title="Codigo do Consumidor">
+    <ion-content>
+   <pdf-viewer
+    delegate-handle="my-pdf-container"
+    url="vm.pdfUrl"
+    scale="0.9"
+    show-toolbar="true"
+    headers="{ 'x-you-know-whats-awesome': 'EVERYTHING' }"></pdf-viewer>
     </ion-content>
 </ion-view>
