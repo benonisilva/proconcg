@@ -112,3 +112,15 @@ p {
 color: #D8000C;
 background-color: #FFBABA;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.t0 {
+    top: 0px !important;
+}
