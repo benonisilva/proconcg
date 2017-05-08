@@ -82,16 +82,19 @@
     	};
 
     	function _fnSucessCadastro (resp) {
-    		console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
-            if(resp===true){
+    		console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: "+ resp);
+            
+            if(resp.success===true){
                 console.log("CadastroCtrl.cadastraUser.fnSucessCadastro: ");
-                console.log(resp || "");
                 $state.go('app.home');
                 alert("Link de confirmação foi enviado para seu email");
-                
+                hideLoading();
 
+            }else{
+                alert(resp.errors);
+                hideLoading();
             }
-            hideLoading();
+
     
     	};
 

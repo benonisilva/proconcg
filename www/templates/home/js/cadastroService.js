@@ -27,7 +27,7 @@
                 console.log("_successCallback");
                 var strDados = JSON.stringify(data.data);
                 console.log(strDados||"null");
-                deferred.resolve(true);
+                deferred.resolve(data.data);
             };
 
             function _errorCallback(error){

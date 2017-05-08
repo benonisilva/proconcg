@@ -1,10 +1,22 @@
- <ion-footer-bar class="button-bar bar-stable"> 
-            <a href="" 
-              ng-click="prev()" 
-              class="button button-small icon ion-chevron-left icon-left button-calm-900">
-            </a>
-            <a href="" 
-              ng-click="next()" 
-              class="t0 button button-small icon icon-right ion-chevron-right button-calm-900"> 
-            </a>
+ <ion-footer-bar> 
+    <div class="col-20" >
+       <button  ng-click="next()"  class="button button-small icon-right ion-chevron-right button-calm-900"> 
+       </button>
+    </div>
+    <div class="col-20" >
+       <button  ng-click="zoomIn()"  class="button button-small button-calm-900"> (+)
+    </button>
+    </div>
+    <div class="col-20 text-center" >
+       <p>{{currentPage}}/{{pageCount}}</p> 
+    </button>
+    </div>
+    <div class="col-20" >
+       <button  ng-click="zoomOut()"  class="button button-small button-calm-900"> (-)
+    </button>
+    </div>
+    <div class="r0 left col-20" >
+       <button  ng-click="prev()"  class="button button-small icon-left ion-chevron-left button-calm-900"> 
+    </button>
+    </div>
 </ion-footer-bar>
