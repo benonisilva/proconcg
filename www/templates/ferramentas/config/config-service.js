@@ -20,7 +20,7 @@
             }
 
             function get() {
-                return "http://localhost:1119";
+                return "http://187.33.231.170:8080/procon-mobile";
             }
         }
 
