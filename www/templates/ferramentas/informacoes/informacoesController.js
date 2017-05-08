@@ -2,9 +2,10 @@
     'use strict';
     angular.module('starter.controllers')
     .controller('InfoCtrl',InfoCtrl);
-    function InfoCtrl() {
+    InfoCtrl.$Inject = ['pdfDelegate'];
+    function InfoCtrl(pdfDelegate) {
         var vm = this;
-        vm.src = 'https://www.youtube.com/embed/watch?v=B7Zo1yVoG1E?html5=1';
-
+        console.log('InfoCtrl');
+        vm.pdfUrl = 'img/manual.pdf';
     }
 })();

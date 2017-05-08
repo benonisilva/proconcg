@@ -2,10 +2,7 @@
     'use strict';
     angular
         .module('starter.services')
-        .factory('ConfigService', ConfigService);
-        
-        //ConfigService.$inject = ['localStorage','$http'];
-         
+        .factory('ConfigService', ConfigService);         
 
         function ConfigService() {
             var config = {
