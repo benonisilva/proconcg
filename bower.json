@@ -1,13 +1,14 @@
 {
-  "name": "ProconMobileApp",
-  "private": "true",
+  "name": "ProconCGMovel",
+  "private": false,
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.1",
+    "ionic": "driftyco/ionic-bower#1.3.3",
     "ionic-material": "0.4.2",
     "ion-md-input": "1.0.4"
   },
   "dependencies": {
     "angular-input-masks": "~2.1.0",
-    "ngCordova": "^0.1.26-alpha"
+    "ngCordova": "^0.1.26-alpha",
+    "angular-pdf-viewer": "^0.2.13"
   }
 }
