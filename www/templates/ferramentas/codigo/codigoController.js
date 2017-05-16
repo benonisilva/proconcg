@@ -8,7 +8,7 @@
     function CodigoCtrl(pdfDelegate) {
         var vm = this;
         console.log('CodigoCtrl');
-        vm.pdfUrl = 'img/codigo.pdf';
+        vm.pdfUrl = 'http://187.33.231.170:8080/procon-mobile/Content/codigo.pdf';
 
     }
 })();
