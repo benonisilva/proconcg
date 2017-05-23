@@ -1,4 +1,6 @@
-angular.module('starter.services', [])
+(function () {
+  'use strict';
+  angular.module('starter.services', [])
 
 .factory('FactoryHistorico', ['$q','$http',function($q,$http) {
   // Might use a resource here that returns a JSON array
@@ -119,5 +121,6 @@ angular.module('starter.services', [])
 
     }];
 
- })
-;
+ });
+})();
+

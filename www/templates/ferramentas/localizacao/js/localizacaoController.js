@@ -8,13 +8,13 @@
 
         function MapCtrl($scope){
         	var vm = this;
-        	var lat = -7.2191022;
-        	var lon = -35.8826189;
+        	var lat = -7.2164603;
+        	var lon = -35.8821985;
         	initializeMap(lat,lon);
         	/*document.addEventListener("deviceready", function(){
         		initializeMap();
         	}, false);*/
-        	
+
         	function initializeMap(lat,lon) {
         	    console.log(lat+":"+lon);
         	    var mapLoc = new Microsoft.Maps.Location(lat, lon); 

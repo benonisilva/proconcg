@@ -34,7 +34,7 @@
                 console.log("_errorCallback");
                 var strDados = JSON.stringify(error);
                 console.log(strDados||"null");
-                deferred.reject(false);
+                deferred.reject(error);
             };
 
             return deferred.promise;

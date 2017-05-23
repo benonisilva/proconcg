@@ -25,7 +25,7 @@
 
             var deferred = $q.defer();
             $http.post(url,login)
-            .then(_successCallback, _errorCallback).catch(function(e){
+              .then(_successCallback, _errorCallback).catch(function(e){
                 console.log(e || "getUser:catch login error");
             });
 
@@ -52,7 +52,7 @@
                 var strFail = JSON.stringify(data);
                 console.log("getUser:_errorCallback");
                 console.log(strFail||"null");
-                deferred.reject(false);
+                deferred.reject(data);
             };
 
             return deferred.promise;

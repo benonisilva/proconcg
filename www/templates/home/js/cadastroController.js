@@ -47,6 +47,11 @@
     	function _fnBuscaEnderecoFail(resp){
     		console.log("CadastroCtrl.buscarEndereco.fnBuscaEnderecoFail: ");
     		console.log(resp);
+            if(resp===-1){
+               alert("Servidor Fora do Ar ou Você esta sem conexão de internet.");
+            }else{
+                  alert("Algo Deu Errado");
+            }
     	};
 
     	function cadastraUser (user) {
@@ -100,8 +105,14 @@
 
     	function _fnFailCadastro (resp) {
     		console.log("CadastroCtrl.cadastraUser.fnFailCadastro: ");
+            hideLoading();
     		console.log(resp || "");
-    		hideLoading();
+            if(error.status===-1){
+               alert("Servidor Fora do Ar ou Você esta sem conexão de internet.");
+            }else{
+                  alert("Algo Deu Errado");
+            }
+    		
     	};
 
     	function showLoading (text,time) {

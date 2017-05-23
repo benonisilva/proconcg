@@ -1,10 +1,12 @@
 <ion-view view-title="Informações do Aplicativo">
-
-   <pdf-viewer
-    delegate-handle="my-pdf-container"
-    url="vm.pdfUrl"
-    scale="0.9"
-    show-toolbar="true"
-    headers="{ 'x-header': 'header' }"></pdf-viewer>
+<ion-content>
+<ion-slide-box delegate-handle="sliderBan" show-pager="false" does-continue="true" auto-play="true" on-slide-changed="vm.slideChanged(index)" active-slide="vm.myActiveSlide">
+        <ion-slide ng-repeat="uri in vm.imagens()">
+            <img style="width: 100%;
+height: auto;" ng-src="{{uri}}">
+        </ion-slide>
+    </ion-slide-box>
     
+</ion-content>
+   
 </ion-view>

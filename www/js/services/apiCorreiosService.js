@@ -26,7 +26,7 @@
     		    console.log(status);
     		    console.log(headers);
     		    console.log(config);
-    		  deferred.reject("Error: " + status); 
+    		  deferred.reject(status); 
     		});
     		
     		return deferred.promise;

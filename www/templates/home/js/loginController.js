@@ -50,7 +50,13 @@
             var strFail = JSON.stringify(arg);
             console.log("login fail: "+strFail);
             $ionicLoading.hide();
-            alert("Falha no login: "+strFail);
+            if(arg.status===-1){
+                alert("Servidor Fora do Ar ou Você esta sem conexão de internet.");
+            }else{
+                alert("Algo Deu Errado");
+            }
+           
+            
         };
 
         function getLocal () {

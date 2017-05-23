@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
     $scope.showLoading = function(msg, duration) {
     $ionicLoading.show({
       template: msg,
-      duration: 1000
+      duration: 1000 || duration
     });
   };
   

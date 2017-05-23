@@ -16,9 +16,8 @@ angular.module('starter',
         'area-restrita.module'
     ])
 
-.run(function($ionicPlatform,$rootScope) {
-    window.localStorage.setItem('_url',JSON.stringify('http://localhost:1119'));  
-   $ionicPlatform.ready(function() {
+.run(function($ionicPlatform,$rootScope) {  
+    $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);              
