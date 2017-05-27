@@ -38,6 +38,9 @@
                  <ion-item nav-clear menu-close ui-sref="app.codigo">
                     Código do Consumidor
                 </ion-item>
+                 <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.nova-senha">
+                    Esqueci Minha Senha
+                </ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>

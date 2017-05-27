@@ -3,20 +3,20 @@
 
     angular
         .module('starter.services')
-        .factory('EventosService', EventosService);
-        EventosService.$injetc = ['$q','$http','constantConfig'];
-    function EventosService($q,$http,constantConfig) { 
+        .factory('NovaSenhaService', NovaSenhaService);
+        NovaSenhaService.$injetc = ['$q','$http','ConfigService'];
+    function NovaSenhaService($q,$http,ConfigService) { 
 
-      var eventos = {
-        getEventos : getEventos
+      var NovaSenha = {
+        setNovaSenha : setNovaSenha
       }
 
-      return eventos;
+      return NovaSenha;
 
-      function getEventos(){
+      function setNovaSenha(email){
         var q = $q.defer();
-        var url = constantConfig.url + '/Eventos/Index'
-        $http.get(url)
+        var url = ConfigService.get() + '/Account/NovaSenha'
+        $http.post(url,{email:email})
           .then(_successCallback, _errorCallback).catch(function(e){
             console.log(e || "catch login error");
         });

@@ -98,8 +98,8 @@
       function showConfirm(denuncia) {
       
         var confirmPopup = $ionicPopup.confirm({
-          title: 'Salvar No Celular',
-          template: 'Deseja Salvar A Denuncia Para Posterior Envio?',
+          title: 'Salvar no celular',
+          template: 'Deseja salvar a denúncia para posterior envio?',
           buttons: [
             { text: 'Não' },
             { text: 'Sim', type: 'button-positive', 
@@ -134,7 +134,7 @@
       
         var confirmPopup = $ionicPopup.confirm({
           title: 'Enviar Denuncia',
-          template: 'Deseja Enviar A Denuncia Para ProconCG?',
+          template: 'Deseja enviar a denúncia para o ProconCG?',
           buttons: [
             { text: 'Não' },
             { text: 'Sim', type: 'button-positive', 
@@ -173,7 +173,7 @@
       function nextSlide() {
         console.log("click next index: "+vm.slideIndex);
         if(vm.form.$error.cnpj){
-         alert('Cnpj inválido. Deixe em Branco Se Não Souber.');
+         alert('Cnpj inválido. Deixe em branco se não souber.');
          return;
         }
         
