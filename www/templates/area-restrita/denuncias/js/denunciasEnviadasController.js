@@ -14,7 +14,7 @@
       ArquivosFactory,$ionicScrollDelegate,$state,$q,$ionicHistory,$ionicLoading){ 
 
       var vm = this;
-      vm.status = ["","Recebido","Processado","Falta Documento","Arquivado"]
+      vm.status = ["","Recebido","Processado","Falta Documento","Arquivado","Em Análise","Constatado"]
       vm.denunciasRemotas = [];
       vm.tipos = [{TipoFatoId:1,name:"Denúncia"},{TipoFatoId:2,name:"Reclamação"}];
       

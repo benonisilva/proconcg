@@ -14,7 +14,7 @@
       };
     vm.imagens = function () {
         var indices = [];
-        for (var index = 1; index < 23; index++) {
+        for (var index = 1; index <= 24; index++) {
             var uri = "img/manual/manual-"+index;
             indices.push(uri+".jpg");
             
