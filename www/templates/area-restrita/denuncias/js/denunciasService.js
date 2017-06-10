@@ -52,8 +52,8 @@
             
             var retVal = {
               Tipo:tipos[denuncia.TipoFatoId -1],
-              Descricao : denuncia.Descricao,
-              Data: denuncia.Data,
+              Descricao : denuncia.Descricao.replace(/[^\w\s]/gi, ''),
+              Data: denuncia.Data || new Date().toISOString(),
               Empresa: {
                 Cnpj : denuncia.Empresa.Cnpj,
                 NomeFantasia : denuncia.Empresa.NomeFantasia,
