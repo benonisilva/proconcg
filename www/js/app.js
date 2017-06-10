@@ -6,7 +6,6 @@ angular.module('starter',
         'ionic-material', 
         'ionMdInput',
         'ngCordova',
-        'pdf',
         
         'starter.controllers',
         'stater.services.user',
@@ -155,19 +154,6 @@ angular.module('starter',
             'menuContent': {
                 templateUrl: 'templates/ferramentas/config/config.html',
                 controller: 'ConfigCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-    }
-  })
-
-  .state('app.codigo',{
-      url : 'codigo',
-      views: {
-            'menuContent': {
-                templateUrl: 'templates/ferramentas/codigo/codigo.html',
-                controller : 'CodigoCtrl as vm'
             },
             'fabContent': {
                 template: ''
