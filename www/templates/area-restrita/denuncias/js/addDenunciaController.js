@@ -41,7 +41,7 @@
         Anexos : [],
         Tipo : {}
       };
-
+      vm.logado = $scope.$parent.$parent.logged;
       vm.tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
       
       vm.myActiveSlide = 0;
@@ -123,9 +123,9 @@
               DenunciaService.saveLocal(denuncia);
             }
             
-            $state.go('app.area-restrita');
+            $state.go('app.denuncias-local');
           } else {
-            console.log('You are not sure');
+            console.log('');
           }
         });
       };
@@ -172,6 +172,7 @@
 
       function nextSlide() {
         console.log("click next index: "+vm.slideIndex);
+        //console.log($scope);
         if(vm.form.$error.cnpj){
          alert('Cnpj inválido. Deixe em branco se não souber.');
          return;

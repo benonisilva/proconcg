@@ -166,7 +166,7 @@
         <br />
         <div class="text-center"> 
             <button ng-click="vm.showConfirm(vm.denuncia)" class="button button-energized-900 button-border ink">Salvar</button>
-            <button ng-click="vm.showConfirmEnviar(vm.denuncia)" type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
+            <button ng-if="vm.logado" ng-click="vm.showConfirmEnviar(vm.denuncia)" type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
         </div>
         </div>
       </ion-slide>
