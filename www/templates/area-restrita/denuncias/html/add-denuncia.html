@@ -6,7 +6,7 @@
       <ion-slide> 
           <div class="list card">
             <div class="item item-text-wrap">
-              Informações de uso
+              Informações de uso:
             </div>
             <div class="item item-text-wrap">
               1) No próximo slide você colocará informações gerais sobre sua denúncia;
@@ -166,6 +166,12 @@
         <br />
         <div class="text-center"> 
             <button ng-click="vm.showConfirm(vm.denuncia)" class="button button-energized-900 button-border ink">Salvar</button>
+            <div ng-if="!vm.logado" class="card padding">
+              <p>
+                Sua denúncia será salva no dispositivo móvel,
+                para enviá-la é nescessário fazer seu cadastro e/ou logar-se no sistema.
+              </p>
+            </div>
             <button ng-if="vm.logado" ng-click="vm.showConfirmEnviar(vm.denuncia)" type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
         </div>
         </div>
