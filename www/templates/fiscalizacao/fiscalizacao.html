@@ -1,0 +1,32 @@
+<ion-view view-title="Diligências" cache-view="false">
+    <ion-content class="animate-fade-slide-in">
+<div class="bar bar-header item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="search" ng-model="vm.filterRua" placeholder="Pesquisa por rua">
+  </label>
+</div>
+        <div class="card-item item-divider" ng-repeat="denuncia in vm.fiscalizacao | 
+        filter:{Empresa: {Endereco:{Rua:vm.filterRua}} }" 
+        ui-sref="app.fiscalizacao-detalhes({id:denuncia.AutoConstatacaoId})">
+                
+                <div class="card light-bg ink ink-dark padding">
+                     <p>  <b>Empresa: </b> {{denuncia.Empresa.NomeFantasia}}</p>
+                <p> 
+                   
+                    <b>Endereço:</b> {{denuncia.Empresa.Endereco.Rua}}, 
+                    Número: {{ (denuncia.Empresa.Endereco.Numero==='' || denuncia.Empresa.Endereco.Numero===null) ? "não informado" : denuncia.Empresa.Endereco.Numero   }}.
+                    Bairro {{denuncia.Empresa.Endereco.Bairro}},
+                    Cep : {{denuncia.Empresa.Endereco.Cep | maskcep}}
+                </p>
+                
+                <p>
+                   <b>Data da Diligência</b> {{ denuncia.DataAutuacao.slice(6,19) | date:'dd-MM-yy' }}
+                </p>
+                
+                
+                </div>
+               
+        </div>
+    </ion-content>
+</ion-view>

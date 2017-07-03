@@ -1,0 +1,85 @@
+<ion-view view-title="Digilencia {{vm.id}}">
+    <ion-content scroll="true" >
+         <div class="tabs tabs-stable tabs-icon-top static">
+            <a ng-click="vm.show(2)" class="tab-item">
+                <i class="icon ion-briefcase"></i> Empresa
+            </a>
+            <a ng-click="vm.show(3)" class="tab-item">
+                <i class="icon ion-document"></i> Denúncia
+            </a>
+             <a ng-click="vm.show(4)" class="tab-item">
+                <i class="icon ion-images"></i> Provas
+            </a>
+            <a ng-click="vm.show(5)" class="tab-item">
+                <i class="icon ion-compose"></i> Finalizar
+            </a>
+            <a ng-click="vm.show(1)" class="tab-item">
+                <i class="icon ion-map"></i> Localização
+            </a>
+        </div>
+        <div class="content">
+            <div class="list" ng-show="vm.showEndereco">
+                
+                <div class="item card map">
+                    
+                </div>
+            </div>
+            <div class="list padding" ng-show="vm.showEmpresa">
+                <div class="item">
+                   <b>Nome Fantasia: </b> {{vm.fiscalizacao.Empresa.NomeFantasia}}
+                   
+                </div>
+                <div class="item">
+                   <b>Cnpj: </b> {{vm.fiscalizacao.Empresa.Cnpj | maskcpf}}
+                </div>
+                <div class="item">
+                    <b>Cep: </b> {{vm.fiscalizacao.Empresa.Endereco.Cep | maskcep}}
+                </div>
+                <div class="item">
+                    <b>Rua: </b> {{vm.fiscalizacao.Empresa.Endereco.Rua}} , Numero : {{vm.fiscalizacao.Empresa.Endereco.Numero}}
+                </div>
+                <div class="item">
+                    <b>Bairro: </b> {{vm.fiscalizacao.Empresa.Endereco.Bairro}}
+                </div>    
+
+            </div>
+            <div class="list" ng-show="vm.showConstatacao">
+                <div class="item">
+                    <h3 class="text-center">
+                        Constatação
+                    </h3>
+                    <p class="card">
+                        {{vm.fiscalizacao.Constatacao}}
+                    </p>
+                </div>
+            </div>
+            <div class="list" ng-show="vm.showProvas">
+                <button class="button positive" ng-click="vm.carregar(vm.fiscalizacao.FatoId)" >Carregar Provas</button>
+                <div class="item" ng-repeat="imagem in vm.provas">
+                    <img style="height: auto; width: auto;" ng-src="{{imagem.url}}" alt="prova">
+                </div>
+            </div>
+            <div class="list" ng-show="vm.showFinalizar">
+               <form >
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Mensagem</span>
+                        <input ng-model="vm.dados.Mensagem" type="text" placeholder="Mensagem para o Consumidor" maxlenght="100">
+                    </label>
+                    <div class="item item-input item-select">
+                        <label for="repeatSelect"> Situação: </label>
+                        <select name="repeatSelect" id="repeatSelect" ng-model="vm.dados.StatusId">
+                            <option ng-repeat="option in vm.tipos" value="{{option.StatusId}}">{{option.Nome}}</option>
+                        </select>
+                    </div>
+                    <label>
+                        Data do Ocorrido
+                    </label>
+                    <input type="date" data-date-format="DD MM YY"  placeholder="DD MM YY" ng-model="vm.dados.DataConclusao">
+                    <div class="padding">
+                        <button class="button button-full button-positive-900 ink" ng-click="vm.finalizar(vm.dados)">Finalizar</button>
+                    </div>
+               </form>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

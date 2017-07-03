@@ -8,7 +8,7 @@
 
     function LoginCtrl($scope,$ionicLoading,$state,LoginService,$ionicHistory,$q) { 
     	var vm = this;
-        vm.user = {Email:'',Password:''};
+        vm.user = {Usuario:'',Password:''};
         vm.login = login;
         active();
         function active() {
@@ -39,13 +39,14 @@
                 console.log("login success: "+strArg);
                 $ionicHistory.clearHistory();
                 $scope.$parent.setLogged(true);
-                $state.go("app.area-restrita");
+                $state.go("app.fiscalizacao");
                 
             }else{
                 alert("Email ou senha incorretos, ou não ativou a conta.");
             }
             
         };
+        
         function fnFail(arg){
             var strFail = JSON.stringify(arg);
             console.log("login fail: "+strFail);

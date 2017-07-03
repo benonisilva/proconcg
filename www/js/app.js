@@ -12,8 +12,7 @@ angular.module('starter',
         'starter.services',
         'starter.directives',
         'starter.config',
-        'area-restrita.module',
-        'ferramentas.module'
+        'fiscalizacao.module'
     ])
 
 .run(function($ionicPlatform,$rootScope) {  
@@ -75,21 +74,21 @@ angular.module('starter',
         }
     })
 
-  .state('app.cadastro', {
-        url: '/home/cadastro',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/home/html/cadastro.html',
-                controller: 'CadastroCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-        },
-        params: {
-                profile: null
-        }
-    })
+//   .state('app.cadastro', {
+//         url: '/home/cadastro',
+//         views: {
+//             'menuContent': {
+//                 templateUrl: 'templates/home/html/cadastro.html',
+//                 controller: 'CadastroCtrl as vm'
+//             },
+//             'fabContent': {
+//                 template: ''
+//             }
+//         },
+//         params: {
+//                 profile: null
+//         }
+//     })
 
 //   .state('app.perfil', {
 //         url: '/perfil',
@@ -107,19 +106,19 @@ angular.module('starter',
 //         }
 //     })
 
-  .state('app.localizacao',{
-    url : '/localizacao',
-    views: {
-          'menuContent' : {
-            templateUrl:'templates/ferramentas/localizacao/html/localizacao.html',
-            controller: 'MapCtrl as vm'
-          },
-          'fabContent': {
-            template:''
-          }
-    }
+//   .state('app.localizacao',{
+//     url : '/localizacao',
+//     views: {
+//           'menuContent' : {
+//             templateUrl:'templates/ferramentas/localizacao/html/localizacao.html',
+//             controller: 'MapCtrl as vm'
+//           },
+//           'fabContent': {
+//             template:''
+//           }
+//     }
 
-  })
+//   })
 
 //   .state('app.eventos',{
 //     url : '/eventos',
@@ -135,19 +134,19 @@ angular.module('starter',
 
 //   })
 
-  .state('app.info',{
-    url : '/informacoes',
-    views: {
-          'menuContent' : {
-            templateUrl:'templates/ferramentas/informacoes/html/informacoes.html',
-            controller : 'InfoCtrl as vm'
-          },
-          'fabContent': {
-            template:''
-          }
-    }
+//   .state('app.info',{
+//     url : '/informacoes',
+//     views: {
+//           'menuContent' : {
+//             templateUrl:'templates/ferramentas/informacoes/html/informacoes.html',
+//             controller : 'InfoCtrl as vm'
+//           },
+//           'fabContent': {
+//             template:''
+//           }
+//     }
 
-  })
+//   })
   .state('app.config',{
       url : 'config',
       views: {

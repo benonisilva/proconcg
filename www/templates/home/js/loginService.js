@@ -21,8 +21,8 @@
             console.log("LoginService.getUser: ");
             console.log(login||"null");
             
-            var url = ConfigService.get()+'/Account/Login';
-
+            var url = ConfigService.get()+'Account/AgenteLogin';
+            
             var deferred = $q.defer();
             $http.post(url,login)
               .then(_successCallback, _errorCallback).catch(function(e){
@@ -37,7 +37,7 @@
                     console.log("getUser:_successCallback:login:success:true");
                     var user = window.localStorage.getItem('_user');
                     if(user === null || user === undefined){
-                         var userObj = {Email:login.Email,Password:login.Password};
+                         var userObj = {Usuario:login.Usuario,Password:login.Password};
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
                     deferred.resolve(true);
@@ -66,7 +66,7 @@
                 console.log(userObj);
                 deferred.resolve(userObj);
             }else{
-                var userObj = {Email:login.Email,Password:login.Password};
+                var userObj = {Usuario:login.Usuario,Password:login.Password};
                 deferred.resolve(userObj);
             }
 

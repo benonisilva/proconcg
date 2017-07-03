@@ -6,13 +6,11 @@
         .module('starter.controllers')
         .controller('HomeCtrl', HomeCtrl);
         HomeCtrl.$inject = ['$scope', '$state', 
-        '$ionicLoading','FacebookAuthService'];
+        '$ionicLoading'];
     
-    function HomeCtrl($scope, $state, $ionicLoading,FacebookAuthService) { 
+    function HomeCtrl($scope, $state, $ionicLoading) { 
     	var vm = this;
     	var status;
-    	var profileInfo;
-        vm.facebookSignIn = facebookSignIn;
 		
 		function fnSuccess(resp){
 			console.log("HomeCtrl.facebookSignIn.fnSuccess:");
@@ -24,11 +22,6 @@
 			console.log("HomeCtrl.facebookSignIn.fnFail:");
             console.log(resp || "");
 		};
-
-        function facebookSignIn () {
-            console.log("HomeCtrl.facebookSignIn:");
-            FacebookAuthService.getLoginStatus().then(fnSuccess,fnFail);
-        };    	
 
     }
 })();
