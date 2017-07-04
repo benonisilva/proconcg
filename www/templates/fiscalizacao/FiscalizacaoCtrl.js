@@ -12,12 +12,15 @@
     	var vm = this;
         vm.fiscalizacao = [];
 
-        
+
         
         active();
         
         function active() {
            console.log("FiscalizacaoCtrl:active");
+           $ionicHistory.clearCache();
+           $ionicHistory.removeBackView();
+           $ionicHistory.clearHistory();
            vm.fiscalizacao = fiscalizacao.data.autos;
            console.log(fiscalizacao.data.autos);
            return vm.fiscalizacao;

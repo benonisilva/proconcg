@@ -6,12 +6,12 @@
     <input type="search" ng-model="vm.filterRua" placeholder="Pesquisa por rua">
   </label>
 </div>
-        <div class="card-item item-divider" ng-repeat="denuncia in vm.fiscalizacao | 
+ <div class="card-item item-divider" ng-repeat="denuncia in vm.fiscalizacao | 
         filter:{Empresa: {Endereco:{Rua:vm.filterRua}} }" 
-        ui-sref="app.fiscalizacao-detalhes({id:denuncia.AutoConstatacaoId})">
+        ui-sref="app.fiscalizacao-detalhes({id:denuncia.AutoConstatacaoId})" style="background-color: #c5c6d8;">
                 
                 <div class="card light-bg ink ink-dark padding">
-                     <p>  <b>Empresa: </b> {{denuncia.Empresa.NomeFantasia}}</p>
+                     <p>  <b>Empresa: </b> <b> {{denuncia.Empresa.NomeFantasia}}</b> </p>
                 <p> 
                    
                     <b>Endereço:</b> {{denuncia.Empresa.Endereco.Rua}}, 

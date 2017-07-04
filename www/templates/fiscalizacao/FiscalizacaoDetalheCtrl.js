@@ -15,8 +15,8 @@
         vm.id = 0;
         vm.provas = [];
         vm.tipos = [ {StatusId:2,Nome : "Constatado"}, {StatusId:3,Nome : "Não Constatado"}];
-        vm.showEndereco = true;
-        vm.showEmpresa = false;
+        vm.showEndereco = false;
+        vm.showEmpresa = true;
         vm.showConstatacao = false;
         vm.showProvas = false;
         vm.showFinalizar = false;
@@ -93,7 +93,11 @@
                     vm.showFinalizar = true;
                     break;
                 default:
-                   _openModalMap();
+                    vm.showEndereco = false;
+                    vm.showEmpresa = true;
+                    vm.showConstatacao = false;
+                    vm.showProvas = false;
+                    vm.showFinalizar = false;
                     break;
             }
             return;
@@ -119,12 +123,12 @@
                 
            });
            console.log("FiscalizacaoDetalheCtrl:active");
-           $ionicModal.fromTemplateUrl('templates/fiscalizacao/modal-map.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                $scope.modal = modal;
-            });
+        //    $ionicModal.fromTemplateUrl('templates/fiscalizacao/modal-map.html', {
+        //         scope: $scope,
+        //         animation: 'slide-in-up'
+        //     }).then(function(modal) {
+        //         $scope.modal = modal;
+        //     });
            
         };
     }    

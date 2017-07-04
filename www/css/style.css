@@ -147,3 +147,9 @@ background-color: #FFBABA;
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.fisc {
+    font-size: 50px;
+    color: #0B1D4A;
+    padding-top: 80px;
+}

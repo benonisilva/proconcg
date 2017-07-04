@@ -1,4 +1,4 @@
-<ion-view view-title="Digilencia {{vm.id}}">
+<ion-view view-title="Digilência No. {{vm.id}}">
     <ion-content scroll="true" >
          <div class="tabs tabs-stable tabs-icon-top static">
             <a ng-click="vm.show(2)" class="tab-item">
@@ -13,17 +13,8 @@
             <a ng-click="vm.show(5)" class="tab-item">
                 <i class="icon ion-compose"></i> Finalizar
             </a>
-            <a ng-click="vm.show(1)" class="tab-item">
-                <i class="icon ion-map"></i> Localização
-            </a>
         </div>
         <div class="content">
-            <div class="list" ng-show="vm.showEndereco">
-                
-                <div class="item card map">
-                    
-                </div>
-            </div>
             <div class="list padding" ng-show="vm.showEmpresa">
                 <div class="item">
                    <b>Nome Fantasia: </b> {{vm.fiscalizacao.Empresa.NomeFantasia}}
@@ -46,7 +37,7 @@
             <div class="list" ng-show="vm.showConstatacao">
                 <div class="item">
                     <h3 class="text-center">
-                        Constatação
+                        Ocorrido
                     </h3>
                     <p class="card">
                         {{vm.fiscalizacao.Constatacao}}
@@ -56,13 +47,13 @@
             <div class="list" ng-show="vm.showProvas">
                 <button class="button positive" ng-click="vm.carregar(vm.fiscalizacao.FatoId)" >Carregar Provas</button>
                 <div class="item" ng-repeat="imagem in vm.provas">
-                    <img style="height: auto; width: auto;" ng-src="{{imagem.url}}" alt="prova">
+                    <img style="height: 400px; width: auto; display:block;" ng-src="{{imagem.url}}" alt="prova">
                 </div>
             </div>
             <div class="list" ng-show="vm.showFinalizar">
                <form >
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label">Mensagem</span>
+                        <span>Mensagem:</span>
                         <input ng-model="vm.dados.Mensagem" type="text" placeholder="Mensagem para o Consumidor" maxlenght="100">
                     </label>
                     <div class="item item-input item-select">
@@ -71,10 +62,15 @@
                             <option ng-repeat="option in vm.tipos" value="{{option.StatusId}}">{{option.Nome}}</option>
                         </select>
                     </div>
-                    <label>
-                        Data do Ocorrido
+                  <div class="padding">
+                      <label>
+                        <span class="input-label">Data</span>
+                        <input type="date" data-date-format="DD MM YY"  placeholder="DD MM YY" ng-model="vm.dados.DataConclusao">
                     </label>
-                    <input type="date" data-date-format="DD MM YY"  placeholder="DD MM YY" ng-model="vm.dados.DataConclusao">
+                  </div>
+                    <div>
+                        
+                    </div>
                     <div class="padding">
                         <button class="button button-full button-positive-900 ink" ng-click="vm.finalizar(vm.dados)">Finalizar</button>
                     </div>

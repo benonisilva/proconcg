@@ -37,9 +37,11 @@
             $ionicLoading.hide();
             if(arg===true){    
                 console.log("login success: "+strArg);
-                $ionicHistory.clearHistory();
                 $scope.$parent.setLogged(true);
                 $state.go("app.fiscalizacao");
+                $ionicHistory.clearCache();
+                $ionicHistory.removeBackView();
+                $ionicHistory.clearHistory();
                 
             }else{
                 alert("Email ou senha incorretos, ou não ativou a conta.");
@@ -57,7 +59,6 @@
                 alert("Algo Deu Errado");
             }
            
-            
         };
 
         function getLocal () {
