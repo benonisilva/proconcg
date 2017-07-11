@@ -60,10 +60,7 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyBvskxklfHrSRImEIfszUr9gmGR9YWgmx8"
-      }
+      "ionic-plugin-keyboard": {}
     },
     "platforms": [
       "android"
