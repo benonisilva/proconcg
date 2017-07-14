@@ -1,11 +1,10 @@
 {
-<<<<<<< HEAD
     "name": "proconcg",
     "version": "0.1.8",
     "description": "ProconCGFiscalizacao: LightInfocon",
     "dependencies": {
         "angular-cookies": "^1.6.4",
-        "cordova-android": "^6.2.3",
+        "cordova-android": "^6.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-camera": "~2.4.1",
         "cordova-plugin-console": "~1.0.6",
@@ -13,7 +12,6 @@
         "cordova-plugin-device": "~1.1.5",
         "cordova-plugin-file": "~4.3.0",
         "cordova-plugin-file-transfer": "~1.6.0",
-        "cordova-plugin-googlemaps": "^1.4.1",
         "cordova-plugin-splashscreen": "~4.0.2",
         "cordova-plugin-whitelist": "~1.3.2",
         "gulp": "^3.5.6",
@@ -21,71 +19,8 @@
         "gulp-minify-css": "^0.3.0",
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^1.3.3",
+        "gulp-update": "0.0.2",
         "ionic-plugin-keyboard": "~2.2.1"
-=======
-  "name": "proconcg",
-  "version": "0.1.8",
-  "description": "ProconCGFiscalizacao: LightInfocon",
-  "dependencies": {
-    "angular-cookies": "^1.6.4",
-    "cordova-android": "^6.2.3",
-    "cordova-ios": "^4.4.0",
-    "cordova-plugin-camera": "~2.4.1",
-    "cordova-plugin-console": "~1.0.6",
-    "cordova-plugin-crosswalk-webview": "~2.3.0",
-    "cordova-plugin-device": "~1.1.5",
-    "cordova-plugin-file": "~4.3.0",
-    "cordova-plugin-file-transfer": "~1.6.0",
-    "cordova-plugin-googlemaps": "^1.4.1",
-    "cordova-plugin-splashscreen": "~4.0.2",
-    "cordova-plugin-whitelist": "~1.3.2",
-    "gulp": "^3.5.6",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^1.3.3",
-    "ionic-plugin-keyboard": "~2.2.1"
-  },
-  "devDependencies": {
-    "bower": "^1.3.3",
-    "eslint-config-ionic": "0.0.2",
-    "eslint-plugin-angular": "^2.3.0",
-    "gulp-util": "^2.2.14",
-    "shelljs": "^0.3.0"
-  },
-  "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-camera",
-    "cordova-plugin-whitelist"
-  ],
-  "cordovaPlatforms": [
-    "android",
-    "ios"
-  ],
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-camera": {
-        "CAMERA_USAGE_DESCRIPTION": "salvar prova no ios",
-        "PHOTOLIBRARY_USAGE_DESCRIPTION": "provas salvas no seu ios"
-      },
-      "cordova-plugin-console": {},
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      },
-      "cordova-plugin-device": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {}
->>>>>>> 2a1e0051809c57c5759545b21e9f3af1325a2d21
     },
     "devDependencies": {
         "bower": "^1.3.3",
@@ -103,8 +38,8 @@
         "cordova-plugin-whitelist"
     ],
     "cordovaPlatforms": [
-        "android",
-        "ios"
+        "ios",
+        "android"
     ],
     "cordova": {
         "plugins": {
@@ -125,13 +60,11 @@
             "cordova-plugin-file-transfer": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "cordova-plugin-googlemaps": {
-                "API_KEY_FOR_ANDROID": "AIzaSyBvskxklfHrSRImEIfszUr9gmGR9YWgmx8"
-            }
+            "ionic-plugin-keyboard": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
