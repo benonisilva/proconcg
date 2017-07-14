@@ -1,0 +1,11 @@
+/typings
+/plugins
+/platforms
+/node_modules
+/bower_components
+/.vscode
+/.eslintrc
+/awspass.txt
+/damandas_03_5.txt
+/*.apk
+/telalogin.png
