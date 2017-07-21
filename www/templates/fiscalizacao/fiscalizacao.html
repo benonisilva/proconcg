@@ -6,8 +6,8 @@
     <input type="search" ng-model="vm.filterRua" placeholder="Pesquisa por rua">
   </label>
 </div>
-<div class="text-center">
-    <button ng-click="vm.recarregar()">Carregar Novos</button>
+<div class="text-center padding">
+    <button class="button button-block button-positive icon-left ion-arrow-down-a" ng-click="vm.recarregar()">Carregar Novos</button>
 </div>
  <div class="card-item item-divider" ng-repeat="denuncia in vm.fiscalizacao | 
         filter:{Empresa: {Endereco:{Rua:vm.filterRua}} }" 
