@@ -38,8 +38,8 @@
            
             //console.log("HttpInterceptor.responseError");
             //console.log(rejection);
-            if(rejection.status===404){
-              alert("Não tem permissão");
+            if(rejection.status===404 || rejection.status===401){
+              alert("Faça login novamente.");
             }
             return $q.reject(rejection);
         }

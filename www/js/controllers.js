@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, 
-  $ionicPopover, $timeout,$ionicLoading) {
+.controller('AppCtrl', function($scope,$ionicPopup, $timeout,$ionicLoading,LoginService, $state, $ionicHistory) {
     
     $scope.loginData = {};
     $scope.isExpanded = false;
@@ -15,6 +14,28 @@ angular.module('starter.controllers', [])
             this.classList.toggle('active');
         });
     }
+
+     $scope.sair = function () {
+        
+        var confirmaSairPopup = $ionicPopup.confirm({
+            title: 'Sair',
+            subTitle: 'Deseja Sair ?',
+        });
+
+        confirmaSairPopup.then(function(res) {
+            console.log('Tapped!', res);
+            if(res){
+                LoginService.sair().then(function (result) {
+                    $scope.setLogged(false);
+                    $ionicHistory.clearCache();
+                    $ionicHistory.removeBackView();
+                    $ionicHistory.clearHistory();
+                    $state.go("app.home");
+                });
+            }
+        });    
+        
+     }
 
     ////////////////////////////////////////
     // Layout Methods
@@ -90,7 +111,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.showLoading = function(msg, duration) {
-    $ionicLoading.show({
+     $ionicLoading.show({
       template: msg,
       duration: 1000 || duration
     });

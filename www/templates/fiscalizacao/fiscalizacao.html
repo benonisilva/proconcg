@@ -6,6 +6,9 @@
     <input type="search" ng-model="vm.filterRua" placeholder="Pesquisa por rua">
   </label>
 </div>
+<div class="text-center">
+    <button ng-click="vm.recarregar()">Carregar Novos</button>
+</div>
  <div class="card-item item-divider" ng-repeat="denuncia in vm.fiscalizacao | 
         filter:{Empresa: {Endereco:{Rua:vm.filterRua}} }" 
         ui-sref="app.fiscalizacao-detalhes({id:denuncia.AutoConstatacaoId})" style="background-color: #c5c6d8;">

@@ -5,14 +5,27 @@
         .module('starter.controllers')
         .controller('FiscalizacaoCtrl', FiscalizacaoCtrl);
         FiscalizacaoCtrl.$inject = ['$scope',
-           '$ionicLoading','$state','fiscalizacao','$ionicHistory','$q'];
+           '$ionicLoading','$state','fiscalizacao','$ionicHistory','$q','FiscalizacaoService'];
 
     function FiscalizacaoCtrl($scope,
-        $ionicLoading,$state,fiscalizacao,$ionicHistory,$q) { 
+        $ionicLoading,$state,fiscalizacao,$ionicHistory,$q,FiscalizacaoService) { 
     	var vm = this;
         vm.fiscalizacao = [];
 
+        $scope.$watch(
+         "vm.fiscalizacao",
+          function( newValue, oldValue ) {
+              vm.fiscalizacao = newValue;
+            }
+        );
 
+        vm.recarregar = function () {
+             console.log("FiscalizacaoCtrl:recarregar");
+             FiscalizacaoService.getFiscalizacao().then(function (result){
+              vm.fiscalizacao = result.data.autos;
+              return vm.fiscalizacao;
+            });
+        }
         
         active();
         

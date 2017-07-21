@@ -23,6 +23,9 @@
                 <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.fiscalizacao">
                     Denúncias
                 </ion-item>
+                <ion-item ng-if="($parent.logged)" ng-click="sair()" nav-clear menu-close>
+                    Sair
+                </ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>

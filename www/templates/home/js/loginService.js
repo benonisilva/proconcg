@@ -12,10 +12,44 @@
         login = {
     		
             getUser : getUser,
-            getLogin : getLogin
+            getLogin : getLogin, 
+            isLogin : isLogin,
+            sair : sair
     	};
 
-    	return login;
+        return login;
+        
+        function sair () {
+            var url = ConfigService.get()+'Account/Logout';
+            var deferred = $q.defer();
+            $http.get(url)
+               .then(function (result){
+                  deferred.resolve(true);
+              }, function (error){
+                  deferred.reject(false);
+              }).catch(function(e){
+                console.log(e || "isLogin:catch  error");
+            });
+            return deferred.promise;
+        }
+
+        function isLogin () {
+            var url = ConfigService.get()+'Teste/Teste';
+             var deferred = $q.defer();
+              $http.get(url)
+               .then(function (result){
+                    console.log(result);
+                    deferred.resolve(true);
+              }, function (error){
+                  deferred.reject(false);
+              }).catch(function(e){
+                console.log(e || "isLogin:catch  error");
+            });
+            return deferred.promise;
+        }
+
+        
+
         function getUser(login){
             
             console.log("LoginService.getUser: ");
