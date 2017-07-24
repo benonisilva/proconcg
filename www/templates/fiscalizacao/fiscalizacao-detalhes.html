@@ -34,18 +34,37 @@
                 </div>
                 <div class="item">
                     <b>Bairro: </b> {{vm.fiscalizacao.Empresa.Endereco.Bairro}}
-                </div>    
+                </div>
+                <div class="item">
+                    <button class="button button-block button-positive icon-left ion-map" ng-click="vm.openGeo(vm.fiscalizacao.Empresa.Endereco)" >Localizar Endereço</button>
+                </div>       
 
             </div>
             <div class="list card" ng-show="vm.showConstatacao">
                 <div class="item item-text-wrap" >
                     <h3 class="text-center">
-                        Ocorrido:
+                        Ocorrido
                     </h3>
                     <p>
                         {{vm.fiscalizacao.Constatacao}}
                     </p>
                 </div>
+                <hr />
+                <div class="item item-text-wrap" > 
+                    <h3 class="text-center">
+                        Reclamante
+                    </h3>
+                </div>
+                <div class="item">
+                    <b>Nome: </b> {{vm.consumidor.Nome}}
+                </div>
+                <div class="item">
+                    <b>Nome: </b> {{vm.consumidor.Email}}
+                </div>
+                <div class="item">
+                    <b>Nome: </b> {{vm.consumidor.Telefone}}
+                </div>
+
             </div>
             <div class="list" ng-show="vm.showProvas">
                 <button  class="button button-block button-positive icon-left ion-arrow-down-a" ng-click="vm.carregar(vm.fiscalizacao.FatoId)" >Carregar Provas</button>
@@ -87,13 +106,13 @@
             <div class="list" ng-show="vm.showMudarAgente">
                 
                 <div class="item item-input item-select">
-                    <label for="repeatSelect"> Situação: </label>
+                    <label for="repeatSelect"> Fiscais: </label>
                     <select name="repeatSelect" id="repeatSelect" ng-model="vm.dados.AgenteId">
                         <option ng-repeat="option in vm.agentes" value="{{option.AgenteId}}">{{option.Nome}}</option>
                     </select>
                 </div>
                 <div class="padding">
-                    <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.mudarAgente(vm.id,vm.dados.AgenteId)">Mudar Agente</button>
+                    <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.mudarAgente(vm.id,vm.dados.AgenteId)">Mudar Fiscal</button>
                 </div>
             </div>
 

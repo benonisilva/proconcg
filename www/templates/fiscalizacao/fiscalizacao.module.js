@@ -1,7 +1,33 @@
 (function() {
     'use strict';
     angular.module('fiscalizacao.module',[])
-      .config(routeConfig);
+      .config(routeConfig).run(function ($rootScope){
+        
+        $rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event){
+            console.log("cordovaInAppBrowser:loadstart");
+        });
+
+        $rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event){
+            // insert CSS via code / file
+            $cordovaInAppBrowser.insertCSS({
+                code: 'body {background-color:blue;}'
+            });
+
+            // insert Javascript via code / file
+            $cordovaInAppBrowser.executeScript({
+                file: 'script.js'
+            });
+            console.log("cordovaInAppBrowser:loadstop");
+        });
+
+        $rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event){
+            console.log("cordovaInAppBrowser:loaderror");
+        });
+
+        $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event){
+             console.log("cordovaInAppBrowser:exit");
+        });
+      });
 
      function routeConfig($stateProvider) {
        $stateProvider.

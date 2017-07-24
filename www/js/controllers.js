@@ -25,6 +25,8 @@ angular.module('starter.controllers', [])
         var confirmaSairPopup = $ionicPopup.confirm({
             title: 'Sair',
             subTitle: 'Deseja Sair ?',
+            cancelText: 'Não',
+            okText: 'sim'
         });
 
         confirmaSairPopup.then(function(res) {

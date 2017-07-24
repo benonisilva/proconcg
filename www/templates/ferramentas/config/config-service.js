@@ -17,7 +17,7 @@
             }
 
             function get() {
-                return "http://localhost:60301/";
+                return "http://189.80.19.75:8080/procon-admin-teste/";
             }
         }
 

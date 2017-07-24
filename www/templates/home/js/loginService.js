@@ -20,7 +20,7 @@
         return login;
         
         function sair () {
-            var url = ConfigService.get()+'Account/Logout';
+            var url = ConfigService.get()+'Account/Sair';
             var deferred = $q.defer();
             $http.get(url)
                .then(function (result){
@@ -41,7 +41,7 @@
                     console.log(result||"result null");
                     deferred.resolve(result.data||null);
               }, function (error){
-                  deferred.reject(null);
+                  deferred.reject(error);
               }).catch(function(e){
                 console.log(e || "isLogin:catch  error");
             });
