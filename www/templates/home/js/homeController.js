@@ -24,13 +24,14 @@
                 
                 console.log("HomeCtrl.LoginService.getUser:" + result);
                 $ionicLoading.hide();
-                
-                if(result===true){
+                var success = result ? result.success : false;
+                if(success){
                     
                     $scope.$parent.setLogged(true);
+                    $scope.$parent.setLoginData({ isAdmin : result.isAdmin });
                     $ionicHistory.clearCache();
-                    $ionicHistory.removeBackView();
                     $ionicHistory.clearHistory();
+                    $ionicHistory.removeBackView();
                     $state.go("app.fiscalizacao");
                 
                 }else {

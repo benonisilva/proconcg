@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope,$ionicPopup, $timeout,$ionicLoading,LoginService, $state, $ionicHistory) {
     
-    $scope.loginData = {};
+    $scope.loginData = { isAdmin : false };
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
     $scope.hasHeaderFabRight = false;
@@ -13,6 +13,11 @@ angular.module('starter.controllers', [])
         navIcons.addEventListener('click', function() {
             this.classList.toggle('active');
         });
+    }
+
+    $scope.setLoginData = function (data){
+        $scope.loginData = data;
+        return $scope.loginData;
     }
 
      $scope.sair = function () {

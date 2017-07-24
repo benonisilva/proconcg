@@ -35,13 +35,16 @@
         function fnSuccess(arg){
             var strArg = JSON.stringify(arg);
             $ionicLoading.hide();
-            if(arg===true){    
+            if(arg.success===true){    
                 console.log("login success: "+strArg);
+                
                 $scope.$parent.setLogged(true);
-                $state.go("app.fiscalizacao");
+                $scope.$parent.setLoginData({ isAdmin : arg.isAdmin });
+                $ionicHistory.clearHistory();
                 $ionicHistory.clearCache();
                 $ionicHistory.removeBackView();
-                $ionicHistory.clearHistory();
+               
+                $state.go("app.fiscalizacao");
                 
             }else{
                 alert("Email ou senha incorretos, ou não ativou a conta.");

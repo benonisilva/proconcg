@@ -153,3 +153,7 @@ background-color: #FFBABA;
     color: #0B1D4A;
     padding-top: 80px;
 }
+
+.button+.title {
+    text-align: center  !important;
+}

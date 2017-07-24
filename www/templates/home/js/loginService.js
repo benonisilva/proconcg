@@ -34,14 +34,14 @@
         }
 
         function isLogin () {
-            var url = ConfigService.get()+'Teste/Teste';
+            var url = ConfigService.get()+'Teste/Perfil';
              var deferred = $q.defer();
               $http.get(url)
                .then(function (result){
-                    console.log(result);
-                    deferred.resolve(true);
+                    console.log(result||"result null");
+                    deferred.resolve(result.data||null);
               }, function (error){
-                  deferred.reject(false);
+                  deferred.reject(null);
               }).catch(function(e){
                 console.log(e || "isLogin:catch  error");
             });
@@ -74,10 +74,10 @@
                          var userObj = {Usuario:login.Usuario,Password:login.Password};
                          window.localStorage.setItem('_user',JSON.stringify(userObj));
                     }
-                    deferred.resolve(true);
+                    deferred.resolve(data.data);
                 }else{
                     console.log("getUser:_successCallback:success:false");
-                    deferred.resolve(false);
+                    deferred.resolve(data.data);
                 }
                 
             };

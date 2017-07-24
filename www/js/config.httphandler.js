@@ -38,7 +38,7 @@
            
             //console.log("HttpInterceptor.responseError");
             //console.log(rejection);
-            if(rejection.status===404 || rejection.status===401){
+            if(rejection.status===404 || rejection.status===403){
               alert("Faça login novamente.");
             }
             return $q.reject(rejection);

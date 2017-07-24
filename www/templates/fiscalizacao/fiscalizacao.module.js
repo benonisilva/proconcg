@@ -21,7 +21,8 @@
                     template: ''
                 }
             }
-        }).state('app.fiscalizacao-detalhes', {
+        })
+        .state('app.fiscalizacao-detalhes', {
             url: '/fiscalizacao-detalhes/:id',
             views: {
                 'menuContent': {

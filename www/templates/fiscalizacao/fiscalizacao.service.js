@@ -10,10 +10,41 @@
       var fiscalizacao = {
         getFiscalizacao : getFiscalizacao,
         getProvas : getImages,
-        finalizar : finalizar
+        finalizar : finalizar,
+        mudarAgente : mudarAgente,
+        getAgentes : getAgentes
       }
 
       return fiscalizacao;
+
+      function mudarAgente (autoId,agenteId) {
+         console.log(agenteId);
+         var q = $q.defer();
+         var url = ConfigService.get() + 'Auto/MudarAgente?autoId=' + autoId +"&agenteId="+agenteId;
+         $http.get(url).then(_successCallback,_errorCallback);
+         function _successCallback(data){
+          q.resolve(data);
+        }
+
+        function _errorCallback(err){
+            q.reject(err);
+        }
+          return q.promise;  
+      }
+
+      function getAgentes () {
+        var q = $q.defer();
+        var url = ConfigService.get() + 'Agente/Listar';
+        $http.get(url).then(_successCallback,_errorCallback);
+        function _successCallback(data){
+          q.resolve(data);
+        }
+
+        function _errorCallback(err){
+            q.reject(err);
+        }
+          return q.promise;  
+      }
 
       function finalizar(dados) {
          var url = ConfigService.get() + 'Auto/FinalizarDenuncia';

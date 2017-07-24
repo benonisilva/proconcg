@@ -14,12 +14,14 @@
     	var vm = this;
         vm.id = 0;
         vm.provas = [];
+        vm.agentes = [];
         vm.tipos = [ {StatusId:2,Nome : "Constatado"}, {StatusId:3,Nome : "Não Constatado"}];
         vm.showEndereco = false;
         vm.showEmpresa = true;
         vm.showConstatacao = false;
         vm.showProvas = false;
         vm.showFinalizar = false;
+        vm.showMudarAgente = false;
         
         $scope.$watch('vm.provas', function(n, old) {
             console.log(n);
@@ -33,6 +35,12 @@
             FiscalizacaoService.finalizar(dados).then(function(dados){
                 $ionicLoading.hide();
                 $state.go('app.fiscalizacao');
+            });
+        }
+
+        vm.mudarAgente = function (autoid,agenteid){
+            FiscalizacaoService.mudarAgente(autoid,agenteid).then(function (result){
+                console.log(result);
             });
         }
 
@@ -70,6 +78,7 @@
                     vm.showConstatacao = false;
                     vm.showProvas = false;
                     vm.showFinalizar = false;
+                    vm.showMudarAgente = false;
                     break;
                 case 3:
                     vm.showEndereco = false;
@@ -77,6 +86,7 @@
                     vm.showConstatacao = true;
                     vm.showProvas = false;
                     vm.showFinalizar = false;
+                    vm.showMudarAgente = false;
                     break;
                 case 4:
                     vm.showEndereco = false;
@@ -84,6 +94,7 @@
                     vm.showConstatacao = false;
                     vm.showProvas = true;
                     vm.showFinalizar = false;
+                    vm.showMudarAgente = false;
                     break;
                 case 5:
                     vm.showEndereco = false;
@@ -91,6 +102,15 @@
                     vm.showConstatacao = false;
                     vm.showProvas = false;
                     vm.showFinalizar = true;
+                    vm.showMudarAgente = false;
+                    break;
+                case 6:
+                    vm.showEndereco = false;
+                    vm.showEmpresa = false;
+                    vm.showConstatacao = false;
+                    vm.showProvas = false;
+                    vm.showFinalizar = false;
+                    vm.showMudarAgente = true;
                     break;
                 default:
                     vm.showEndereco = false;
@@ -113,6 +133,7 @@
         function active() {
            var id = $stateParams.id;
            vm.id = id;
+           
            DiligenciaService.getFiscalizacao(id).then(function(result){
                 
                 if(result){
@@ -122,14 +143,11 @@
                 }  
                 
            });
-           console.log("FiscalizacaoDetalheCtrl:active");
-        //    $ionicModal.fromTemplateUrl('templates/fiscalizacao/modal-map.html', {
-        //         scope: $scope,
-        //         animation: 'slide-in-up'
-        //     }).then(function(modal) {
-        //         $scope.modal = modal;
-        //     });
-           
+            FiscalizacaoService.getAgentes().then(function (data){
+                vm.agentes = data.data.agentes;
+                return vm;
+            }); 
+        console.log("FiscalizacaoDetalheCtrl:active");
         };
     }    
 })();

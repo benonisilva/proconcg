@@ -5,10 +5,10 @@
         .module('starter.controllers')
         .controller('FiscalizacaoCtrl', FiscalizacaoCtrl);
         FiscalizacaoCtrl.$inject = ['$scope',
-           '$ionicLoading','$state','fiscalizacao','$ionicHistory','$q','FiscalizacaoService'];
+           '$ionicLoading','$state','fiscalizacao','$ionicHistory','$q','FiscalizacaoService','$timeout','$ionicNavBarDelegate'];
 
     function FiscalizacaoCtrl($scope,
-        $ionicLoading,$state,fiscalizacao,$ionicHistory,$q,FiscalizacaoService) { 
+        $ionicLoading,$state,fiscalizacao,$ionicHistory,$q,FiscalizacaoService,$timeout,$ionicNavBarDelegate) { 
     	var vm = this;
         vm.fiscalizacao = [];
 
@@ -18,6 +18,14 @@
               vm.fiscalizacao = newValue;
             }
         );
+
+        $scope.$on('$ionicView.enter', function(){
+            console.log("ionicView.enter")
+            $timeout(function(){
+                $ionicNavBarDelegate.align('center');
+                $ionicHistory.removeBackView();
+            });
+        });
 
         vm.recarregar = function () {
              console.log("FiscalizacaoCtrl:recarregar");

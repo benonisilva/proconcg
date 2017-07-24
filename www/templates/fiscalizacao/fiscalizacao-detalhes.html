@@ -13,6 +13,9 @@
             <a ng-click="vm.show(5)" class="tab-item">
                 <i class="icon ion-compose"></i> Finalizar
             </a>
+            <a ng-if="$parent.loginData.isAdmin" ng-click="vm.show(6)" class="tab-item">
+                <i class="icon ion-person"></i> Mudar Fiscal
+            </a>
         </div>
         <div class="content">
             <div class="list padding" ng-show="vm.showEmpresa">
@@ -45,9 +48,13 @@
                 </div>
             </div>
             <div class="list" ng-show="vm.showProvas">
-                <button class="button positive" ng-click="vm.carregar(vm.fiscalizacao.FatoId)" >Carregar Provas</button>
-                <div class="item" ng-repeat="imagem in vm.provas">
-                    <img style="height: 400px; width: auto; display:block;" ng-src="{{imagem.url}}" alt="prova">
+                <button  class="button button-block button-positive icon-left ion-arrow-down-a" ng-click="vm.carregar(vm.fiscalizacao.FatoId)" >Carregar Provas</button>
+                <div class="card-item">
+                    <a class="image">
+                        <div class="item" ng-repeat="imagem in vm.provas">
+                            <img style="height: 500px; width: auto; display:block;" ng-src="{{imagem.url}}" alt="prova">
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="list" ng-show="vm.showFinalizar">
@@ -72,10 +79,24 @@
                         
                     </div>
                     <div class="padding">
-                        <button class="button button-full button-positive-900 ink" ng-click="vm.finalizar(vm.dados)">Finalizar</button>
+                        <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.finalizar(vm.dados)">Finalizar</button>
                     </div>
                </form>
             </div>
+
+            <div class="list" ng-show="vm.showMudarAgente">
+                
+                <div class="item item-input item-select">
+                    <label for="repeatSelect"> Situação: </label>
+                    <select name="repeatSelect" id="repeatSelect" ng-model="vm.dados.AgenteId">
+                        <option ng-repeat="option in vm.agentes" value="{{option.AgenteId}}">{{option.Nome}}</option>
+                    </select>
+                </div>
+                <div class="padding">
+                    <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.mudarAgente(vm.id,vm.dados.AgenteId)">Mudar Agente</button>
+                </div>
+            </div>
+
         </div>
     </ion-content>
 </ion-view>
