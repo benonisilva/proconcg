@@ -2,13 +2,11 @@ angular.module('starter',
     [
         'ionic' ,
         'ui.utils.masks' ,
-        'ionicSelect' ,
         'ionic-material', 
         'ionMdInput',
         'ngCordova',
         
         'starter.controllers',
-        'stater.services.user',
         'starter.services',
         'starter.directives',
         'starter.config',
@@ -73,18 +71,6 @@ angular.module('starter',
             }
         }
     })
-  .state('app.config',{
-      url : 'config',
-      views: {
-            'menuContent': {
-                templateUrl: 'templates/ferramentas/config/config.html',
-                controller: 'ConfigCtrl as vm'
-            },
-            'fabContent': {
-                template: ''
-            }
-    }
-  })
 
   .state('app.login', {
         url: '/home/login',
