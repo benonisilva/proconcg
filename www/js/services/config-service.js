@@ -5,6 +5,7 @@
         .factory('ConfigService', ConfigService);         
 
         function ConfigService() {
+            
             var config = {
                 set : set,
                 get : get
