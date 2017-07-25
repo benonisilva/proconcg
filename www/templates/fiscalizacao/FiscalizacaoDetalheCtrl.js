@@ -47,7 +47,7 @@
                 if(isIOS) url = 'maps://?q=';
                 if(endereco===null ||endereco===undefined ) endereco = ""
 
-                $cordovaInAppBrowser.open(url+  endereco.Rua + ' Cep:' + endereco.Cep +' Numero: ' +endereco.Numero, '_system', options)
+                $cordovaInAppBrowser.open(url+  endereco.Rua + ' Cep:' + endereco.Cep +' Numero: ' +endereco.Numero + ' Campina Grande', '_system', options)
                     .then(function(event) {
                         // success
                         console.log(event)
