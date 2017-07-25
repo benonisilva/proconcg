@@ -40,11 +40,14 @@
 
         vm.openGeo = function (endereco) {
             document.addEventListener("deviceready", function () {
+                
+                var isIOS = device.platform==='iOS'||device.platform==='iPhone'||navigator.userAgent.match(/(iPhone|iPod|iPad)/);
+                
+                var url = 'geo:0,0?q=';
+                if(isIOS) url = 'maps://?q=';
                 if(endereco===null ||endereco===undefined ) endereco = ""
-                var lat = -7.2164603;
-        	    var lng = -35.8821985;
-                var geocoords = lat + ',' + lng;
-                $cordovaInAppBrowser.open('geo:0,0?q=' +  endereco.Rua + ' Cep:' + endereco.Cep +' Numero: ' +endereco.Numero, '_system', options)
+
+                $cordovaInAppBrowser.open(url+  endereco.Rua + ' Cep:' + endereco.Cep +' Numero: ' +endereco.Numero, '_system', options)
                     .then(function(event) {
                         // success
                         console.log(event)
