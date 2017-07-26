@@ -22,7 +22,7 @@
         vm.id = 0;
         vm.provas = [];
         vm.agentes = [];
-        vm.dados = { AgenteId : 1 };
+        vm.agenteEscolhido = {};
         vm.tipos = [ {StatusId:2,Nome : "Constatado"}, {StatusId:3,Nome : "Não Constatado"}];
         vm.showEndereco = false;
         vm.showEmpresa = true;
@@ -47,7 +47,7 @@
                 if(isIOS) url = 'maps://?q=';
                 if(endereco===null ||endereco===undefined ) endereco = ""
 
-                $cordovaInAppBrowser.open(url+  endereco.Rua + ' Cep:' + endereco.Cep +' Numero: ' +endereco.Numero + ' Campina Grande', '_system', options)
+                $cordovaInAppBrowser.open(url+  endereco.Rua + ', ' + endereco.Numero + ', '  + endereco.Cep +',' + ' Campina Grande-PB', '_system', options)
                     .then(function(event) {
                         // success
                         console.log(event)
@@ -170,7 +170,8 @@
                 
                 if(result){
                     vm.fiscalizacao =  result;
-                    vm.dados.AgenteId = result.Agente.AgenteId;
+                    
+                    vm.dados.agenteEscolhido = result.Agente;
                     DiligenciaService.getConsumidor(result.FatoId).then(function (dado){
                         vm.consumidor = dado;
                     });

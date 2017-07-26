@@ -107,12 +107,11 @@
                 
                 <div class="item item-input item-select">
                     <label for="repeatSelect"> Fiscais: </label>
-                    <select name="repeatSelect" id="repeatSelect" ng-model="vm.dados.AgenteId">
-                        <option ng-repeat="option in vm.agentes" value="{{option.AgenteId}}">{{option.Nome}}</option>
+                    <select name="repeatSelect" id="repeatSelect" ng-model="vm.agenteEscolhido" ng-options="option.Nome for option in vm.agentes track by option.AgenteId">
                     </select>
                 </div>
                 <div class="padding">
-                    <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.mudarAgente(vm.id,vm.dados.AgenteId)">Mudar Fiscal</button>
+                    <button class="button button-block button-positive icon-left ion-edit" ng-click="vm.mudarAgente(vm.id,vm.agenteEscolhido.AgenteId)">Mudar Fiscal</button>
                 </div>
             </div>
 
