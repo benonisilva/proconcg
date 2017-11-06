@@ -1,4 +1,14 @@
 {
   "name": "ProconCGMovel",
-  "app_id": "br.com.proconcg"
+  "app_id": "br.com.proconcg",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
 }

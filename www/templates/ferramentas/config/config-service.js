@@ -17,7 +17,7 @@
             }
 
             function get() {
-                return "http://189.80.19.75:8080/procon-mobile";
+                return "http://191.253.16.179:8080/procon-mobile";
             }
         }
 

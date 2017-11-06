@@ -18,10 +18,41 @@ angular.module('starter',
 
 .run(function($ionicPlatform,$rootScope) {  
     $ionicPlatform.ready(function() {
+    function displayMessage (message) {
+     navigator.notification.alert(message, null, "CodePush", "OK");
+    }
+    var codPushOpt = { 
+        updateDialog: 
+        {  
+          appendReleaseDescription: true,  
+          updateTitle: "Nova Versão Do Aplicativo!",
+          mandatoryUpdateMessage : "Você deve instalar essa nova versão!!"
+        }, 
+        installMode: InstallMode.IMMEDIATE
+    };
+    
+    window.codePush.sync(function (syncStatus) {
+        switch (syncStatus) {
+          case SyncStatus.APPLY_SUCCESS:
+            //Success
+            return;
+          case SyncStatus.UP_TO_DATE:
+            //displayMessage("O aplicativo esta na sua versão mais recente.");
+            break;
+          case SyncStatus.UPDATE_IGNORED:
+            displayMessage("Não quis adcionar itens opcionais.");
+            break;
+          case SyncStatus.ERROR:
+            displayMessage("Um erro ocorreu ao colocar a nova versão do aplicativo.");
+            break;
+        }
+    },codPushOpt);
+    
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);              
     }
+    
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
@@ -90,23 +121,6 @@ angular.module('starter',
                 profile: null
         }
     })
-
-//   .state('app.perfil', {
-//         url: '/perfil',
-//         views: {
-//             'menuContent': {
-//                 templateUrl: 'templates/area-restrita/perfil/html/perfil.html',
-//                 controller: 'PerfilCtrl as vm'
-//             },
-//             'fabContent': {
-//                 template: ''
-//             }
-//         },
-//         params: {
-//                 profile: null
-//         }
-//     })
-
   .state('app.localizacao',{
     url : '/localizacao',
     views: {
@@ -121,19 +135,6 @@ angular.module('starter',
 
   })
 
-//   .state('app.eventos',{
-//     url : '/eventos',
-//     views: {
-//           'menuContent' : {
-//             templateUrl:'templates/ferramentas/eventos/html/eventos.html',
-//             controller: 'EventosCtrl as vm'
-//           },
-//           'fabContent': {
-//             template:''
-//           }
-//     }
-
-//   })
 
   .state('app.info',{
     url : '/informacoes',

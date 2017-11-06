@@ -46,6 +46,7 @@
         <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
+        <preference name="CodePushDeploymentKey" value="IDNWikn333XweVGWsqLpRa4JjgzT76ff956d-cdeb-4a7d-ba20-7c59771d3474" />
     </platform>
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/Icon-App-57x57@1x.png" width="57" />
@@ -78,22 +79,23 @@
         <splash height="480" src="resources\ios\splash\Default~iphone.png" width="320" />
     </platform>
     <engine name="android" spec="^6.2.3" />
-    <plugin name="cordova-plugin-camera" spec="~2.4.1">
+    <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="salvar prova no ios" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="provas salvas no seu ios" />
     </plugin>
-    <plugin name="cordova-plugin-console" spec="~1.0.6" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0">
+    <plugin name="cordova-plugin-console" spec="^1.0.7" />
+    <plugin name="cordova-plugin-crosswalk-webview" spec="^2.3.0">
         <variable name="XWALK_VERSION" value="23+" />
         <variable name="XWALK_LITEVERSION" value="xwalk_core_library_canary:17+" />
         <variable name="XWALK_COMMANDLINE" value="--disable-pull-to-refresh-effect" />
         <variable name="XWALK_MODE" value="embedded" />
         <variable name="XWALK_MULTIPLEAPK" value="true" />
     </plugin>
-    <plugin name="cordova-plugin-device" spec="~1.1.5" />
-    <plugin name="cordova-plugin-file" spec="~4.3.0" />
-    <plugin name="cordova-plugin-file-transfer" spec="~1.6.0" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
-    <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
+    <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-code-push" spec="^1.9.8-beta" />
 </widget>
