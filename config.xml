@@ -77,6 +77,7 @@
         <splash height="1024" src="resources\ios\splash\Default-Portrait~ipad.png" width="768" />
         <splash height="960" src="resources\ios\splash\Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources\ios\splash\Default~iphone.png" width="320" />
+        <preference name="CodePushDeploymentKey" value="_76bYDO1eLTVFhSjrKgZPRw3qyXq76ff956d-cdeb-4a7d-ba20-7c59771d3474" />
     </platform>
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
