@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.proconcg" version="0.1.91" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.proconcg" version="0.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ProconCGMovel</name>
     <description>
 
@@ -80,12 +80,11 @@
         <preference name="CodePushDeploymentKey" value="_76bYDO1eLTVFhSjrKgZPRw3qyXq76ff956d-cdeb-4a7d-ba20-7c59771d3474" />
     </platform>
     <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="~4.5.3" />
+    <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="salvar prova no ios" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="provas salvas no seu ios" />
     </plugin>
-    <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="^2.3.0">
         <variable name="XWALK_VERSION" value="23+" />
         <variable name="XWALK_LITEVERSION" value="xwalk_core_library_canary:17+" />
