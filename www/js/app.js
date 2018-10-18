@@ -6,7 +6,7 @@ angular.module('starter',
         'ionic-material', 
         'ionMdInput',
         'ngCordova',
-        
+        'ngFileUpload',
         'starter.controllers',
         'stater.services.user',
         'starter.services',
@@ -18,35 +18,6 @@ angular.module('starter',
 
 .run(function($ionicPlatform,$rootScope) {  
     $ionicPlatform.ready(function() {
-    function displayMessage (message) {
-     navigator.notification.alert(message, null, "CodePush", "OK");
-    }
-    var codPushOpt = { 
-        updateDialog: 
-        {  
-          appendReleaseDescription: true,  
-          updateTitle: "Nova Versão Do Aplicativo!",
-          mandatoryUpdateMessage : "Você deve instalar essa nova versão!!"
-        }, 
-        installMode: InstallMode.IMMEDIATE
-    };
-    
-    window.codePush.sync(function (syncStatus) {
-        switch (syncStatus) {
-          case SyncStatus.APPLY_SUCCESS:
-            //Success
-            return;
-          case SyncStatus.UP_TO_DATE:
-            //displayMessage("O aplicativo esta na sua versão mais recente.");
-            break;
-          case SyncStatus.UPDATE_IGNORED:
-            displayMessage("Não quis adcionar itens opcionais.");
-            break;
-          case SyncStatus.ERROR:
-            displayMessage("Um erro ocorreu ao colocar a nova versão do aplicativo.");
-            break;
-        }
-    },codPushOpt);
     
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {            
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -174,6 +145,6 @@ angular.module('starter',
             }
         }
     });
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/app/add/denuncia/0');
 
 }]);

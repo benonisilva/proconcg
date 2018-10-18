@@ -16,7 +16,6 @@
         	}, false);*/
 
         	function initializeMap(lat,lon) {
-        	    console.log(lat+":"+lon);
         	    var mapLoc = new Microsoft.Maps.Location(lat, lon); 
         	    var mapOptions = {
         	        credentials: "ApekYdmvuWWJDzcvPIsH5RKqRcw0IJ2k5QTDOdScLR0GxIsHBR2NgAr5a2ffYgEW",
@@ -26,7 +25,7 @@
         	    };
         	    
         	    var pushpin= new Microsoft.Maps.Pushpin(mapLoc, null); 
-        	    var infoboxOptions = {title:'<a href="http://proconcg.com.br/" target="_blank" >Procon - Campina Grande </a>', description:'R. Professor Ernane Lauritzen, 226 Centro <br /> Campina Grande - PB, 58400-133.  <br /> (83) 98802-5525 (83) 3342-9179 - Disk Denúncia 151 <br />'}; 
+        	    var infoboxOptions = {title:'http://proconcg.com.br  Procon - Campina Grande', description:'R. Professor Ernane Lauritzen, 226 Centro Campina Grande - PB, 58400-133.  (83) 98802-5525 (83) 3342-9179 - Disk Denúncia 151 '}; 
         	    var defaultInfobox = new Microsoft.Maps.Infobox(mapLoc, infoboxOptions );    
         	    var map = new Microsoft.Maps.Map(document.getElementById("map_canvas"), mapOptions);
         	    map.entities.push(pushpin);

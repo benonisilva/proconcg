@@ -3,26 +3,24 @@
   "version": "1.0.0",
   "description": "ProconCGMobile: LightInfocon",
   "dependencies": {
-    "code-push": "^2.0.1-beta",
     "cordova-android": "^6.2.3",
+    "cordova-browser": "^5.0.4",
+    "cordova-ios": "~4.5.4",
     "cordova-plugin-camera": "^2.4.1",
-    "cordova-plugin-code-push": "^1.9.8-beta",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-crosswalk-webview": "^2.3.0",
     "cordova-plugin-device": "^1.1.6",
-    "cordova-plugin-dialogs": "^1.3.3",
-    "cordova-plugin-file": "^4.3.3",
-    "cordova-plugin-file-transfer": "^1.6.3",
+    "cordova-plugin-file": "git+https://github.com/apache/cordova-plugin-file.git",
+    "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-whitelist": "^1.3.2",
-    "cordova-plugin-zip": "^3.1.0",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^1.3.3",
     "ionic-plugin-keyboard": "^2.2.1",
-    "cordova-ios": "~4.5.4"
+    "ng-file-upload": "^12.2.13"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -44,7 +42,8 @@
   "cordova": {
     "platforms": [
       "android",
-      "ios"
+      "ios",
+      "browser"
     ],
     "plugins": {
       "cordova-plugin-camera": {
@@ -63,8 +62,7 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-code-push": {}
+      "ionic-plugin-keyboard": {}
     }
   }
 }

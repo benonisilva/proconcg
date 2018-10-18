@@ -54,13 +54,7 @@
 
      function _setOptions(srcType) {
     	    var options = {
-    	        quality: 50,
-    	        destinationType: Camera.DestinationType.FILE_URI,
     	        sourceType: srcType,
-    	        encodingType: Camera.EncodingType.JPEG,
-    	        mediaType: Camera.MediaType.PICTURE,
-    	        allowEdit: false,
-    	        correctOrientation: true
     	    }
     	    return options;
     	}

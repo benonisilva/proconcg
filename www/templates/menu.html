@@ -17,29 +17,11 @@
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
-                <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.login">
-                    Login
-                </ion-item>
-                <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.cadastro">
-                    Cadastro
-                </ion-item>
-                <ion-item ng-if="($parent.logged)" nav-clear menu-close ui-sref="app.area-restrita">
-                    Denúncias
-                </ion-item>
-                <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.denuncias-local">
-                    Denúncias Não Enviadas
-                </ion-item>
                 <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.add-denuncia">
                     Nova Denúncia
                 </ion-item>
                 <ion-item nav-clear menu-close ui-sref="app.localizacao">
                     Localização
-                </ion-item>
-                <ion-item nav-clear menu-close ui-sref="app.info">
-                    Informações
-                </ion-item>
-                 <ion-item ng-if="!($parent.logged)" nav-clear menu-close ui-sref="app.nova-senha">
-                    Esqueci Minha Senha
                 </ion-item>
             </ion-list>
         </ion-content>

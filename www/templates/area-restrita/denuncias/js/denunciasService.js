@@ -5,10 +5,10 @@
         .module('starter.services')
         .factory('DenunciaService', DenunciaService);
         DenunciaService.$inject = ['$q','$http','$timeout',
-        'DenunciaLocalDBService','$cordovaFileTransfer','ConfigService'];
+        'DenunciaLocalDBService','$cordovaFileTransfer','ConfigService', 'Upload'];
 
     function DenunciaService($q,$http,$timeout,
-      DenunciaLocalDBService,$cordovaFileTransfer,ConfigService) { 
+      DenunciaLocalDBService,$cordovaFileTransfer,ConfigService, Upload) { 
       
       var denuncia = {
         
@@ -45,7 +45,7 @@
       function enviar(denuncia){
             
             console.log("Denuncia.enviar: ");
-            console.log(denuncia||"null");
+            // console.log(denuncia||"null");
             var url = ConfigService.get()+'/Fato/Adicionar';
             var idLocal = denuncia.Id;
             var tipos = [{TipoFatoId:1,Nome:"Denúncia"},{TipoFatoId:2,Nome:"Reclamação"}];
@@ -54,6 +54,7 @@
               Tipo:tipos[denuncia.TipoFatoId -1],
               Descricao : denuncia.Descricao.replace(/[^\w\s]/gi, ''),
               Data: denuncia.Data || new Date().toISOString(),
+              Consumidor: denuncia.Consumidor,
               Empresa: {
                 Cnpj : denuncia.Empresa.Cnpj,
                 NomeFantasia : denuncia.Empresa.NomeFantasia,
@@ -112,9 +113,12 @@
         };
         
         for(var i=0; arquivos.length > i; i++ ){
-          options.fileName = arquivos[i].split("/").pop();
-          promisses.push($cordovaFileTransfer.upload(server, arquivos[i], options));
-        
+          options.fileName = arquivos[i].name;
+          var p = Upload.upload({
+            url: server,
+            data: { fatoId: id,  arquivo: arquivos[i]}
+           });
+          promisses.push(p);
         }
         return promisses;
       };
